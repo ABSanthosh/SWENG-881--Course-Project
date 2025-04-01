@@ -1,0 +1,15 @@
+@startuml
+start
+:Input str;
+switch (str)
+case ("\\r\\n")
+  :Return CRLF;
+case ("\\n")
+  :Return LF;
+case ("\\r")
+  :Return CR;
+case (default)
+  :Throw IllegalArgumentException;
+endswitch
+stop
+@enduml
