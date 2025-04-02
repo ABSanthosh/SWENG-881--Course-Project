@@ -19,6 +19,13 @@ FastCSV is a high-performance CSV parser and writer for Java licensed under the 
 
 ## Input Domain Modeling:
 
+### Introduction
+
+The CSVWriter and CSVReader components were selected for Input Domain Modeling for several practical reasons:
+- Using Input Domain Modeling on these higher-level components provides the team with an opportunity to understand the major functionality of FastCSV early in the testing process.  This understanding will assist in designing subsequent tests.
+- Since FastCSV is already in production and the primary functionality is fully operational, testing at this level is a practical option at this early stage in the testing process.  If this were an early sprint in an Agile project, this level of testing might not be available, since the functionality would not be fully developed.
+- The components, and in particular the csv files themselves, are good targets for Input Domain Testing.  The input domain of the csv files is practically infinite, but those possibilities can be logically partitioned into blocks representing both common use cases and edge cases. This allowed the team to develop a manageable framework for testing a large input space.
+
 ### CsvWriter
 
 **Selected Functions/Features for Input Domain Modeling**  
@@ -97,19 +104,36 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 
 **Partitioning Characteristics into Blocks**
 
-| Input Variable    | Blocks                         | Values                                           |
-| ----------------- | ------------------------------ | ------------------------------------------------ |
-| `file`            | Block 1: Valid CSV file        | Path to file with valid CSV (e.g., `"a,b\nc,d"`).   |
-|                   | Block 2: Empty file            | Path to an empty file.                           |
-|                   | Block 3: Malformed CSV         | Path to a malformed CSV (e.g., `"a,b\nc"`). |
-| `fieldSeparator`  | Block 1: Default separator     | `','`                                            |
-|                   | Block 2: Alternative separator | `';'`                                            |
-| `quoteCharacter`  | Block 1: Default quote         | `'"'`                                            |
-|                   | Block 2: Alternative quote     | `'''`                                            |
-| `commentStrategy` | Block 1: `NONE`                | `CommentStrategy.NONE`                           |
-|                   | Block 2: `SKIP`                | `CommentStrategy.SKIP`                           |
-| `skipEmptyLines`  | Block 1: `true`                | `true`                                           |
-|                   | Block 2: `false`               | `false`                                          |
+| Input Variable             | Blocks                                           | Values                                           |
+| -------------------------- | ------------------------------------------------ | ------------------------------------------------ |
+| `file`                     | Block 1: Valid CSV file of strings and numbers   | Path to file with valid CSV (e.g., `"a,b\nc,d"`).|
+|                            | Block 2: CSV of special characters               |                                                  | 
+|                            | Block 3: Single column CSV                       |                                                  |  
+|                            | Block 4: Single row CSV                          |                                                  | 
+|                            | Block 5: Very large CSV (1 million rows)         |                                                  | 
+|                            | Block 6: CSV file with commas as data            |                                                  | 
+|                            | Block 7: CSV file with quotes as data            |                                                  | 
+|                            | Block 8: Uneven # of columns in rows             |                                                  | 
+|                            | Block 9: Skipped Rows                            |                                                  | 
+|                            | Block 10: Empty file                             | Path to an empty file.                           |
+|                            | Block 11: Characters after quotes                |                                                  | 
+| `fieldSeparator`           | Block 1: Not specified                           | Defaults to `','`                                |
+|                            | Block 2: Alternative separator                   | `';'`                                            |
+| `quoteCharacter`           | Block 1: Not specified                           | Deafults to `'"'`                                |
+|                            | Block 2: Alternative quote                       | `'''`                                            |
+| `commentStrategy`          | Block 1: Not specified                           | Defaults to `CommentStrategy.NONE`               |
+|                            | Block 2: `SKIP`                                  | `CommentStrategy.SKIP`                           |
+| `commentCharacter`         | Block 1: Default                                 | Defaults to `#`                                  |
+|                            | Block 2: Alternate                               | `@`                                              |
+| `ignoreDifferentFieldCount`| Block 1: Not specified                           | Defaults to `true`                               |
+|                            | Block 2: `false`                                 | `false`                                          |
+| `skipEmptyLines`           | Block 1: Not specified                           | Defaults to `true`                               |
+|                            | Block 2: `false`                                 | `false`                                          |
+| `acceptCharsAfterQuotes`   | Block 1: Not specified                           | Defaults to `false`                              |
+|                            | Block 2: `true`                                  | `true`                                           |
+| `detectBomHeader`          | Block 1: Not specified                           | Defaults to 'false'                              |
+|                            | Block 2: `true`                                  | `true`                                           |
+
 
 **Coverage Criteria**  
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
