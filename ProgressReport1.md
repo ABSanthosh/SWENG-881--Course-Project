@@ -141,16 +141,16 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
 
 **Test Set Definition**
-|test # (prefix = idm-r)  | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
-|-------------------------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-|file                     | a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 | a9 | a10| a16| a12| a13| a14| a15| a13| a8 | a9 |
-|fieldSeperator           | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b2 | b1 | b1 | b1 | b1 | b1 | b1 | b1 |
-|quoteCharacter           |    |    |    |    |    | c1 | c1 |    |    |    |    | c2 |    |    |    |    |    |    |
-|commentStrategy          |    |    |    |    |    |    |    |    |    |    |    |    | d2 | d2 |    | d1 |    |    |
-|commentCharacter         |    |    |    |    |    |    |    |    |    |    |    |    | e1 | e2 |    | e1 |    |    |
-|ignoreDifferentFieldCount|    |    |    |    |    |    |    | f1 |    |    |    |    |    |    |    |    | f2 |    |
-|skipEmptyLines           |    |    |    |    |    |    |    |    | g2 |    |    |    |    |    |    |    |    | g1 |
-|detectBomHeader          | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h2 | h1 | h1 | h1 |
+|test # (prefix = idm-r)  | 01| 02| 03| 04| 05| 06| 07| 08| 09| 10| 11| 12| 13| 14| 15| 16| 17| 18|
+|-------------------------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|file                     | a1| a2| a3| a4| a5| a6| a7| a8| a9|a10|a16|a12|a13|a14|a15|a13| a8| a9| 
+|fieldSeperator           | b1| b1| b1| b1| b1| b1| b1| b1| b1| b1| b2| b1| b1| b1| b1| b1| b1| b1|
+|quoteCharacter           |   |   |   |   |   | c1| c1|   |   |   |   | c2|   |   |   |   |   |   |
+|commentStrategy          |   |   |   |   |   |   |   |   |   |   |   |   | d2| d2|   | d1|   |   |
+|commentCharacter         |   |   |   |   |   |   |   |   |   |   |   |   | e1| e2|   | e1|   |   |
+|ignoreDifferentFieldCount|   |   |   |   |   |   |   | f1|   |   |   |   |   |   |   |   | f2|   |
+|skipEmptyLines           |   |   |   |   |   |   |   |   | g2|   |   |   |   |   |   |   |   | g1|
+|detectBomHeader          | h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h2| h1| h1| h1|
 
 - Test 1: `ofCsvRecord(Path to file with "a,b\nc,d")` with default settings (`fieldSeparator=','`, `quoteCharacter='"'`, `commentStrategy=NONE`, `skipEmptyLines=true`).
 - Test 2: `ofCsvRecord(Path to empty file)` with `fieldSeparator=';'`, `quoteCharacter='''`, `commentStrategy=SKIP`, `skipEmptyLines=false`.
