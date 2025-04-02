@@ -106,21 +106,21 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 
 | Input Variable             | Blocks                                            | Values                                           | Related Tests        |
 | -------------------------- | ------------------------------------------------- | ------------------------------------------------ |----------------------|
-| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv]/CsvTestFiles/reader-file-a01.csv                              | idm-r01              |
-|                            | Block a2: CSV of special characters               | reader-file-a02.csv                              | idm-r02              |
-|                            | Block a3: Single column CSV                       | reader-file-a03.csv                              | idm-r03              |  
-|                            | Block a4: Single row CSV                          | reader-file-a04.csv                              | idm-r04              |
-|                            | Block a5: Very large CSV (1 million rows)         | reader-file-a05.csv                              | idm-r05              |
-|                            | Block a6: CSV file with commas as data            | reader-file-a06.csv                              | idm-r06              |
-|                            | Block a7: CSV file with quotes as data            | reader-file-a07.csv                              | idm-r07              |
-|                            | Block a8: Uneven # of columns in rows             | reader-file-a08.csv                              | idm-r08, idm-r17     |
-|                            | Block a9: Skipped Rows                            | reader-file-a09.csv                              | idm-r09, idm-r19     |
-|                            | Block a10: Empty file                             | reader-file-a10.csv                              | idm-r10              |
-|                            | Block a11: `';'` as field separator               | reader-file-a11.csv                              | idm-r11              |
-|                            | Block a12: `'` as quotes                          | reader-file-a12.csv                              | idm-r12              |
-|                            | Block a13: `#` as comments                        | reader-file-a13.csv                              | idm-r13, idm-r16     |
-|                            | Block a14: `@` as comments                        | reader-file-a14.csv                              | idm-r14              |
-|                            | Block a15: File with BOM header                   | reader-file-a15.csv                              | idm-r15              |
+| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv](/CsvTestFiles/reader-file-a01.csv)                              | idm-r01              |
+|                            | Block a2: CSV of special characters               | [reader-file-a02.csv](/CsvTestFiles/reader-file-a02.csv)                             | idm-r02              |
+|                            | Block a3: Single column CSV                       | [reader-file-a03.csv](/CsvTestFiles/reader-file-a03.csv)                             | idm-r03              |  
+|                            | Block a4: Single row CSV                          | [reader-file-a04.csv](/CsvTestFiles/reader-file-a04.csv)                             | idm-r04              |
+|                            | Block a5: Very large CSV (1 million rows)         | [reader-file-a05.csv](/CsvTestFiles/reader-file-a05.csv)                             | idm-r05              |
+|                            | Block a6: CSV file with commas as data            | [reader-file-a06.csv](/CsvTestFiles/reader-file-a06.csv)                              | idm-r06              |
+|                            | Block a7: CSV file with quotes as data            | [reader-file-a07.csv](/CsvTestFiles/reader-file-a07.csv)                              | idm-r07              |
+|                            | Block a8: Uneven # of columns in rows             | [reader-file-a08.csv](/CsvTestFiles/reader-file-a08.csv)                             | idm-r08, idm-r17     |
+|                            | Block a9: Skipped Rows                            | [reader-file-a09.csv](/CsvTestFiles/reader-file-a09.csv)                              | idm-r09, idm-r19     |
+|                            | Block a10: Empty file                             | [reader-file-a10.csv](/CsvTestFiles/reader-file-a10.csv)                              | idm-r10              |
+|                            | Block a11: `';'` as field separator               | [reader-file-a11.csv](/CsvTestFiles/reader-file-a11.csv)                              | idm-r11              |
+|                            | Block a12: `'` as quotes                          | [reader-file-a12.csv](/CsvTestFiles/reader-file-a12.csv)                              | idm-r12              |
+|                            | Block a13: `#` as comments                        | [reader-file-a13.csv](/CsvTestFiles/reader-file-a13.csv)                              | idm-r13, idm-r16     |
+|                            | Block a14: `@` as comments                        | [reader-file-a14.csv](/CsvTestFiles/reader-file-a14.csv)                              | idm-r14              |
+|                            | Block a15: File with BOM header                   | [reader-file-a15.csv](/CsvTestFiles/reader-file-a15.csv)                              | idm-r15              |
 | `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                | all except idm-r11   |
 |                            | Block b2: Alternative separator                   | `';'`                                            | idm-r11              |
 | `quoteCharacter`           | Block c1: Default                                 | Defaults to `'"'`                                | idm-r06, idm-r07     |
