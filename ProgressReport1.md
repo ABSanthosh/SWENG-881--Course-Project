@@ -104,40 +104,37 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 
 **Partitioning Characteristics into Blocks**
 
-| Input Variable             | Blocks                                           | Values                                           |
-| -------------------------- | ------------------------------------------------ | ------------------------------------------------ |
-| `file`                     | Block a1: Valid CSV file of strings and numbers   | reader-file-b01.csv                              |
-|                            | Block a2: CSV of special characters               | reader-file-b02.csv                              | 
-|                            | Block a3: Single column CSV                       | reader-file-b03.csv                              |  
-|                            | Block a4: Single row CSV                          | reader-file-b04.csv                              | 
-|                            | Block a5: Very large CSV (1 million rows)         | reader-file-b05.csv                              | 
-|                            | Block a6: CSV file with commas as data            | reader-file-b06.csv                              | 
-|                            | Block a7: CSV file with quotes as data            | reader-file-b07.csv                              |  
-|                            | Block a8: Uneven # of columns in rows             | reader-file-b08.csv                              |  
-|                            | Block a9: Skipped Rows                            | reader-file-b09.csv                              | 
-|                            | Block a10: Empty file                             | reader-file-b10.csv                              |
-|                            | Block a11: Characters after quotes                | reader-file-b11.csv                              |
-|                            | Block a12: `'` as quotes                          | reader-file-b12.csv                              | 
-|                            | Block a13: `#` as comments                        | reader-file-b13.csv                              |
-|                            | Block a14: `@` as comments                        | reader-file-b14.csv                              |
-|                            | Block a15: File with BOM header                   | reader-file-b15.csv                              |
-|                            | Block a16: `';'` as field separator               | reader-file-b16.csv
-| `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                |
-|                            | Block b2: Alternative separator                   | `';'`                                            |
-| `quoteCharacter`           | Block c1: Default                                 | Deafults to `'"'`                                |
-|                            | Block c2: Alternative quote                       | `'''`                                            |
-| `commentStrategy`          | Block d1: Default                                 | Defaults to `CommentStrategy.NONE`               |
-|                            | Block d2: `SKIP`                                  | `CommentStrategy.SKIP`                           |
-| `commentCharacter`         | Block e1: Default                                 | Defaults to `#`                                  |
-|                            | Block e2: Alternate                               | `@`                                              |
-| `ignoreDifferentFieldCount`| Block f1: Default                                 | Defaults to `true`                               |
-|                            | Block f2: `false`                                 | `false`                                          |
-| `skipEmptyLines`           | Block g1: Default                                 | Defaults to `true`                               |
-|                            | Block g2: `false`                                 | `false`                                          |
-| `acceptCharsAfterQuotes`   | Block h1: Default                                 | Defaults to `false`                              |
-|                            | Block h2: `true`                                  | `true`                                           |
-| `detectBomHeader`          | Block i1: Default                                 | Defaults to 'false'                              |
-|                            | Block i2: `true`                                  | `true`                                           |
+| Input Variable             | Blocks                                            | Values                                           | Related Tests        |
+| -------------------------- | ------------------------------------------------- | ------------------------------------------------ |----------------------|
+| `file`                     | Block a1: Valid CSV file of strings and numbers   | reader-file-a01.csv                              | idm-r01              |
+|                            | Block a2: CSV of special characters               | reader-file-a02.csv                              | idm-r02              |
+|                            | Block a3: Single column CSV                       | reader-file-a03.csv                              | idm-r03              |  
+|                            | Block a4: Single row CSV                          | reader-file-a04.csv                              | idm-r04              |
+|                            | Block a5: Very large CSV (1 million rows)         | reader-file-a05.csv                              | idm-r05              |
+|                            | Block a6: CSV file with commas as data            | reader-file-a06.csv                              | idm-r06              |
+|                            | Block a7: CSV file with quotes as data            | reader-file-a07.csv                              | idm-r07              |
+|                            | Block a8: Uneven # of columns in rows             | reader-file-a08.csv                              | idm-r08, idm-r17     |
+|                            | Block a9: Skipped Rows                            | reader-file-a09.csv                              | idm-r09, idm-r19     |
+|                            | Block a10: Empty file                             | reader-file-a10.csv                              | idm-r10              |
+|                            | Block a11: `';'` as field separator               | reader-file-a11.csv                              | idm-r11              |
+|                            | Block a12: `'` as quotes                          | reader-file-a12.csv                              | idm-r12              |
+|                            | Block a13: `#` as comments                        | reader-file-a13.csv                              | idm-r13, idm-r16     |
+|                            | Block a14: `@` as comments                        | reader-file-a14.csv                              | idm-r14              |
+|                            | Block a15: File with BOM header                   | reader-file-a15.csv                              | idm-r15              |
+| `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                | all except idm-r11   |
+|                            | Block b2: Alternative separator                   | `';'`                                            | idm-r11              |
+| `quoteCharacter`           | Block c1: Default                                 | Defaults to `'"'`                                | idm-r06, idm-r07     |
+|                            | Block c2: Alternative quote                       | `'^'`                                            | idm-r12              |
+| `commentStrategy`          | Block d1: Default                                 | Defaults to `CommentStrategy.NONE`               | idm-r16              |
+|                            | Block d2: `SKIP`                                  | `CommentStrategy.SKIP`                           | idm-r13, idm-r14     |
+| `commentCharacter`         | Block e1: Default                                 | Defaults to `#`                                  | idm-r13, idm-r16     |
+|                            | Block e2: Alternate                               | `@`                                              | idm-r14              |
+| `ignoreDifferentFieldCount`| Block f1: Default                                 | Defaults to `true`                               | idm-r08              |
+|                            | Block f2: `false`                                 | `false`                                          | idm-r17              |
+| `skipEmptyLines`           | Block g1: Default                                 | Defaults to `true`                               | idm-r18              |
+|                            | Block g2: `false`                                 | `false`                                          | idm-r09              |
+| `detectBomHeader`          | Block h1: Default                                 | Defaults to 'false'                              | all except idm-r15   |
+|                            | Block h2: `true`                                  | `true`                                           | idm-r15              | 
 
 
 **Coverage Criteria**  
@@ -146,15 +143,14 @@ The "Each-Choice" coverage criterion was selected to ensure each block is tested
 **Test Set Definition**
 |test # (prefix = idm-r)  | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
 |-------------------------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-|file                     | a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 | a9 | a10| 
-|fieldSeperator           | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 |
-|quoteCharacter           | c1 | c1 | c1 | c1 | c1 | c1 | c1 | c1 | c1 | c1 |
-|commentStrategy          | d1 | d1 | d1 | d1 | d1 | d1 | d1 | d1 | d1 | d1 |
-|commentCharacter         | e1 | e1 | e1 | e1 | e1 | e1 | e1 | e1 | e1 | e1 |
-|ignoreDifferentFieldCount| f1 | f1 | f1 | f1 | f1 | f1 | f1 | f1 | f1 | f1 |
-|skipEmptyLines           | g1 | g1 | g1 | g1 | g1 | g1 | g1 | g1 | g1 | g1 |
-|acceptCharsAfterQuotes   | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 |
-|detectBomHeader          | i1 | i1 | i1 | i1 | i1 | i1 | i1 | i1 | i1 | i1 |
+|file                     | a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 | a9 | a10| a16| a12| a13| a14| a15| a13| a8 | a9 |
+|fieldSeperator           | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b1 | b2 | b1 | b1 | b1 | b1 | b1 | b1 | b1 |
+|quoteCharacter           |    |    |    |    |    | c1 | c1 |    |    |    |    | c2 |    |    |    |    |    |    |
+|commentStrategy          |    |    |    |    |    |    |    |    |    |    |    |    | d2 | d2 |    | d1 |    |    |
+|commentCharacter         |    |    |    |    |    |    |    |    |    |    |    |    | e1 | e2 |    | e1 |    |    |
+|ignoreDifferentFieldCount|    |    |    |    |    |    |    | f1 |    |    |    |    |    |    |    |    | f2 |    |
+|skipEmptyLines           |    |    |    |    |    |    |    |    | g2 |    |    |    |    |    |    |    |    | g1 |
+|detectBomHeader          | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h1 | h2 | h1 | h1 | h1 |
 
 - Test 1: `ofCsvRecord(Path to file with "a,b\nc,d")` with default settings (`fieldSeparator=','`, `quoteCharacter='"'`, `commentStrategy=NONE`, `skipEmptyLines=true`).
 - Test 2: `ofCsvRecord(Path to empty file)` with `fieldSeparator=';'`, `quoteCharacter='''`, `commentStrategy=SKIP`, `skipEmptyLines=false`.
