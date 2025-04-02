@@ -106,7 +106,7 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 
 | Input Variable             | Blocks                                            | Values                                           | Related Tests        |
 | -------------------------- | ------------------------------------------------- | ------------------------------------------------ |----------------------|
-| `file`                     | Block a1: Valid CSV file of strings and numbers   | reader-file-a01.csv                              | idm-r01              |
+| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv]/CsvTestFiles/reader-file-a01.csv                              | idm-r01              |
 |                            | Block a2: CSV of special characters               | reader-file-a02.csv                              | idm-r02              |
 |                            | Block a3: Single column CSV                       | reader-file-a03.csv                              | idm-r03              |  
 |                            | Block a4: Single row CSV                          | reader-file-a04.csv                              | idm-r04              |
