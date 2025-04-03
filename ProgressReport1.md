@@ -90,74 +90,118 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 - `fieldSeparator`: A `char` defining the separator between fields (default: `,`).
 - `quoteCharacter`: A `char` used to enclose fields (default: `"`).
 - `commentStrategy`: A `CommentStrategy` enum determining comment handling (default: `NONE`).
+- `commentCharacter`: A `char` denoting the beginning of a comment (default `#`).
+- `ignoreDifferentFieldCount`: A `boolean` controlling wherther to ignore malformed files (default: `true`).
 - `skipEmptyLines`: A `boolean` controlling whether empty lines are skipped (default: `true`).
+- `detectBomHeader`: A `boolean` controlling whether to detect and skip Bom header in csv file (default: `false`)
 
 **Characteristics of Input Variables**
 
-| Input Variable    | Type                   | Constraints                                                                        |
-| ----------------- | ---------------------- | ---------------------------------------------------------------------------------- |
-| `file`            | `Path`                 | Must point to a readable file; content can vary                                    |
-| `fieldSeparator`  | Single `char`          | Must not be a newline character.                                                   |
-| `quoteCharacter`  | Single `char`          | Must not be a newline character.                                                   |
-| `commentStrategy` | `CommentStrategy` enum | Defines comment line behavior.                                                     |
-| `skipEmptyLines`  | `boolean`              | `true` or `false`.                                                                 |
+| Input Variable             | Type                   | Constraints                                                                        |
+| -------------------------- | ---------------------- | ---------------------------------------------------------------------------------- |
+| `file`                     | `Path`                 | Must point to a readable file; content can vary                                    |
+| `fieldSeparator`           | Single `char`          | Must not be a newline character.                                                   |
+| `quoteCharacter`           | Single `char`          | Must not be a newline character.                                                   |
+| `commentStrategy`          | `CommentStrategy` enum | Defines comment line behavior.                                                     |
+| `commentCharacter`         | Single `char`          | Must not be a newline character.   
+| `ignoreDifferentFieldCount`| `boolean`              | `true` or `false`.                                                                 |
+| `skipEmptyLines`           | `boolean`              | `true` or `false`.                                                                 |
+| `detectBomHeader`          | `boolean`              | `true` or `false`.                                                                 | 
+
+
 
 **Partitioning Characteristics into Blocks**
 
 | Input Variable             | Blocks                                            | Values                                           | Related Tests        |
 | -------------------------- | ------------------------------------------------- | ------------------------------------------------ |----------------------|
-| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv](/CsvTestFiles/reader-file-a01.csv)                              | idm-r01              |
-|                            | Block a2: CSV of special characters               | [reader-file-a02.csv](/CsvTestFiles/reader-file-a02.csv)                             | idm-r02              |
-|                            | Block a3: Single column CSV                       | [reader-file-a03.csv](/CsvTestFiles/reader-file-a03.csv)                             | idm-r03              |  
-|                            | Block a4: Single row CSV                          | [reader-file-a04.csv](/CsvTestFiles/reader-file-a04.csv)                             | idm-r04              |
-|                            | Block a5: Very large CSV (1 million rows)         | [reader-file-a05.csv](/CsvTestFiles/reader-file-a05.csv)                             | idm-r05              |
-|                            | Block a6: CSV file with commas as data            | [reader-file-a06.csv](/CsvTestFiles/reader-file-a06.csv)                              | idm-r06              |
-|                            | Block a7: CSV file with quotes as data            | [reader-file-a07.csv](/CsvTestFiles/reader-file-a07.csv)                              | idm-r07              |
-|                            | Block a8: Uneven # of columns in rows             | [reader-file-a08.csv](/CsvTestFiles/reader-file-a08.csv)                             | idm-r08, idm-r17     |
-|                            | Block a9: Skipped Rows                            | [reader-file-a09.csv](/CsvTestFiles/reader-file-a09.csv)                              | idm-r09, idm-r19     |
-|                            | Block a10: Empty file                             | [reader-file-a10.csv](/CsvTestFiles/reader-file-a10.csv)                              | idm-r10              |
-|                            | Block a11: `';'` as field separator               | [reader-file-a11.csv](/CsvTestFiles/reader-file-a11.csv)                              | idm-r11              |
-|                            | Block a12: `'` as quotes                          | [reader-file-a12.csv](/CsvTestFiles/reader-file-a12.csv)                              | idm-r12              |
-|                            | Block a13: `#` as comments                        | [reader-file-a13.csv](/CsvTestFiles/reader-file-a13.csv)                              | idm-r13, idm-r16     |
-|                            | Block a14: `@` as comments                        | [reader-file-a14.csv](/CsvTestFiles/reader-file-a14.csv)                              | idm-r14              |
-|                            | Block a15: File with BOM header                   | [reader-file-a15.csv](/CsvTestFiles/reader-file-a15.csv)                              | idm-r15              |
-| `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                | all except idm-r11   |
-|                            | Block b2: Alternative separator                   | `';'`                                            | idm-r11              |
-| `quoteCharacter`           | Block c1: Default                                 | Defaults to `'"'`                                | idm-r06, idm-r07     |
-|                            | Block c2: Alternative quote                       | `'^'`                                            | idm-r12              |
-| `commentStrategy`          | Block d1: Default                                 | Defaults to `CommentStrategy.NONE`               | idm-r16              |
-|                            | Block d2: `SKIP`                                  | `CommentStrategy.SKIP`                           | idm-r13, idm-r14     |
-| `commentCharacter`         | Block e1: Default                                 | Defaults to `#`                                  | idm-r13, idm-r16     |
-|                            | Block e2: Alternate                               | `@`                                              | idm-r14              |
-| `ignoreDifferentFieldCount`| Block f1: Default                                 | Defaults to `true`                               | idm-r08              |
-|                            | Block f2: `false`                                 | `false`                                          | idm-r17              |
-| `skipEmptyLines`           | Block g1: Default                                 | Defaults to `true`                               | idm-r18              |
-|                            | Block g2: `false`                                 | `false`                                          | idm-r09              |
-| `detectBomHeader`          | Block h1: Default                                 | Defaults to 'false'                              | all except idm-r15   |
-|                            | Block h2: `true`                                  | `true`                                           | idm-r15              | 
-
+| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv](/CsvTestFiles/reader-file-a01.csv)                              | idm-r-01              |
+|                            | Block a2: CSV of special characters               | [reader-file-a02.csv](/CsvTestFiles/reader-file-a02.csv)                             | idm-r-02              |
+|                            | Block a3: Single column CSV                       | [reader-file-a03.csv](/CsvTestFiles/reader-file-a03.csv)                             | idm-r-03              |  
+|                            | Block a4: Single row CSV                          | [reader-file-a04.csv](/CsvTestFiles/reader-file-a04.csv)                             | idm-r-04              |
+|                            | Block a5: Very large CSV (1 million rows)         | [reader-file-a05.csv](/CsvTestFiles/reader-file-a05.csv)                             | idm-r-05              |
+|                            | Block a6: CSV file with commas as data            | [reader-file-a06.csv](/CsvTestFiles/reader-file-a06.csv)                              | idm-r-06              |
+|                            | Block a7: CSV file with quotes as data            | [reader-file-a07.csv](/CsvTestFiles/reader-file-a07.csv)                              | idm-r-07              |
+|                            | Block a8: Uneven # of columns in rows             | [reader-file-a08.csv](/CsvTestFiles/reader-file-a08.csv)                             | idm-r-08, idm-r-17     |
+|                            | Block a9: Skipped Rows                            | [reader-file-a09.csv](/CsvTestFiles/reader-file-a09.csv)                              | idm-r-09, idm-r-19     |
+|                            | Block a10: Empty file                             | [reader-file-a10.csv](/CsvTestFiles/reader-file-a10.csv)                              | idm-r-10              |
+|                            | Block a11: `';'` as field separator               | [reader-file-a11.csv](/CsvTestFiles/reader-file-a11.csv)                              | idm-r-11              |
+|                            | Block a12: `'` as quotes                          | [reader-file-a12.csv](/CsvTestFiles/reader-file-a12.csv)                              | idm-r-12              |
+|                            | Block a13: `#` as comments                        | [reader-file-a13.csv](/CsvTestFiles/reader-file-a13.csv)                              | idm-r-13, idm-r-16     |
+|                            | Block a14: `@` as comments                        | [reader-file-a14.csv](/CsvTestFiles/reader-file-a14.csv)                              | idm-r-14              |
+|                            | Block a15: File with BOM header                   | [reader-file-a15.csv](/CsvTestFiles/reader-file-a15.csv)                              | idm-r-15              |
+| `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                | all except idm-r-11   |
+|                            | Block b2: Alternative separator                   | `';'`                                            | idm-r-11              |
+| `quoteCharacter`           | Block c1: Default                                 | Defaults to `'"'`                                | idm-r-06, idm-r-07     |
+|                            | Block c2: Alternative quote                       | `'^'`                                            | idm-r-12              |
+| `commentStrategy`          | Block d1: Default                                 | Defaults to `CommentStrategy.NONE`               | idm-r-16              |
+|                            | Block d2: `SKIP`                                  | `CommentStrategy.SKIP`                           | idm-r-13, idm-r-14     |
+| `commentCharacter`         | Block e1: Default                                 | Defaults to `#`                                  | idm-r-13, idm-r-16     |
+|                            | Block e2: Alternate                               | `@`                                              | idm-r-14              |
+| `ignoreDifferentFieldCount`| Block f1: Default                                 | Defaults to `true`                               | idm-r-08              |
+|                            | Block f2: `false`                                 | `false`                                          | idm-r-17              |
+| `skipEmptyLines`           | Block g1: Default                                 | Defaults to `true`                               | idm-r-18              |
+|                            | Block g2: `false`                                 | `false`                                          | idm-r-09              |
+| `detectBomHeader`          | Block h1: Default                                 | Defaults to 'false'                              | all except idm-r-15   |
+|                            | Block h2: `true`                                  | `true`                                           | idm-r-15              | 
 
 **Coverage Criteria**  
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
 
 **Test Set Definition**
-|test # (prefix = idm-r)  | 01| 02| 03| 04| 05| 06| 07| 08| 09| 10| 11| 12| 13| 14| 15| 16| 17| 18|
-|-------------------------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|file                     | a1| a2| a3| a4| a5| a6| a7| a8| a9|a10|a16|a12|a13|a14|a15|a13| a8| a9| 
-|fieldSeperator           | b1| b1| b1| b1| b1| b1| b1| b1| b1| b1| b2| b1| b1| b1| b1| b1| b1| b1|
-|quoteCharacter           |   |   |   |   |   | c1| c1|   |   |   |   | c2|   |   |   |   |   |   |
-|commentStrategy          |   |   |   |   |   |   |   |   |   |   |   |   | d2| d2|   | d1|   |   |
-|commentCharacter         |   |   |   |   |   |   |   |   |   |   |   |   | e1| e2|   | e1|   |   |
-|ignoreDifferentFieldCount|   |   |   |   |   |   |   | f1|   |   |   |   |   |   |   |   | f2|   |
-|skipEmptyLines           |   |   |   |   |   |   |   |   | g2|   |   |   |   |   |   |   |   | g1|
-|detectBomHeader          | h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h2| h1| h1| h1|
 
-- Test 1: `ofCsvRecord(Path to file with "a,b\nc,d")` with default settings (`fieldSeparator=','`, `quoteCharacter='"'`, `commentStrategy=NONE`, `skipEmptyLines=true`).
-- Test 2: `ofCsvRecord(Path to empty file)` with `fieldSeparator=';'`, `quoteCharacter='''`, `commentStrategy=SKIP`, `skipEmptyLines=false`.
-- Test 3: `ofCsvRecord(Path to file with "a,b\nc")` with default settings.
+|test # (prefix = idm-r-)  |01| 02| 03| 04| 05| 06| 07| 08| 09| 10| 11| 12| 13| 14| 15| 16| 17| 18|
+|-------------------------|--|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|file                     |a1| a2| a3| a4| a5| a6| a7| a8| a9|a10|a11|a12|a13|a14|a15|a13| a8| a9| 
+|fieldSeperator           |b1| b1| b1| b1| b1| b1| b1| b1| b1| b1| b2| b1| b1| b1| b1| b1| b1| b1|
+|quoteCharacter           |  |   |   |   |   | c1| c1|   |   |   |   | c2|   |   |   |   |   |   |
+|commentStrategy          |  |   |   |   |   |   |   |   |   |   |   |   | d2| d2|   | d1|   |   |
+|commentCharacter         |  |   |   |   |   |   |   |   |   |   |   |   | e1| e2|   | e1|   |   |
+|ignoreDifferentFieldCount|  |   |   |   |   |   |   | f1|   |   |   |   |   |   |   |   | f2|   |
+|skipEmptyLines           |  |   |   |   |   |   |   |   | g2|   |   |   |   |   |   |   |   | g1|
+|detectBomHeader          |h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h2| h1| h1| h1|
+
+|Test # |Test Purpose/Description                                 |Test Definition                                                                   |
+|-------|---------------------------------------------------------|----------------------------------------------------------------------------------|
+|idm-r-01|Test a valid csv file of strings with default settings|Path file = Paths.get("[reader-file-a01.csv](/CsvTestFiles/reader-file-a01.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-02|Test a csv file of special characters with default settings|Path file = Paths.get("[reader-file-a02.csv](/CsvTestFiles/reader-file-a02.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-03|Test a csv file with one column per row with default settings|Path file = Paths.get("[reader-file-a03.csv](/CsvTestFiles/reader-file-a03.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-04|Test a csv file with one row and many columns with default <br>settings|Path file = Paths.get("[reader-file-a04.csv](/CsvTestFiles/reader-file-a04.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-05|Test a very large csv file with one million rows with default <br>settings|Path file = Paths.get("[reader-file-a05.csv](/CsvTestFiles/reader-file-a05.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file))|
+|idm-r-06|Test a csv file with commas as data with default settings<br> including quoteCharacter|Path file = Paths.get("[reader-file-a06.csv](/CsvTestFiles/reader-file-a06.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-07|Test a csv File that has quotes as data with default settings<br> including quoteCharacter|Path file = Paths.get("[reader-file-a07.csv](/CsvTestFiles/reader-file-a07.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-08|Test a malformed csv file with uneven columns in rows with <br>default settings including default ignoreDifferentFieldCount value|Path file = Paths.get("[reader-file-a08.csv](/CsvTestFiles/reader-file-a08.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-09|Test a csv File with empty rows with default settings except<br> for alternative skipEmptyLines option|Path file = Paths.get("[reader-file-a09.csv](/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .skipEmptyLines(false).ofCsvRecord(file));|
+|idm-r-10|Test a blank csv file with default settings|Path file = Paths.get("[reader-file-a10.csv](/CsvTestFiles/reader-file-a10.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-11|Test a csv file with ';' as separators with default settings<br> and alternative fieldSeparator ';'|Path file = Paths.get("[reader-file-a11.csv](/CsvTestFiles/reader-file-a11.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .fieldSeparator(';') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
+|idm-r-12|Test a csv file with '^' as quote character with default <br>settings and alternative quoteCharacter '^'|Path file = Paths.get("[reader-file-a12.csv](/CsvTestFiles/reader-file-a12.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .quoteCharacter('^') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
+|idm-r-13|Test a csv file with blank lines with default settings <br>except for CommentStrategy of 'SKIP'|Path file = Paths.get("[reader-file-a13.csv](/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
+|idm-r-14|Test a csv file with default settings except for using an<br> alternate comment character '@' and CommentStrategy of 'SKIP'|Path file = Paths.get("[reader-file-a14.csv](/CsvTestFiles/reader-file-a14.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .commentCharacter('@') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
+|idm-r-15|Test a csv file that has a BOM header with default settings<br> except detectBOMHeader set to true.|Path file = Paths.get("[reader-file-a15.csv](/CsvTestFiles/reader-file-a15.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .detectBomHeader(true) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
+|idm-r-16|Test a csv file with comments and default settings|Path file = Paths.get("[reader-file-a13.csv](/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+|idm-r-17|Test a malformed csv file with uneven columns in rows with <br>default settings including alternate<br> ignoreDifferentFieldCount value of 'false'|CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .ignoreDifferentFieldCount(false) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(Paths.get("[reader-file-a08.csv](/CsvTestFiles/reader-file-a08.csv)"));
+|idm-r-18|Test a csv file with empty lines and default settings|Path file = Paths.get("[reader-file-a09.csv](/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
 
 **Execution Results**  
-TODO
+|Test #  |Expected Results                                                                                           |Results  |
+|--------|-----------------------------------------------------------------------------------------------------------|---------|
+|idm-r-01|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}` |Pass     |
+|idm-r-02|`{{"!@#^(&@$(*@", "*#$&(@$@", "+)_(@*&)(&"}, {"<>//;[>", "~~~~~~", "/*-*-+"}, {"(*&*#(@$)", "#$@$@#$#", "+_)(*&^%$#@!~"}, {"~!@#$%^&", "{}{}{}", "///"}}`|Pass     |
+|idm-r-03|`{{"Adam"}, {"Santhosh"}, {"Bill"}, {"Ted"}, {"George"}, {"Thomas"}, {"Heather"}, {"Jane"}}`|Pass   |
+|idm-r-04|`{"Adam", "Santhosh", "Bill", "Ted", "George", "Thomas", "Heather", "Jane"}`|Pass    |
+|idm-r-05|Row 0: `{"Anne","Mack","(907) 789-3686")`<br> Row 191,783: `{"Sallie","Moss","(838) 455-8563"}`<br>Row 405,480 `{"Bill","Lee","(443) 584-2867"}`<br>Row 652,054 `{"Inez","Foster","(557) 675-1730"}`<br>Row 999,999 `{"Carolyn","Todd","(604) 860-4898"}`|Pass   |
+|idm-r-06|`{{"Adam", "24,324"}, {"Santhosh", "56,434"}, {"Bill", "23,145"}, {"Ted", ",,,,,"}, {"George", "1,"}, {",", ","}, {"Heather", "12,111"}, {"1,", "1,1,1,1,1"}}`|Pass     |
+|idm-r-07|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass     |
+|idm-r-08|`{{"Adam", "1", "2"}, {"Santhosh", "3"}, {"Pennsylvania", "1", "3", "4"}, {"Penn State", "1", "2", "3", "4", "5", "6"}}`|Pass    |
+|idm-r-09|Row 2: `""`|Pass     |
+|idm-r-10|`recs.size()=0`|Pass    |
+|idm-r-11|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
+|idm-r-12|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass    |
+|idm-r-13|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
+|idm-r-14|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
+|idm-r-15|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
+|idm-r-16|`{{"apple", "banana", "cantaloupe"}, {"#This is a comment"},{"11", "22", "33"},{"#This is another comment"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
+|idm-r-17|Throws `CsvParseException.class`|Pass    |
+|idm-r-18|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass     |
 
 ## Section 2. Graph-Based Testing
 
