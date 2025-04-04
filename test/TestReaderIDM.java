@@ -200,7 +200,6 @@ public class TestReaderIDM {
          *              default ignoreDifferentFieldCount value
          *************************************************************************************************************/
 
-        //Test idm-r-08: Uneven Columns in Rows
         file = Paths.get("reader-file-a08.csv");
 
         expectedCSVResults = new String[][]{{"Adam", "1", "2"}, {"Santhosh", "3"}, {"Pennsylvania", "1", "3", "4"}, {"Penn State", "1", "2", "3", "4", "5", "6"}};
@@ -401,7 +400,7 @@ public class TestReaderIDM {
         /**************************************************************************************************************
          * Test:        idm-r-17
          * Description: Test a malformed csv file with uneven columns in rows with default settings including alternate
-         * ignoreDifferentFieldCount value of 'false'
+         *              ignoreDifferentFieldCount value of 'false'
          *************************************************************************************************************/
 
         assertThrows(CsvParseException.class, () -> {
@@ -429,21 +428,15 @@ public class TestReaderIDM {
             for (CsvRecord record : csv) {
                 recs.add(record);
             }
-
             for (int i = 0; i < expectedCSVResults.length; i++) {
                 for (int j = 0; j < expectedCSVResults[i].length; j++) {
                     assertEquals(expectedCSVResults[i][j], recs.get(i).getField(j));
                 }
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
-
 }
 
 
