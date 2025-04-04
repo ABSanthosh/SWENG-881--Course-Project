@@ -262,6 +262,8 @@ The below control flow graph represents the nodes and edges of the skipLines met
 **Testing Coverage Criteria**  
 Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.  
 
+The code for the tests can be found in [TestReaderGraph.java](/test/TestReaderGraph.java)
+
 **Test Cases**  
 |Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)    |CSV File Used in Testing|
 |----------|---------------------------------------------|------------------------------------------------|-----------------------------------------------|
