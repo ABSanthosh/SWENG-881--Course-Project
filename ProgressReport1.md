@@ -253,16 +253,28 @@ The test cases were executed in a local Java environment:
 ### CsvReader
 
 **Identified Component for Graph-Based Testing**  
-TODO
+The `skipLines(final Predicate<String> predicate, final int maxLines)` method was chosen as a suitable target for graph-based testing. Certain CSV files may have header information, such as comments or column headers, that the user may wish to skip. This function accepts a `Predicate<String> predicate` to define the header row will be the first non-skipped row of information and an integer to represent the maximum number of rows that should be searched for the predicate condition. It returns an integer representing the row in which the predicate is found.
 
-**Graph Model**  
-TODO
+**Graph Model**
+The below control flow graph represents the nodes and edges of the skipLines method identified above.  The various paths are further described in the test cases below.
+![Graph-SkipLines](./Image/Graph-SkipLines.png)
 
 **Testing Coverage Criteria**  
-TODO
+Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.  
 
 **Test Cases**  
-TODO
+|Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)                                                          |
+|----------|---------------------------------------------|------------------------------------------------|
+|g-r-01 |The desired header is found in the first iteration<br> of the for loop | 1 → 3 → 5 → 7 → 8 → 9 → 12 → 13                                                  |
+|g-r-02 |The desired header is found in the second interation<br> of the for loop| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 9 → 12 → 13                     |
+|g-r-03 |`Predicate<String>` is null| 1 → 2|
+|g-r-04 |`maxLines` is negative | 1 → 3 → 4|
+|g-r-05 |`maxLines` equals 0 | 1 → 3 → 5 → 6|
+|g-r-06 |The desired header is not found within specified<br>max lines (`maxLines`) which is less than max lines in file| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 10 |
+|g-r-07 |The desired header is not found within specified<br>max lines (`maxLines`) which is greater than max lines in file| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 9 → 12 → 14 → 16 → 17 | 
+|g-r-08 |`IOException` is thrown when running csvParser.peekline| 1 → 3 → 5 → 7 → 8 → 9 → 11|
+|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 15|
+
 
 **Execution Results**  
 TODO
