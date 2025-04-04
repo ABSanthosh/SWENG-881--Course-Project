@@ -265,15 +265,15 @@ Edge coverage was selected as the testing coverage criteria, in order to ensure 
 **Test Cases**  
 |Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)                                                          |
 |----------|---------------------------------------------|------------------------------------------------|
-|g-r-01 |The desired header is found in the first iteration<br> of the for loop | 1 → 3 → 5 → 7 → 8 → 9 → 12 → 13                                                  |
-|g-r-02 |The desired header is found in the second interation<br> of the for loop| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 9 → 12 → 13                     |
-|g-r-03 |`Predicate<String>` is null| 1 → 2|
-|g-r-04 |`maxLines` is negative | 1 → 3 → 4|
-|g-r-05 |`maxLines` equals 0 | 1 → 3 → 5 → 6|
-|g-r-06 |The desired header is not found within specified<br>max lines (`maxLines`) which is less than max lines in file| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 10 |
-|g-r-07 |The desired header is not found within specified<br>max lines (`maxLines`) which is greater than max lines in file| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 14 → 16 → 18 → 8 → 9 → 12 → 14 → 16 → 17 | 
-|g-r-08 |`IOException` is thrown when running csvParser.peekline| 1 → 3 → 5 → 7 → 8 → 9 → 11|
-|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1 → 3 → 5 → 7 → 8 → 9 → 12 → 15|
+|g-r-01 |The desired header is found in the first iteration<br> of the for loop | 1→3→5→7→8→9→12→13                                                  |
+|g-r-02 |The desired header is found in the second interation<br> of the for loop| 1→3→5→7→8→9→12→14→16→18→8→9→12→13                     |
+|g-r-03 |`Predicate<String>` is null| 1→2|
+|g-r-04 |`maxLines` is negative | 1→3→4|
+|g-r-05 |`maxLines` equals 0 | 1→3→5→6|
+|g-r-06 |The desired header is not found within specified<br>max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |
+|g-r-07 |The desired header is not found within specified<br>max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 | 
+|g-r-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11|
+|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→15|
 
 
 **Execution Results**  
