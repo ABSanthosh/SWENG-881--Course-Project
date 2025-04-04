@@ -255,7 +255,7 @@ The test cases were executed in a local Java environment:
 **Identified Component for Graph-Based Testing**  
 The `skipLines(final Predicate<String> predicate, final int maxLines)` method was chosen as a suitable target for graph-based testing. Certain CSV files may have header information, such as comments or column headers, that the user may wish to skip. This function accepts a `Predicate<String> predicate` to define the header row will be the first non-skipped row of information and an integer to represent the maximum number of rows that should be searched for the predicate condition. It returns an integer representing the row in which the predicate is found.
 
-**Graph Model**
+**Graph Model**<br>
 The below control flow graph represents the nodes and edges of the skipLines method identified above.  The various paths are further described in the test cases below.
 ![Graph-SkipLines](./Image/Graph-SkipLines.png)
 
