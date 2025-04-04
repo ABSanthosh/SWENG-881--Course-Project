@@ -147,8 +147,10 @@ For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)`
 **Coverage Criteria**  
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
 
-**Test Set Definition**
+**Test Set Definition**<br>
 The below table shows each test number as columns (the "idm-r-" prefix has been removed for formatting). Each tested input variable is listed in a row. The intersections show the specific block of the input variable that is being covered by a specific test. For example, Test # 07 covers block a7 of the `file` input variable, block b1 of the `field seperator` input variable, block c1 of the `quote strategy` input variable and block h1 of the `detectBomHeader` input variable.
+
+The code for the tests can be found in [TestReaderIDM.java](/test/TestReaderIDM.java)
 
 |test # (prefix = idm-r-)  |01| 02| 03| 04| 05| 06| 07| 08| 09| 10| 11| 12| 13| 14| 15| 16| 17| 18|
 |-------------------------|--|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
