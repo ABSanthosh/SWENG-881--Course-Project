@@ -263,18 +263,29 @@ The below control flow graph represents the nodes and edges of the skipLines met
 Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.  
 
 **Test Cases**  
-|Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)                                                          |
-|----------|---------------------------------------------|------------------------------------------------|
-|g-r-01 |The desired header is found in the first iteration<br> of the for loop | 1→3→5→7→8→9→12→13                                                  |
-|g-r-02 |The desired header is found in the second interation<br> of the for loop| 1→3→5→7→8→9→12→14→16→18→8→9→12→13                     |
-|g-r-03 |`Predicate<String>` is null| 1→2|
-|g-r-04 |`maxLines` is negative | 1→3→4|
-|g-r-05 |`maxLines` equals 0 | 1→3→5→6|
-|g-r-06 |The desired header is not found within specified<br>max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |
-|g-r-07 |The desired header is not found within specified<br>max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 | 
-|g-r-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11|
-|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→15|
+|Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)    |CSV File Used in Testing|
+|----------|---------------------------------------------|------------------------------------------------|-----------------------------------------------|
+|g-r-01 |The desired header is found in the first iteration of the for loop | 1→3→5→7→8→9→12→13 |[reader-file-g01.csv](/CsvTestFiles/reader-file-g01.csv) |
+|g-r-02 |The desired header is found in the second interation of the for loop| 1→3→5→7→8→9→12→14→16→18→8→9→12→13 |[reader-file-g02.csv](/CsvTestFiles/reader-file-g02.csv) |
+|g-r-03 |`Predicate<String>` is null| 1→2|[reader-file-g01.csv](/CsvTestFiles/reader-file-g01.csv)|  
+|g-r-04 |`maxLines` is negative | 1→3→4|[reader-file-g01.csv](/CsvTestFiles/reader-file-g01.csv) |
+|g-r-05 |`maxLines` equals 0 | 1→3→5→6|[reader-file-g02.csv](/CsvTestFiles/reader-file-g02.csv) 
+|g-r-06 |The desired header is not found within specified max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |[reader-file-g02.csv](/CsvTestFiles/reader-file-g02.csv) |
+|g-r-07 |The desired header is not found within specified max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 |[reader-file-g03.csv](/CsvTestFiles/reader-file-g03.csv) |
+|g-r-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11| TODO|
+|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→15| TODO|
 
 
 **Execution Results**  
-TODO
+|Test #  |Expected Results                                                                                           |Results  |
+|--------|-----------------------------------------------------------------------------------------------------------|---------|
+|g-r-01| Returns 0 |Pass     |
+|g-r-02| Returns 1 |Pass     |
+|g-r-03| Throws NullPointerException |Pass   |
+|g-r-04| Throws IllegalArgumentException |Pass    |
+|g-r-05| Returns 0 |Pass   |
+|g-r-06| Throws CsvParseException |Pass     |
+|g-r-07| Throws CsvParseException |Pass     |
+|g-r-08| Throws IOException | TODO|
+|g-r-09| Throws IOException | TODO|
+
