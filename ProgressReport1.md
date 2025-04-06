@@ -1,6 +1,6 @@
 # Progress Report: Testing Open-Source Application
 
-Report Date: 4/4/2025
+Report Date: 4/6/2025
 
 #### Students Name:
 
@@ -65,7 +65,7 @@ For the `CsvWriter` component, we selected the `writeRecord(String... values)` m
 |                  | Block 2: `LF`                            | `LineDelimiter.LF`                                     |
 
 **Coverage Criteria**  
-I chose the "Each-Choice" coverage criterion, which ensures that each block of every input variable is tested at least once. This provides a balanced approach, covering key scenarios (e.g., normal usage, edge cases with special characters) without the combinatorial explosion of "All-Combinations" coverage, given the number of variables.
+The team chose the "Each-Choice" coverage criterion, which ensures that each block of every input variable is tested at least once. This provides a balanced approach, covering key scenarios (e.g., normal usage, edge cases with special characters) without the combinatorial explosion of "All-Combinations" coverage, given the number of variables.
 
 **Test Set Definition**
 
@@ -82,7 +82,7 @@ TODO
 #### CsvReader
 
 **Selected Functions/Features for Input Domain Modeling**  
-For the `CsvReader` component, my teammate selected the `ofCsvRecord(Path file)` method for testing with input domain modeling. This method is a high-level entry point for reading CSV files, leveraging the `CsvReaderBuilder` and `CsvParser` to process file input into `CsvRecord` objects. It’s a suitable choice as it encapsulates the full reading process and allows testing of file-based input handling.
+For the `CsvReader` component, the team selected the `ofCsvRecord(Path file)` method for testing with input domain modeling. This method is a high-level entry point for reading CSV files, leveraging the `CsvReaderBuilder` and `CsvParser` to process file input into `CsvRecord` objects. It’s a suitable choice as it encapsulates the full reading process and allows testing of file-based input handling.
 
 **List of Input Variables**
 
@@ -211,7 +211,7 @@ The code for the tests can be found in [TestReaderIDM.java](/test/TestReaderIDM.
 ### CsvWriter
 
 **Identified Component for Graph-Based Testing**  
-For the `CsvWriter` component, we selected the `LineDelimiter.of(String str)` method for graph-based testing. This method is a static utility within the `LineDelimiter` enum, responsible for converting a string representation of a line delimiter (e.g., `"\r\n"`, `"\n"`, `"\r"`) into its corresponding enum value (`CRLF`, `LF`, `CR`). It’s a suitable choice because it involves clear decision points based on input string matching, making it ideal for modeling as a control flow graph. This method is indirectly used by `CsvWriter` to configure line endings, affecting how records are terminated.
+For the `CsvWriter` component, the team selected the `LineDelimiter.of(String str)` method for graph-based testing. This method is a static utility within the `LineDelimiter` enum, responsible for converting a string representation of a line delimiter (e.g., `"\r\n"`, `"\n"`, `"\r"`) into its corresponding enum value (`CRLF`, `LF`, `CR`). It’s a suitable choice because it involves clear decision points based on input string matching, making it ideal for modeling as a control flow graph. This method is indirectly used by `CsvWriter` to configure line endings, affecting how records are terminated.
 
 **Graph Model**  
 The control flow of `LineDelimiter.of(String str)` can be represented as a decision tree with distinct branches for each possible input string.
@@ -226,7 +226,7 @@ The control flow of `LineDelimiter.of(String str)` can be represented as a decis
 - **Dependencies**: The method relies solely on the input `str` and has no external state dependencies.
 
 **Testing Coverage Criteria**  
-I selected **Edge Coverage** as the testing coverage criterion. This ensures that every edge in the control flow graph (i.e., each possible transition from the switch statement to an outcome) is exercised at least once. Edge coverage is appropriate here because it guarantees testing of all defined paths (valid delimiters and the error case) while remaining feasible given the simplicity of the method.
+The team selected **Edge Coverage** as the testing coverage criterion. This ensures that every edge in the control flow graph (i.e., each possible transition from the switch statement to an outcome) is exercised at least once. Edge coverage is appropriate here because it guarantees testing of all defined paths (valid delimiters and the error case) while remaining feasible given the simplicity of the method.
 
 **Test Cases**  
 Based on edge coverage, the following test cases were generated:
