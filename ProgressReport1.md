@@ -291,3 +291,15 @@ The code for the tests can be found in [TestReaderGraph.java](/test/TestReaderGr
 |g-r-08| Throws IOException | TODO|
 |g-r-09| Throws IOException | TODO|
 
+## 3.	Overall Progress Summary:
+
+Testing FastCSV has been a great learning experience so far.  The team started out with various levels of experience in software development, open-source software, and software testing. Over the past several weeks, we have:
+-	Evaluating and selected an open-source application to test
+-	Used the program, read the documentation, and examined the codebase to develop a deep understanding of the software prior to designing tests.
+-	Learned how to utilize input domain modeling to methodically segment inputs of the tested functionality into logical blocks, select appropriate coverage criteria, and develop tests based on that criterion.
+-	Learned how to utilize graph-based testing to apply abstraction to complex functionality and develop tests based on our selected coverage criteria.
+-	Learned how to effectively utilize a testing framework (JUnit) to implement the aforementioned tests
+-	Developed a documentation strategy to memorialize the tests and their outputs and effectively communicate this information to the readers
+
+FastCSV is a mature application that is on release version 3.x.  As such, the team has not yet found any defects. The primary challenges so far have come from the number of inputs to test around the primary functionality of the system, the complexity of the code base, and learning the various testing methodologies required for the project.   
+
