@@ -89,7 +89,7 @@ Where initial node is `1` and final node is `16`.
 | Control Flow Diagram                                                 | Condensed Node Diagram                                                                        |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | <img src="./Images/CFG.png" alt="Control Flow Diagram" width="500"/> | <img src="./Images/Condensed%20Node%20Diagram.png" alt="Condensed Node Diagram" width="500"/> |
-| [PlantUML Code](./PlantUML/CFG.puml)                                 | [Edges](#Edges-List) (for web app)                                                            |
+| [PlantUML Code](./PlantUML/CFG.puml)                                 | [Edges](#edges-list-for-input-into-web-app) (for web app)                                                            |
 
 ---
 
@@ -155,7 +155,6 @@ This implies at least 6 independent paths should be tested to achieve basis path
 | g-w-05 | Output: `"esca\"ped"` followed by line delimiter | Pass   |
 
 The code for the tests can be found in [TestWriterGraph.java](./tests/TestWriterGraph.java)
-
 
 [Go Back to Table of Contents](./Readme.md)
 

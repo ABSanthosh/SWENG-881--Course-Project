@@ -28,13 +28,13 @@ This includes testing of its:
 
 We will used this as the table of content for our testing strategy for the `CSVWriter` class.
 
-| **Aspect**                                              | **Approach**                                                                                      |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [**Input Domain Modeling**](./input-domain-modeling.md) | Identify field inputs and boundary conditions (e.g., null, empty, special characters).            |
-|                                                         | We will partition inputs based on field values: null, empty, quoted, contains special characters. |
-|                                                         | and also focus on record size limits and field lengths near buffer capacity.                      |
-| [**Graph-Based Testing**](./graph-based-testing.md)     | Model writer state transitions: Start → Write Field(s) → End Record                               |
-| [**Exploratory Testing**](./exploratory-testing.md)     | Execute exploratory sessions using various configurations in real-world CSV writing scenarios.    |
+| **Aspect**                                                  | **Approach**                                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [**Input Domain Modeling**](./input-domain-modeling.md)     | Identify field inputs and boundary conditions (e.g., null, empty, special characters).            |
+|                                                             | We will partition inputs based on field values: null, empty, quoted, contains special characters. |
+|                                                             | and also focus on record size limits and field lengths near buffer capacity.                      |
+| [**Graph-Based Testing**](./graph-based-testing.md)         | Model writer state transitions: Start → Write Field(s) → End Record                               |
+| [**Exploratory Testing**](../Exploratory%20Tours/Readme.md) | Execute exploratory sessions using various configurations in real-world CSV writing scenarios.    |
 
 ## **Tools and Environment**
 
