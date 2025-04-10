@@ -1,0 +1,43 @@
+@startuml csvwriter-cfg
+start
+
+:validateNoOpenRecord();
+
+repeat
+  :check fieldIdx > 0;
+
+  if (fieldIdx > 0) then (yes)
+    :write(fieldSeparator);
+  endif
+
+  if (value is null?) then (yes)
+    if (quoteNull?) then (yes)
+      :write("");\n(empty quotes);
+    endif
+  else (no)
+    if (value is empty?) then (yes)
+      if (quoteEmpty?) then (yes)
+        :write("");\n(empty quotes);
+      endif
+    else (no)
+      if (needsQuotes?) then (yes)
+        :write(quoteChar);
+      endif
+
+      if (needsEscape?) then (yes)
+        :writeEscaped(value);
+      else (no)
+        :write(value);
+      endif
+
+      if (needsQuotes?) then (yes)
+        :write(quoteChar);
+      endif
+    endif
+  endif
+
+repeat while (more fields?)
+
+:write lineDelimiter;
+stop
+@enduml
