@@ -6,7 +6,7 @@
 | Description                        | To test several of more minor features of the program, specifically those involving compressed files and indexed reading|
 | Test Duration                      | 90 minutes                                                                                                              |
 | Tester                             | Adam Slager                                                                                                             |
-| Further Testing <br> Opportunities | TBD                                                                                                                     |
+| Further Testing <br> Opportunities | Potential to continue testing additional minor features                                                                 |
 
 ## Test Protocol
 
