@@ -36,7 +36,7 @@
 
 ## 1.1 Test Project Name
 
-[Specify the name of the test project.]
+FastCSV
 
 ## 1.2 Summary of the Rest of the Test Plan
 
@@ -45,6 +45,24 @@
 # 2. Feature Description
 
 [Describe the features of the selected open-source course application.]
+
+Per the official FastCSV website, “FastCSV is a high-performance CSV parser and writer for Java.”  The functionality of the system can be logically bifurcated into those features belonging to each of the CsvReader and CsvWriter classes.  The website and related documentation outline the features and design goals of the software; however, based on the team’s exploration of the documentation and our own use of the software, the team believes that the following are the primary features of these classes.
+-	CsvReader
+    -	Ability to read standard, comma separated values from a file
+    -	Ability to configure the reading of the values via the following options
+        -	Field Separator  - A field separator denotes the character used to logically delineate between the fields of data in the file.  While the program defaults to utilizing commas, it provides the user with the option to select another field separator.  For example, a user may wish to read in a file that is separated by semi-colons instead. 
+        - Quote Character – Using quote characters allows the parser to treat the data between the quote characters as a single field, even if it contains a field separator.  For example, the user might want to read in a CSV field, which contains commas.  In this case, the program defaults to allowing the user to surround that field with quotes, such as “ice cream, cake, and candy.”  In this case, that phrase would be read in as a single field, excluding the quotation marks.  In some instances, though, the user may wish to designate a different character to represent quotation marks, such as when the fields in a file contain lots of quotes.  The user may therefore specify another character to use, such as a percentage sign.  In this case %”ice cream, cake, and candy”% would be read in as a single field, including the quotation marks.
+        -	Different Field Counts – The program allows the user to set a configuration option that either enforces or does not enforce adherence to consistent field counts.  For example, a csv file may have a first row with two columns (fields) and a second row with 3 columns.  Depending on the user’s requirements, they may wish for the program to read this with no issue or to throw an exception.  The program defaults to not enforcing this adherence, meaning that the CSV files may have varying numbers of columns per row.  
+        - BOM Headers – Certain programs, such as Microsoft Excel, generate CSV files that begin with a BOM (Byte Order Mark) header.  Per the FastCSV website, the purpose of a BOM Header was originally to designate the encoding of the file, although now it is largely unnecessary, as almost all CSV files utilize UTF-8.  The program provides the user with functionality to either detect (and ignore) the BOM header, which is useful if the file has a BOM header and the user does not want this to be included in their data, or to not detect the BOM header, which is the default behavior.  
+        -	Comments – Certain CSV files may contain comments, which are often designated by a character, such as ‘#.’  FastCSV allows users to customize how the program handles these comments, by selecting a custom comment designator and by specifying whether comments should be skipped by the reader or read in as a field.  For example, suppose the user processes a CSV file that has multiple comments that begin with '!' and the user does not want these comments to appear in their parsed data.  The user can specify that any lines beginning with '!' should be skipped.  They would designate the comment character and the comment behavior separately.  The program defaults to '#' as the comment character and not skipping comments as the behavior.
+        -	Empty Lines – Certain CSV files may contain empty lines. By default, the program is configured to skip these empty lines (i.e. not read them in).  Alternatively, if the user wishes to read these empty lines in as blank fields, the user can configure the program to do so. 
+    -	Ability to handle the following less common situations:
+        -	Indexing CSV files – Provides the user with the option to read a large CSV file, while designating how many records belong on each “page” of the file.  Once the file is initially parsed, the user can quickly access any individual page of the file without having to parse the file again.  This can save substantial amounts of time if the user needs to access a certain page (for instance, paginated web data).  
+        -	Field Modification – Provides the user with the ability to modify fields as they are being read.  A common use case for this is trimming or stripping leading or trailing blank characters from a field, if applicable.
+        -	Reading Compressed CSV files – The program allows the user to read CSV files that were compressed using the gzip format.  The program handles the extraction process and then reads the files in as if they were not compressed.
+        -	Ability to Automatically Map to Java Beans – Allows the user to configure the program to map the CSV data that is read directly into Java Beans, with minimal performance penalty.
+
+
 
 # 3. Assumptions
 
