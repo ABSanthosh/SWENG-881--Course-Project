@@ -71,7 +71,7 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
         -	Reading Compressed CSV files – The program allows the user to read CSV files that were compressed using the gzip format.  The program handles the extraction process and then reads the files in as if they were not compressed.
         -	Ability to Automatically Map to Java Beans – Allows the user to configure the program to map the CSV data that is read directly into Java Beans, with minimal performance penalty.
 
-
+[CSVWriter functionality to be explained here in a similar fashion to CSVReader]
 
 # 3. Assumptions
 
@@ -96,6 +96,29 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 ## 4.3 Test Strategy
 
 [Explain which testing techniques are used to test the different parts of the systems. Provide a rationale for the selection. Also include information on which tools, automation, and scripts are used to test each part of the system.]
+
+There are two primary parts of FastCSV, CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in Section 2).  The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.  
+
+CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are overwhelmingly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comment or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
+
+The following are the testing techniques that were utilized, along with a description of how the testing was performed:
+
+**Input Domain Modeling**
+
+[Description, Tools, and Rationale]
+
+**Graph Based Testing**
+
+[Description, Tools, and Rationale]
+
+**Exploratory Testing**
+
+[Description, Tools, and Rationale]
+
+**Acceptance Testing**
+
+[Description, Tools, and Rationale]
+
 
 ## 4.4 Test Categories
 
