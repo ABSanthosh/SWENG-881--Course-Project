@@ -160,6 +160,75 @@ The following are the testing techniques that were utilized, along with a descri
 
 [Provide a summary of testing results, including passed, failed, and unresolved issues]
 
+The following table represents a summary of the testing results. Please note that these tests and their results are fully detailed in Section 5.2 above, but have been provided here in a consolidated table format for convenience and ease of reference.
+
+| Test ID  | Test Technique      | Test Result | Comments                                               |
+|----------|---------------------|-------------|--------------------------------------------------------|
+|IDM-R-01  | IDM                 | Pass        |                                                        | 
+|IDM-R-02  | IDM                 | Pass        |                                                        | 
+|IDM-R-03  | IDM                 | Pass        |                                                        | 
+|IDM-R-04  | IDM                 | Pass        |                                                        | 
+|IDM-R-05  | IDM                 | Pass        |                                                        | 
+|IDM-R-06  | IDM                 | Pass        |                                                        | 
+|IDM-R-07  | IDM                 | Pass        |                                                        | 
+|IDM-R-08  | IDM                 | Pass        |                                                        | 
+|IDM-R-09  | IDM                 | Pass        |                                                        | 
+|IDM-R-10  | IDM                 | Pass        |                                                        | 
+|IDM-R-11  | IDM                 | Pass        |                                                        | 
+|IDM-R-12  | IDM                 | Pass        |                                                        | 
+|IDM-R-13  | IDM                 | Pass        |                                                        | 
+|IDM-R-14  | IDM                 | Pass        |                                                        | 
+|IDM-R-15  | IDM                 | Pass        |                                                        | 
+|IDM-R-16  | IDM                 | Pass        |                                                        | 
+|IDM-R-17  | IDM                 | Pass        |                                                        | 
+|IDM-R-18  | IDM                 | Pass        |                                                        | 
+|IDM-W-01  | IDM                 | Pass        |                                                        |
+|IDM-W-02  | IDM                 | Pass        |                                                        |
+|IDM-W-03  | IDM                 | Pass        |                                                        |
+|IDM-W-04  | IDM                 | Pass        |                                                        |
+|IDM-W-05  | IDM                 | Pass        |                                                        |
+|IDM-W-06  | IDM                 | Pass        |                                                        |
+|IDM-W-07  | IDM                 | Pass        |                                                        |
+|IDM-W-08  | IDM                 | Pass        |                                                        | 
+|G-R-01    | Graph Based Testing | Pass        |                                                        |
+|G-R-02    | Graph Based Testing | Pass        |                                                        |
+|G-R-03    | Graph Based Testing | Pass        |                                                        |
+|G-R-04    | Graph Based Testing | Pass        |                                                        |
+|G-R-05    | Graph Based Testing | Pass        |                                                        |
+|G-W-01    | Graph Based Testing | Pass        |                                                        |
+|G-W-02    | Graph Based Testing | Pass        |                                                        |
+|G-W-03    | Graph Based Testing | Pass        |                                                        |
+|G-W-04    | Graph Based Testing | Pass        |                                                        |
+|G-W-05    | Graph Based Testing | Pass        |                                                        |
+|G-W-06    | Graph Based Testing | Pass        |                                                        |
+|G-W-07    | Graph Based Testing | Pass        |                                                        |
+|G-W-08    | Graph Based Testing | Open        |                                                        |
+|G-W-09    | Graph Based Testing | Open        |                                                        |
+|E-BA1-01  | Exploratory Testing | Pass        |                                                        |
+|E-BA1-02  | Exploratory Testing | Pass        |                                                        |
+|E-BA1-03  | Exploratory Testing | Pass        |                                                        |
+|E-BA1-04  | Exploratory Testing | Pass        |                                                        |
+|E-BA2-01  | Exploratory Testing | Pass        |                                                        |
+|E-BA2-02  | Exploratory Testing | Pass        |                                                        |
+|E-BA2-03  | Exploratory Testing | Pass        |                                                        |
+|E-BA2-04  | Exploratory Testing | Pass        |                                                        |
+|E-C-01    | Exploratory Testing | Pass        |                                                        |
+|E-C-02    | Exploratory Testing | Pass        |                                                        |
+|E-C-03    | Exploratory Testing | Pass        |                                                        |
+|E-C-04    | Exploratory Testing | Pass        |                                                        |
+|E-I-01    | Exploratory Testing | Pass        |                                                        |
+|E-I-02    | Exploratory Testing | Pass        |                                                        |
+|E-I-03    | Exploratory Testing | Pass        |                                                        |
+|E-I-04    | Exploratory Testing | Pass        |                                                        |
+|E-L-01    | Exploratory Testing | Pass        |                                                        |
+|E-L-02    | Exploratory Testing | Pass        |                                                        |
+|E-L-03    | Exploratory Testing | Pass        |                                                        |
+|E-L-04    | Exploratory Testing | Pass        |                                                        |
+
+[NEED TO ADD FEDEX TOUR ONCE NUMBERING IS CORRECTED]
+
+
+
 # 8. Recommendations on Software Quality
 
 [Offer recommendations on improving the quality of the software based on testing results]

@@ -14,7 +14,7 @@
 
 | NR  | What Done                                                   | Status        | Comment                                                           | Test Artifacts                                     |
 | --- | ----------------------------------------------------------- | ------------- | ----------------------------------------------------------------- | -------------------------------------------------- |
-| E-L-1   | Loaded original data from `landmark-input.csv`              | No Exceptions | Verified 4 rows and 3 columns exist                               | [Input CSV](./Tests/inputs/landmark-input.csv)     |
-| E-L-2   | Shuffled rows randomly and wrote to `landmark-temp.csv`     | No Exceptions | Manual comparison confirms sequence change, but data preserved    | [Temp Output](./Tests/inputs/landmark-temp.csv)    |
-| E-L-3   | Read shuffled file and wrote to final `landmark-output.csv` | No Exceptions | Verified that structure remained unchanged after second I/O pass  | [Final Output](./Tests/inputs/landmark-output.csv) |
-| E-L-4   | Compared first and second output using diff tool            | No Exceptions | Differences observed only in row order; values remained identical |                                                    |
+| E-L-01   | Loaded original data from `landmark-input.csv`              | No Exceptions | Verified 4 rows and 3 columns exist                               | [Input CSV](./Tests/inputs/landmark-input.csv)     |
+| E-L-02   | Shuffled rows randomly and wrote to `landmark-temp.csv`     | No Exceptions | Manual comparison confirms sequence change, but data preserved    | [Temp Output](./Tests/inputs/landmark-temp.csv)    |
+| E-L-03   | Read shuffled file and wrote to final `landmark-output.csv` | No Exceptions | Verified that structure remained unchanged after second I/O pass  | [Final Output](./Tests/inputs/landmark-output.csv) |
+| E-L-04   | Compared first and second output using diff tool            | No Exceptions | Differences observed only in row order; values remained identical |                                                    |
