@@ -42,6 +42,15 @@ FastCSV
 
 [Provide a brief summary of the remaining sections of the testing report.]
 
+The following is a brief description of the remaining portions of the testing report.
+- Feature Description: This section provides a high-level overview of the primary features of FastCSV.  The purpose of this section is to educate the reader on the software and to provide a detailed description of the team’s assessment of primary functionality.  This section serves both as an introduction to the software and as a reference for the testing  described in the remainder of the document.
+- Assumptions: This section serves two primary purposes. Firstly, it lays out the team’s reasoning for excluding certain features and requirements of the software from the testing plan. This section can be crucial, as it serves to memorialize the logic around the exclusions and to provide the reader with a roadmap of any additional testing that might be required to get comfort over their particular usage of the software.  Secondly, it describes the tools utilized during the testing and details pertinent organization structures utilized to describe the testing in the remainder of the document. 
+- Test Approach: This primary purpose of this section is to document the team’s test strategy and the reasoning behind choosing these approaches, including any special situations that might fall outside of the general approach. This section also lays out any past issues that are pertinent to our testing, which in the case of an open-source application like FastCSV are generally well-documented.  Finally, this section outlines the categories of tests cases for the software,  including categories for certain non-functional requirements of the software. 
+- Test Cases: This section serves to categorize and document the specific tests that were performed.  It also details the organization structure of the test cases and provides a traceability matrix to tie the tests into the specific software requirements.
+- Test Environment: The purpose of this section is to describe the specifics around the test environment, both in terms of the hardware used in testing and the organization of the software environment.  A primary purpose of this section is to enhance the reproducibility of the tests by specifying this aforementioned information.
+- Testing Results: This section serves as a running log of the results of each test performed, including their status and any observations made during the testing.  
+- Recommendations on Software Quality: This section provides the team’s assessment of the quality of the software along with any recommendations for potential improvements.
+
 # 2. Feature Description
 
 [Describe the features of the selected open-source course application.]
