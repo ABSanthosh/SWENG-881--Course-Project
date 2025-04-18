@@ -367,9 +367,97 @@ The code for the tests can be found in [TestReaderIDM.java](/InputDomainModeling
 **Identified Component for Graph-Based Testing**  
 The `skipLines(final Predicate<String> predicate, final int maxLines)` method was chosen as a suitable target for graph-based testing. Certain CSV files may have header information, such as comments or column headers, that the user may wish to skip. This function accepts a `Predicate<String> predicate` to define the header row will be the first non-skipped row of information and an integer to represent the maximum number of rows that should be searched for the predicate condition. It returns an integer representing the row in which the predicate is found.
 
-**Graph Model**<br>
-The below control flow graph represents the nodes and edges of the skipLines method identified above.  The various paths are further described in the test cases below.
-![Graph-SkipLines](/GraphBasedTesting/Images/Graph-SkipLines.png)
+**Control Flow Abstraction**
+
+The pseudocode below illustrates the logic of the method `skipLines(final Predicate<String> predicate, final int maxLines)`.  Note that for ease of abstraction all potential throws have been modelled as 'if' statements :
+
+```text
+
+if (Objects.requireNonNull(predicate) == null):
+  Throw NullPointerException
+if(maxLines < 0):
+  ThrowIllegalArgumentException
+if (maxLines == 0):
+  return 0;
+for (int i = 0; i < maxLines; i++)
+  if(csvParser.peekline throws IOException):
+    Throw IOException
+    else
+      if(test(line)==true):
+          return i;
+      else
+        if(!csvParser.skipLine(line.length()) throws IOException):
+          Throw IOException
+        else
+          if(!csvParser.skipLine(line.length())):
+            Throw CsvParseException;
+          else
+            i++;
+
+Throw CsvParseException;
+
+```
+Based on the pseudo code for the `skipLines(final Predicate<String> predicate, final int maxLines)` method, I have numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
+
+**Node Numbering Scheme**
+
+| Node # | Action                                                     |
+| ------ | -----------------------------------------------------------|
+| 1      | `if (Objects.requireNonNull(predicate) == null)`           |
+| 2      | `Throw NullPointerException`                               |
+| 3      | `if(maxLines < 0):`                                        |
+| 4      | `Throw IllegalArgumentException`                           |
+| 5      | `if (maxLines == 0):`                                      |
+| 6      | `return 0`                                                 |
+| 7      | `i = 0` First Part of For Loop                             |
+| 8      | `i < maxLines` Condition check in For Loop                 |
+| 9      | `if(csvParser.peekline throws IOException)`                |
+| 10     | `Throw CSVParseException`                                  |
+| 11     | `Thow IOException`                                         |
+| 12     | `if(test(line)==true)`                                     |
+| 13     | `return i`                                                 |
+| 14     | `if(!csvParser.skipLine(line.length()) throws IOException)`|
+| 15     | `Throw IOException`                                        |
+| 16     | `if(!csvParser.skipLine(line.length()))`                   |
+| 17     | `Throw CsvParseException`                                  |
+| 18     | `i++` Loop back to 8                                       |
+
+---
+
+#### **Edges List (for input into web app)**
+
+```
+1 2
+1 3
+3 4
+3 5
+5 6
+5 7
+7 8
+8 10
+8 9
+9 11
+9 12
+12 13
+12 14
+14 15
+14 16
+16 17
+16 18
+18 8
+```
+
+Where initial node is `1` and final nodes are `2, 4, 6, 10, 11, 13, 15, and 17`.
+
+**Corresponding Control Flow Graph (CFG) and Condensed Node Diagram**
+
+| Control Flow Diagram                                                 | Condensed Node Diagram                                                                        |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| <img src="GraphBasedTesting/Images/csvreader-skiplines.png" alt="Control Flow Diagram" width="500"/> | <img src="GraphBasedTesting/Images/NodeDiagramReader.png" alt="Node Diagram - Reader" width="500"/> |
+
+[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFGReader.puml) 
+
+---
 
 **Testing Coverage Criteria**  
 Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.  
@@ -387,7 +475,7 @@ The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting
 |g-r-06 |The desired header is not found within specified max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
 |g-r-07 |The desired header is not found within specified max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 |[reader-file-g03.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g03.csv) |
 |g-r-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11| TODO|
-|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→15| TODO|
+|g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→14→15| TODO|
 
 **Execution Results**  
 |Test #  |Expected Results                                                                                           |Results  |
@@ -404,11 +492,11 @@ The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting
 
 #### 5.2.2.2 CsvWriter Graph Based Test Cases
 
-**1) About the Function**
+**Identified Component for Graph-Based Testing**
 
 The `CsvWriter` class is responsible for writing data in CSV format to various outputs (e.g., files, streams, console). The writing process involves encoding records (including string quoting, delimiter handling, and optional comment lines), managing internal buffers, and controlling the line ending strategy. The control logic in the writer can be naturally expressed using a control flow graph (CFG) due to its numerous branching decisions (e.g., when to quote, when to write separators, how to escape characters, etc.).
 
-**2) Control Flow Abstraction**
+**Control Flow Abstraction**
 
 The pseudocode below illustrates the logic of the method `writeRecord(String... values)`:
 
@@ -461,7 +549,7 @@ Based on the pseudo code for the `writeRecord(String... values)` method, I have 
 
 ---
 
-#### **Edges List (for input into web app)**
+**Edges List (for input into web app)**
 
 ```
 1 2
@@ -488,12 +576,13 @@ Based on the pseudo code for the `writeRecord(String... values)` method, I have 
 
 Where initial node is `1` and final node is `16`.
 
-**3) Corresponding Control Flow Graph (CFG) and Condensed Node Diagram**
+**Corresponding Control Flow Graph (CFG) and Condensed Node Diagram**
 
 | Control Flow Diagram                                                 | Condensed Node Diagram                                                                        |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | <img src="GraphBasedTesting/Images/CFG.png" alt="Control Flow Diagram" width="500"/> | <img src="GraphBasedTesting/Images/Condensed%20Node%20Diagram.png" alt="Condensed Node Diagram" width="500"/> |
-| [PlantUML Code](/GraphBasedTesting/ImageUMLs/CFG.puml)                                 | [Edges](#edges-list-for-input-into-web-app) (for web app)                                                            |
+
+[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFG.puml)                                 
 
 ---
 
@@ -515,7 +604,7 @@ Here are a few representative paths:
 | P3      | Empty field with no quoting                  | Start → validate → empty → skip write → end                                              |
 | P4      | Regular field, no quotes, no escape          | Start → validate → write(value) → end                                                    |
 
-**5) McCabe’s Cyclomatic Complexity**
+**McCabe’s Cyclomatic Complexity**
 
 To calculate the cyclomatic complexity:
 

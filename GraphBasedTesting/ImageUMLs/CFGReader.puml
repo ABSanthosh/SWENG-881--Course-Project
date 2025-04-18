@@ -1,0 +1,51 @@
+@startuml csvreader-skiplines
+start
+
+if (Objects.requireNonNull(predicate) is null?) then (yes)
+    :Throw NullPointerException;
+    stop
+endif
+
+if(maxLines<0?) then (yes)
+    :Throw IllegalArgumentException;
+    stop
+endif
+
+if (maxLines == 0?) then (yes)
+    :return 0;
+    stop
+endif
+
+:i=0;
+
+while(i < maxLines?) is (yes)
+    if(csvParser.peekline throws \n IOException?) then (yes)
+        :Throw IOException;
+        stop
+    else(no)
+        if(test(line)==true?) then (yes)
+            :return i;
+            stop
+        else(no)
+            if(!csvParser.skipLine(line.length())\n throws IOException?) then (yes)
+                :Throw IOException;
+                stop
+            else(no)
+           
+                if(!csvParser.skipLine(line.length())?) then (yes)
+                    :Throw CsvParseException;
+                    stop
+                else(no)
+                    :i++;
+                endif
+            endif
+        endif
+    endif
+endwhile (no)
+    :Throw CsvParseException;
+stop
+
+
+
+
+@enduml
