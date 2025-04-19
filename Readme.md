@@ -133,6 +133,12 @@ JUnit was utilized to test both CSVReader and CSVWriter.
 
 [Description, Tools, and Rationale]
 
+The team utilzed Control Flow Graphs (CFGs) for our graph based testing. CFGs are used to abstract the flow of a section code into a graph in order design tests based on that abstraction. CFGs provide a visual representation of often complex functionality. Once the graph is created, it allows for generating test cases that ensure coverage of a the nodes and edges of the CFG in varying combinations of traversal. The team selected edge coverage for our criteria, as, per the Canvas module, it ensures "that each edge is traversed at least once."
+
+Two components were chosen to test using Graph Based Testing: **`writeRecord(String... values)` method** and **`skipLines(final Predicate<String> predicate, final int maxLines)` method**. These methods were chosen as candidates for Graph Based Testing, due to their numerous branching decisions and the coverage of those branches that Graph Based Testing offers.
+
+JUnit was utilized to test both methods. [PlantUML](https://plantuml.com) was used to design the CFGs. The [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage) was utilized to further abstract the CFG into a standardized number node format.
+
 **Exploratory Testing**
 
 [Description, Tools, and Rationale]
@@ -140,7 +146,6 @@ JUnit was utilized to test both CSVReader and CSVWriter.
 **Acceptance Testing**
 
 [Description, Tools, and Rationale]
-
 
 ## 4.4 Test Categories
 
@@ -604,28 +609,9 @@ Here are a few representative paths:
 | P3      | Empty field with no quoting                  | Start → validate → empty → skip write → end                                              |
 | P4      | Regular field, no quotes, no escape          | Start → validate → write(value) → end                                                    |
 
-**McCabe’s Cyclomatic Complexity**
+**Testing Coverage Criteria**
 
-To calculate the cyclomatic complexity:
-
-Let:
-
-- `e = number of edges`
-- `n = number of nodes`
-
-From the CFG:
-
-- Nodes (n) = 16
-- Edges (e) = 20
-
-Therefore,\
-**Cyclomatic Complexity, C = e - n + 2 = 20 - 16 + 2 = 6**
-
-This implies at least 6 independent paths should be tested to achieve basis path coverage but we just need a set of paths such that all 20 edges appear at least once among them and we don’t need to cover every possible path or combination (unlike path or basis path coverage).
-
-**6) Testing Coverage Criteria**
-
-**Edge coverage** was selected as the testing coverage criterion to ensure that every edge in the control flow graph of the `writeRecord(String... values)` method is executed at least once. This criterion is appropriate for this method because the function includes multiple conditionals and loops, but all edges can be covered using only five test cases, making the test suite efficient and maintainable while ensuring sufficient structural coverage.
+Edge coverage was selected as the testing coverage criterion to ensure that every edge in the control flow graph of the `writeRecord(String... values)` method is executed at least once. This criterion is appropriate for this method because the function includes multiple conditionals and loops, but all edges can be covered using only five test cases, making the test suite efficient and maintainable while ensuring sufficient structural coverage.
 
 **Test Cases**
 
