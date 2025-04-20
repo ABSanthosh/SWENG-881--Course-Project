@@ -751,8 +751,8 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 | NR                 | What Done                                                      | Status                                                           | Comment                                                                                           | Test Artifacts                                                                                                           |
 | ------------------ | -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 1                  | Read `fedex-input.csv` and extracted columns `id` and `amount` | No Exceptions                                                    | Correct values were read from input, verified manually                                            | [Test Script](/ExploratoryTesting/Tests/FedExTour.java)<br>[Input CSV](/ExploratoryTesting/CsvTestFiles/fedex-input.csv) |
-| 2                  | Wrote selected columns to `fedex-output.csv` using `CsvWriter` | No Exceptions                                                    | File format and values were correct in output. Fields aligned and properly quoted where necessary | [Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)                                                              |
+| E-F-01             | Read `fedex-input.csv` and extracted columns `id` and `amount` | No Exceptions                                                    | Correct values were read from input, verified manually                                            | [Test Script](/ExploratoryTesting/Tests/FedExTour.java)<br>[Input CSV](/ExploratoryTesting/CsvTestFiles/fedex-input.csv) |
+| E-F-02             | Wrote selected columns to `fedex-output.csv` using `CsvWriter` | No Exceptions                                                    | File format and values were correct in output. Fields aligned and properly quoted where necessary | [Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)                                                              |
 | FastCSV/app/inputs | 4                                                              | Opened output in spreadsheet viewer and verified layout visually | No Exceptions                                                                                     | Output is viewable and properly delimited by common spreadsheet tools                                                    |
 
 #### 5.2.3.5 Intellectual Tour
@@ -1041,6 +1041,8 @@ The following table represents a summary of the testing results. Please note tha
 | E-C-02   | Exploratory Testing | Pass        |          |
 | E-C-03   | Exploratory Testing | Pass        |          |
 | E-C-04   | Exploratory Testing | Pass        |          |
+| E-F-01   | Exploratory Testing | Pass        |          |
+| E-F-02   | Exploratory Testing | Pass        |          |
 | E-I-01   | Exploratory Testing | Pass        |          |
 | E-I-02   | Exploratory Testing | Pass        |          |
 | E-I-03   | Exploratory Testing | Pass        |          |
@@ -1049,8 +1051,6 @@ The following table represents a summary of the testing results. Please note tha
 | E-L-02   | Exploratory Testing | Pass        |          |
 | E-L-03   | Exploratory Testing | Pass        |          |
 | E-L-04   | Exploratory Testing | Pass        |          |
-
-[NEED TO ADD FEDEX TOUR ONCE NUMBERING IS CORRECTED]
 
 # 8. Recommendations on Software Quality
 
