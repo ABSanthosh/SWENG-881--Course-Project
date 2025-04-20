@@ -1,6 +1,7 @@
 # Course Project
 
-## Authors: 
+## Authors:
+
 - Santhosh Anitha Boominathan
 - Adam Slager
 
@@ -56,35 +57,67 @@ FastCSV
 [Provide a brief summary of the remaining sections of the testing report.]
 
 The following is a brief description of the remaining portions of the testing report.
-- Feature Description: This section provides a high-level overview of the primary features of FastCSV.  The purpose of this section is to educate the reader on the software and to provide a detailed description of the team’s assessment of primary functionality.  This section serves both as an introduction to the software and as a reference for the testing  described in the remainder of the document.
-- Assumptions: This section serves two primary purposes. Firstly, it lays out the team’s reasoning for excluding certain features and requirements of the software from the testing plan. This section can be crucial, as it serves to memorialize the logic around the exclusions and to provide the reader with a roadmap of any additional testing that might be required to get comfort over their particular usage of the software.  Secondly, it describes the tools utilized during the testing and details pertinent organization structures utilized to describe the testing in the remainder of the document. 
-- Test Approach: This primary purpose of this section is to document the team’s test strategy and the reasoning behind choosing these approaches, including any special situations that might fall outside of the general approach. This section also lays out any past issues that are pertinent to our testing, which in the case of an open-source application like FastCSV are generally well-documented.  Finally, this section outlines the categories of tests cases for the software,  including categories for certain non-functional requirements of the software. 
-- Test Cases: This section serves to categorize and document the specific tests that were performed.  It also details the organization structure of the test cases and provides a traceability matrix to tie the tests into the specific software requirements.
-- Test Environment: The purpose of this section is to describe the specifics around the test environment, both in terms of the hardware used in testing and the organization of the software environment.  A primary purpose of this section is to enhance the reproducibility of the tests by specifying this aforementioned information.
-- Testing Results: This section serves as a running log of the results of each test performed, including their status and any observations made during the testing.  
+
+- Feature Description: This section provides a high-level overview of the primary features of FastCSV. The purpose of this section is to educate the reader on the software and to provide a detailed description of the team’s assessment of primary functionality. This section serves both as an introduction to the software and as a reference for the testing described in the remainder of the document.
+- Assumptions: This section serves two primary purposes. Firstly, it lays out the team’s reasoning for excluding certain features and requirements of the software from the testing plan. This section can be crucial, as it serves to memorialize the logic around the exclusions and to provide the reader with a roadmap of any additional testing that might be required to get comfort over their particular usage of the software. Secondly, it describes the tools utilized during the testing and details pertinent organization structures utilized to describe the testing in the remainder of the document.
+- Test Approach: This primary purpose of this section is to document the team’s test strategy and the reasoning behind choosing these approaches, including any special situations that might fall outside of the general approach. This section also lays out any past issues that are pertinent to our testing, which in the case of an open-source application like FastCSV are generally well-documented. Finally, this section outlines the categories of tests cases for the software, including categories for certain non-functional requirements of the software.
+- Test Cases: This section serves to categorize and document the specific tests that were performed. It also details the organization structure of the test cases and provides a traceability matrix to tie the tests into the specific software requirements.
+- Test Environment: The purpose of this section is to describe the specifics around the test environment, both in terms of the hardware used in testing and the organization of the software environment. A primary purpose of this section is to enhance the reproducibility of the tests by specifying this aforementioned information.
+- Testing Results: This section serves as a running log of the results of each test performed, including their status and any observations made during the testing.
 - Recommendations on Software Quality: This section provides the team’s assessment of the quality of the software along with any recommendations for potential improvements.
 
 # 2. Feature Description
 
 [Describe the features of the selected open-source course application.]
 
-Per the official FastCSV website, “FastCSV is a high-performance CSV parser and writer for Java.”  The functionality of the system can be logically bifurcated into those features belonging to each of the CsvReader and CsvWriter classes.  The website and related documentation outline the features and design goals of the software; however, based on the team’s exploration of the documentation and our own use of the software, the team believes that the following are the primary features of these classes.
--	CsvReader
-    -	Ability to read standard, comma separated values from a file
-    -	Ability to configure the reading of the values via the following options
-        -	Field Separator  - A field separator denotes the character used to logically delineate between the fields of data in the file.  While the program defaults to utilizing commas, it provides the user with the option to select another field separator.  For example, a user may wish to read in a file that is separated by semi-colons instead. 
-        - Quote Character – Using quote characters allows the parser to treat the data between the quote characters as a single field, even if it contains a field separator.  For example, the user might want to read in a CSV field, which contains commas.  In this case, the program defaults to allowing the user to surround that field with quotes, such as “ice cream, cake, and candy.”  In this case, that phrase would be read in as a single field, excluding the quotation marks.  In some instances, though, the user may wish to designate a different character to represent quotation marks, such as when the fields in a file contain lots of quotes.  The user may therefore specify another character to use, such as a percentage sign.  In this case %”ice cream, cake, and candy”% would be read in as a single field, including the quotation marks.
-        -	Different Field Counts – The program allows the user to set a configuration option that either enforces or does not enforce adherence to consistent field counts.  For example, a csv file may have a first row with two columns (fields) and a second row with 3 columns.  Depending on the user’s requirements, they may wish for the program to read this with no issue or to throw an exception.  The program defaults to not enforcing this adherence, meaning that the CSV files may have varying numbers of columns per row.  
-        - BOM Headers – Certain programs, such as Microsoft Excel, generate CSV files that begin with a BOM (Byte Order Mark) header.  Per the FastCSV website, the purpose of a BOM Header was originally to designate the encoding of the file, although now it is largely unnecessary, as almost all CSV files utilize UTF-8.  The program provides the user with functionality to either detect (and ignore) the BOM header, which is useful if the file has a BOM header and the user does not want this to be included in their data, or to not detect the BOM header, which is the default behavior.  
-        -	Comments – Certain CSV files may contain comments, which are often designated by a character, such as ‘#.’  FastCSV allows users to customize how the program handles these comments, by selecting a custom comment designator and by specifying whether comments should be skipped by the reader or read in as a field.  For example, suppose the user processes a CSV file that has multiple comments that begin with '!' and the user does not want these comments to appear in their parsed data.  The user can specify that any lines beginning with '!' should be skipped.  They would designate the comment character and the comment behavior separately.  The program defaults to '#' as the comment character and not skipping comments as the behavior.
-        -	Empty Lines – Certain CSV files may contain empty lines. By default, the program is configured to skip these empty lines (i.e. not read them in).  Alternatively, if the user wishes to read these empty lines in as blank fields, the user can configure the program to do so. 
-    -	Ability to handle the following less common situations:
-        -	Indexing CSV files – Provides the user with the option to read a large CSV file, while designating how many records belong on each “page” of the file.  Once the file is initially parsed, the user can quickly access any individual page of the file without having to parse the file again.  This can save substantial amounts of time if the user needs to access a certain page (for instance, paginated web data).  
-        -	Field Modification – Provides the user with the ability to modify fields as they are being read.  A common use case for this is trimming or stripping leading or trailing blank characters from a field, if applicable.
-        -	Reading Compressed CSV files – The program allows the user to read CSV files that were compressed using the gzip format.  The program handles the extraction process and then reads the files in as if they were not compressed.
-        -	Ability to Automatically Map to Java Beans – Allows the user to configure the program to map the CSV data that is read directly into Java Beans, with minimal performance penalty.
+Per the official FastCSV website, “FastCSV is a high-performance CSV parser and writer for Java.” The functionality of the system can be logically bifurcated into those features belonging to each of the CsvReader and CsvWriter classes. The website and related documentation outline the features and design goals of the software; however, based on the team’s exploration of the documentation and our own use of the software, the team believes that the following are the primary features of these classes.
 
-[CSVWriter functionality to be explained here in a similar fashion to CSVReader]
+- CsvReader
+
+  - Ability to read standard, comma separated values from a file
+  - Ability to configure the reading of the values via the following options
+    - Field Separator - A field separator denotes the character used to logically delineate between the fields of data in the file. While the program defaults to utilizing commas, it provides the user with the option to select another field separator. For example, a user may wish to read in a file that is separated by semi-colons instead.
+    - Quote Character – Using quote characters allows the parser to treat the data between the quote characters as a single field, even if it contains a field separator. For example, the user might want to read in a CSV field, which contains commas. In this case, the program defaults to allowing the user to surround that field with quotes, such as “ice cream, cake, and candy.” In this case, that phrase would be read in as a single field, excluding the quotation marks. In some instances, though, the user may wish to designate a different character to represent quotation marks, such as when the fields in a file contain lots of quotes. The user may therefore specify another character to use, such as a percentage sign. In this case %”ice cream, cake, and candy”% would be read in as a single field, including the quotation marks.
+    - Different Field Counts – The program allows the user to set a configuration option that either enforces or does not enforce adherence to consistent field counts. For example, a csv file may have a first row with two columns (fields) and a second row with 3 columns. Depending on the user’s requirements, they may wish for the program to read this with no issue or to throw an exception. The program defaults to not enforcing this adherence, meaning that the CSV files may have varying numbers of columns per row.
+    - BOM Headers – Certain programs, such as Microsoft Excel, generate CSV files that begin with a BOM (Byte Order Mark) header. Per the FastCSV website, the purpose of a BOM Header was originally to designate the encoding of the file, although now it is largely unnecessary, as almost all CSV files utilize UTF-8. The program provides the user with functionality to either detect (and ignore) the BOM header, which is useful if the file has a BOM header and the user does not want this to be included in their data, or to not detect the BOM header, which is the default behavior.
+    - Comments – Certain CSV files may contain comments, which are often designated by a character, such as ‘#.’ FastCSV allows users to customize how the program handles these comments, by selecting a custom comment designator and by specifying whether comments should be skipped by the reader or read in as a field. For example, suppose the user processes a CSV file that has multiple comments that begin with '!' and the user does not want these comments to appear in their parsed data. The user can specify that any lines beginning with '!' should be skipped. They would designate the comment character and the comment behavior separately. The program defaults to '#' as the comment character and not skipping comments as the behavior.
+    - Empty Lines – Certain CSV files may contain empty lines. By default, the program is configured to skip these empty lines (i.e. not read them in). Alternatively, if the user wishes to read these empty lines in as blank fields, the user can configure the program to do so.
+  - Ability to handle the following less common situations:
+    - Indexing CSV files – Provides the user with the option to read a large CSV file, while designating how many records belong on each “page” of the file. Once the file is initially parsed, the user can quickly access any individual page of the file without having to parse the file again. This can save substantial amounts of time if the user needs to access a certain page (for instance, paginated web data).
+    - Field Modification – Provides the user with the ability to modify fields as they are being read. A common use case for this is trimming or stripping leading or trailing blank characters from a field, if applicable.
+    - Reading Compressed CSV files – The program allows the user to read CSV files that were compressed using the gzip format. The program handles the extraction process and then reads the files in as if they were not compressed.
+    - Ability to Automatically Map to Java Beans – Allows the user to configure the program to map the CSV data that is read directly into Java Beans, with minimal performance penalty.
+
+- CsvWriter
+
+  - Core Functionalities
+
+    - Write CSV Records: Supports writing CSV records from arrays of strings or other data types. Fields are automatically separated using a configurable separator character and optionally quoted.
+    - Line Delimiter Configuration: Allows setting the line-ending strategy (e.g., CR, LF, CRLF, or platform-specific), supporting cross-platform compatibility.
+    - Field Quoting and Escaping: Provides a flexible mechanism for quoting fields that contain special characters. Escaping strategies can be applied to prevent misinterpretation of field separators, quotes, or newline characters.
+
+  - Customization Options
+
+    - Field Separator: The default separator is a comma (`,`), but this can be replaced with other characters such as semicolons (`;`), tabs (`\t`), or pipes (`|`) based on user needs.
+    - Quote Character: Users can configure which character is used to quote fields. The default is the double-quote (`"`), but alternative characters such as the single-quote (`'`) can be specified.
+    - Quote Strategy: FastCSV supports multiple quote strategies through the `QuoteStrategy` interface. Examples include:
+      - Always quote all fields.
+      - Quote only when necessary (e.g., if the field contains the separator or quote character).
+      - Never quote (if fields are guaranteed to be safe).
+    - Escape Mechanism: When quoting is enabled and a field contains the quote character itself, the character is duplicated to escape it. For example, the value `5" screw` becomes `"5"" screw"` in the CSV output.
+
+  - Advanced Capabilities
+
+    - Comment Writing: Supports writing comments into the CSV using a specified comment character (e.g., `#`). Comments appear as standalone lines in the output.
+    - Null and Empty Value Handling: Allows configuration on whether `null` or empty strings should be written as blank fields, quoted empty fields (`""`), or omitted entirely.
+    - Buffer Management: Internally buffered writing supports large-scale output without performance bottlenecks.
+    - Output Stream and Writer Support: Users can direct output to various destinations, including files, network sockets, or in-memory buffers through Java’s `OutputStream` or `Writer` interfaces.
+    - Auto-Flushing: Configurable behavior to control whether data should be flushed to the output stream automatically after each record.
+
+  - Edge Case Handling
+    - Handling Embedded Newlines: If a field includes a newline character (`\n` or `\r\n`), quoting ensures the record remains syntactically correct.
+    - Control Character Restrictions: FastCSV enforces that the field separator, quote character, and comment character must all be distinct and must not be newline characters.
+    - Exception Safety: Provides safeguards through exceptions for illegal states, such as unclosed records or invalid configurations (e.g., duplicate control characters).
 
 # 3. Assumptions
 
@@ -110,7 +143,7 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 
 [Explain which testing techniques are used to test the different parts of the systems. Provide a rationale for the selection. Also include information on which tools, automation, and scripts are used to test each part of the system.]
 
-There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in Section 2).  The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.  
+There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in Section 2). The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.
 
 CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are overwhelmingly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comment or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
 
@@ -120,12 +153,13 @@ The following are the testing techniques that were utilized, along with a descri
 
 [Description, Tools, and Rationale]
 
-Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks.  In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in Section 5.2 below.
+Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in Section 5.2 below.
 
 Input Domain Modeling was chosen to test CSVReader and CSVWriter methods for several practical reasons:
-- Using Input Domain Modeling on these higher-level components provides the team with an opportunity to understand the major functionality of FastCSV early in the testing process.  This understanding will assist in designing subsequent tests.
-- Since FastCSV is already in production and the primary functionality is fully operational, testing at this level is a practical option at this early stage in the testing process.  If this were an early sprint in an Agile project, this level of testing might not be available, since the functionality would not be fully developed.
-- The components, and in particular the csv files themselves, are good targets for Input Domain Testing.  The input domain of the csv files is practically infinite, but those possibilities can be logically partitioned into blocks representing both common use cases and edge cases. This allowed the team to develop a manageable framework for testing a large input space.
+
+- Using Input Domain Modeling on these higher-level components provides the team with an opportunity to understand the major functionality of FastCSV early in the testing process. This understanding will assist in designing subsequent tests.
+- Since FastCSV is already in production and the primary functionality is fully operational, testing at this level is a practical option at this early stage in the testing process. If this were an early sprint in an Agile project, this level of testing might not be available, since the functionality would not be fully developed.
+- The components, and in particular the csv files themselves, are good targets for Input Domain Testing. The input domain of the csv files is practically infinite, but those possibilities can be logically partitioned into blocks representing both common use cases and edge cases. This allowed the team to develop a manageable framework for testing a large input space.
 
 JUnit was utilized to test both CSVReader and CSVWriter.
 
@@ -258,50 +292,50 @@ For the `CsvReader` component, the team selected the `ofCsvRecord(Path file)` me
 
 **Characteristics of Input Variables**
 
-| Input Variable             | Type                   | Constraints                                                                        |
-| -------------------------- | ---------------------- | ---------------------------------------------------------------------------------- |
-| `file`                     | `Path`                 | Must point to a readable file; content can vary                                    |
-| `fieldSeparator`           | Single `char`          | Must not be a newline character.                                                   |
-| `quoteCharacter`           | Single `char`          | Must not be a newline character.                                                   |
-| `commentStrategy`          | `CommentStrategy` enum | Defines comment line behavior.                                                     |
-| `commentCharacter`         | Single `char`          | Must not be a newline character.   
-| `ignoreDifferentFieldCount`| `boolean`              | `true` or `false`.                                                                 |
-| `skipEmptyLines`           | `boolean`              | `true` or `false`.                                                                 |
-| `detectBomHeader`          | `boolean`              | `true` or `false`.                                                                 | 
+| Input Variable              | Type                   | Constraints                                     |
+| --------------------------- | ---------------------- | ----------------------------------------------- |
+| `file`                      | `Path`                 | Must point to a readable file; content can vary |
+| `fieldSeparator`            | Single `char`          | Must not be a newline character.                |
+| `quoteCharacter`            | Single `char`          | Must not be a newline character.                |
+| `commentStrategy`           | `CommentStrategy` enum | Defines comment line behavior.                  |
+| `commentCharacter`          | Single `char`          | Must not be a newline character.                |
+| `ignoreDifferentFieldCount` | `boolean`              | `true` or `false`.                              |
+| `skipEmptyLines`            | `boolean`              | `true` or `false`.                              |
+| `detectBomHeader`           | `boolean`              | `true` or `false`.                              |
 
 **Partitioning Characteristics into Blocks**
 
-| Input Variable             | Blocks                                            | Values                                           | Related Tests        |
-| -------------------------- | ------------------------------------------------- | ------------------------------------------------ |----------------------|
-| `file`                     | Block a1: Valid CSV file of strings and numbers   | [reader-file-a01.csv](/InputDomainModeling/CsvTestFiles/reader-file-a01.csv)                              | idm-r-01              |
-|                            | Block a2: CSV of special characters               | [reader-file-a02.csv](/InputDomainModeling/CsvTestFiles/reader-file-a02.csv)                             | idm-r-02              |
-|                            | Block a3: Single column CSV                       | [reader-file-a03.csv](/InputDomainModeling/CsvTestFiles/reader-file-a03.csv)                             | idm-r-03              |  
-|                            | Block a4: Single row CSV                          | [reader-file-a04.csv](/InputDomainModeling/CsvTestFiles/reader-file-a04.csv)                             | idm-r-04              |
-|                            | Block a5: Very large CSV (1 million rows)         | [reader-file-a05.csv](/InputDomainModeling/CsvTestFiles/reader-file-a05.csv)                             | idm-r-05              |
-|                            | Block a6: CSV file with commas as data            | [reader-file-a06.csv](/InputDomainModeling/CsvTestFiles/reader-file-a06.csv)                              | idm-r-06              |
-|                            | Block a7: CSV file with quotes as data            | [reader-file-a07.csv](/InputDomainModeling/CsvTestFiles/reader-file-a07.csv)                              | idm-r-07              |
-|                            | Block a8: Uneven # of columns in rows             | [reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv)                             | idm-r-08, idm-r-17     |
-|                            | Block a9: Skipped Rows                            | [reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)                              | idm-r-09, idm-r-19     |
-|                            | Block a10: Empty file                             | [reader-file-a10.csv](/InputDomainModeling/CsvTestFiles/reader-file-a10.csv)                              | idm-r-10              |
-|                            | Block a11: `';'` as field separator               | [reader-file-a11.csv](/InputDomainModeling/CsvTestFiles/reader-file-a11.csv)                              | idm-r-11              |
-|                            | Block a12: `'` as quotes                          | [reader-file-a12.csv](/InputDomainModeling/CsvTestFiles/reader-file-a12.csv)                              | idm-r-12              |
-|                            | Block a13: `#` as comments                        | [reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv)                              | idm-r-13, idm-r-16     |
-|                            | Block a14: `@` as comments                        | [reader-file-a14.csv](/InputDomainModeling/CsvTestFiles/reader-file-a14.csv)                              | idm-r-14              |
-|                            | Block a15: File with BOM header                   | [reader-file-a15.csv](/InputDomainModeling/CsvTestFiles/reader-file-a15.csv)                              | idm-r-15              |
-| `fieldSeparator`           | Block b1: Default                                 | Defaults to `','`                                | all except idm-r-11   |
-|                            | Block b2: Alternative separator                   | `';'`                                            | idm-r-11              |
-| `quoteCharacter`           | Block c1: Default                                 | Defaults to `'"'`                                | idm-r-06, idm-r-07     |
-|                            | Block c2: Alternative quote                       | `'^'`                                            | idm-r-12              |
-| `commentStrategy`          | Block d1: Default                                 | Defaults to `CommentStrategy.NONE`               | idm-r-16              |
-|                            | Block d2: `SKIP`                                  | `CommentStrategy.SKIP`                           | idm-r-13, idm-r-14     |
-| `commentCharacter`         | Block e1: Default                                 | Defaults to `#`                                  | idm-r-13, idm-r-16     |
-|                            | Block e2: Alternate                               | `@`                                              | idm-r-14              |
-| `ignoreDifferentFieldCount`| Block f1: Default                                 | Defaults to `true`                               | idm-r-08              |
-|                            | Block f2: `false`                                 | `false`                                          | idm-r-17              |
-| `skipEmptyLines`           | Block g1: Default                                 | Defaults to `true`                               | idm-r-18              |
-|                            | Block g2: `false`                                 | `false`                                          | idm-r-09              |
-| `detectBomHeader`          | Block h1: Default                                 | Defaults to 'false'                              | all except idm-r-15   |
-|                            | Block h2: `true`                                  | `true`                                           | idm-r-15              | 
+| Input Variable              | Blocks                                          | Values                                                                       | Related Tests       |
+| --------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------- | ------------------- |
+| `file`                      | Block a1: Valid CSV file of strings and numbers | [reader-file-a01.csv](/InputDomainModeling/CsvTestFiles/reader-file-a01.csv) | idm-r-01            |
+|                             | Block a2: CSV of special characters             | [reader-file-a02.csv](/InputDomainModeling/CsvTestFiles/reader-file-a02.csv) | idm-r-02            |
+|                             | Block a3: Single column CSV                     | [reader-file-a03.csv](/InputDomainModeling/CsvTestFiles/reader-file-a03.csv) | idm-r-03            |
+|                             | Block a4: Single row CSV                        | [reader-file-a04.csv](/InputDomainModeling/CsvTestFiles/reader-file-a04.csv) | idm-r-04            |
+|                             | Block a5: Very large CSV (1 million rows)       | [reader-file-a05.csv](/InputDomainModeling/CsvTestFiles/reader-file-a05.csv) | idm-r-05            |
+|                             | Block a6: CSV file with commas as data          | [reader-file-a06.csv](/InputDomainModeling/CsvTestFiles/reader-file-a06.csv) | idm-r-06            |
+|                             | Block a7: CSV file with quotes as data          | [reader-file-a07.csv](/InputDomainModeling/CsvTestFiles/reader-file-a07.csv) | idm-r-07            |
+|                             | Block a8: Uneven # of columns in rows           | [reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv) | idm-r-08, idm-r-17  |
+|                             | Block a9: Skipped Rows                          | [reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv) | idm-r-09, idm-r-19  |
+|                             | Block a10: Empty file                           | [reader-file-a10.csv](/InputDomainModeling/CsvTestFiles/reader-file-a10.csv) | idm-r-10            |
+|                             | Block a11: `';'` as field separator             | [reader-file-a11.csv](/InputDomainModeling/CsvTestFiles/reader-file-a11.csv) | idm-r-11            |
+|                             | Block a12: `'` as quotes                        | [reader-file-a12.csv](/InputDomainModeling/CsvTestFiles/reader-file-a12.csv) | idm-r-12            |
+|                             | Block a13: `#` as comments                      | [reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv) | idm-r-13, idm-r-16  |
+|                             | Block a14: `@` as comments                      | [reader-file-a14.csv](/InputDomainModeling/CsvTestFiles/reader-file-a14.csv) | idm-r-14            |
+|                             | Block a15: File with BOM header                 | [reader-file-a15.csv](/InputDomainModeling/CsvTestFiles/reader-file-a15.csv) | idm-r-15            |
+| `fieldSeparator`            | Block b1: Default                               | Defaults to `','`                                                            | all except idm-r-11 |
+|                             | Block b2: Alternative separator                 | `';'`                                                                        | idm-r-11            |
+| `quoteCharacter`            | Block c1: Default                               | Defaults to `'"'`                                                            | idm-r-06, idm-r-07  |
+|                             | Block c2: Alternative quote                     | `'^'`                                                                        | idm-r-12            |
+| `commentStrategy`           | Block d1: Default                               | Defaults to `CommentStrategy.NONE`                                           | idm-r-16            |
+|                             | Block d2: `SKIP`                                | `CommentStrategy.SKIP`                                                       | idm-r-13, idm-r-14  |
+| `commentCharacter`          | Block e1: Default                               | Defaults to `#`                                                              | idm-r-13, idm-r-16  |
+|                             | Block e2: Alternate                             | `@`                                                                          | idm-r-14            |
+| `ignoreDifferentFieldCount` | Block f1: Default                               | Defaults to `true`                                                           | idm-r-08            |
+|                             | Block f2: `false`                               | `false`                                                                      | idm-r-17            |
+| `skipEmptyLines`            | Block g1: Default                               | Defaults to `true`                                                           | idm-r-18            |
+|                             | Block g2: `false`                               | `false`                                                                      | idm-r-09            |
+| `detectBomHeader`           | Block h1: Default                               | Defaults to 'false'                                                          | all except idm-r-15 |
+|                             | Block h2: `true`                                | `true`                                                                       | idm-r-15            |
 
 **Coverage Criteria**  
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
@@ -311,59 +345,59 @@ The below table shows each test number as columns (the "idm-r-" prefix has been 
 
 The code for the tests can be found in [TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)
 
-|test # (prefix = idm-r-)  |01| 02| 03| 04| 05| 06| 07| 08| 09| 10| 11| 12| 13| 14| 15| 16| 17| 18|
-|-------------------------|--|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|file                     |a1| a2| a3| a4| a5| a6| a7| a8| a9|a10|a11|a12|a13|a14|a15|a13| a8| a9| 
-|fieldSeperator           |b1| b1| b1| b1| b1| b1| b1| b1| b1| b1| b2| b1| b1| b1| b1| b1| b1| b1|
-|quoteCharacter           |  |   |   |   |   | c1| c1|   |   |   |   | c2|   |   |   |   |   |   |
-|commentStrategy          |  |   |   |   |   |   |   |   |   |   |   |   | d2| d2|   | d1|   |   |
-|commentCharacter         |  |   |   |   |   |   |   |   |   |   |   |   | e1| e2|   | e1|   |   |
-|ignoreDifferentFieldCount|  |   |   |   |   |   |   | f1|   |   |   |   |   |   |   |   | f2|   |
-|skipEmptyLines           |  |   |   |   |   |   |   |   | g2|   |   |   |   |   |   |   |   | g1|
-|detectBomHeader          |h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h1| h2| h1| h1| h1|
+| test # (prefix = idm-r-)  | 01  | 02  | 03  | 04  | 05  | 06  | 07  | 08  | 09  | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  |
+| ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| file                      | a1  | a2  | a3  | a4  | a5  | a6  | a7  | a8  | a9  | a10 | a11 | a12 | a13 | a14 | a15 | a13 | a8  | a9  |
+| fieldSeperator            | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  | b1  | b1  | b1  | b1  |
+| quoteCharacter            |     |     |     |     |     | c1  | c1  |     |     |     |     | c2  |     |     |     |     |     |     |
+| commentStrategy           |     |     |     |     |     |     |     |     |     |     |     |     | d2  | d2  |     | d1  |     |     |
+| commentCharacter          |     |     |     |     |     |     |     |     |     |     |     |     | e1  | e2  |     | e1  |     |     |
+| ignoreDifferentFieldCount |     |     |     |     |     |     |     | f1  |     |     |     |     |     |     |     |     | f2  |     |
+| skipEmptyLines            |     |     |     |     |     |     |     |     | g2  |     |     |     |     |     |     |     |     | g1  |
+| detectBomHeader           | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h1  | h2  | h1  | h1  | h1  |
 
-|Test # |Test Purpose/Description                                 |Test Definition                                                                   |
-|-------|---------------------------------------------------------|----------------------------------------------------------------------------------|
-|idm-r-01|Test a valid csv file of strings with default settings|Path file = Paths.get("[reader-file-a01.csv](/InputDomainModeling/CsvTestFiles/reader-file-a01.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-02|Test a csv file of special characters with default settings|Path file = Paths.get("[reader-file-a02.csv](/InputDomainModeling/CsvTestFiles/reader-file-a02.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-03|Test a csv file with one column per row with default settings|Path file = Paths.get("[reader-file-a03.csv](/InputDomainModeling/CsvTestFiles/reader-file-a03.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-04|Test a csv file with one row and many columns with default <br>settings|Path file = Paths.get("[reader-file-a04.csv](/InputDomainModeling/CsvTestFiles/reader-file-a04.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-05|Test a very large csv file with one million rows with default <br>settings|Path file = Paths.get("[reader-file-a05.csv](/InputDomainModeling/CsvTestFiles/reader-file-a05.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file))|
-|idm-r-06|Test a csv file with commas as data with default settings<br> including quoteCharacter|Path file = Paths.get("[reader-file-a06.csv](/InputDomainModeling/CsvTestFiles/reader-file-a06.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-07|Test a csv File that has quotes as data with default settings<br> including quoteCharacter|Path file = Paths.get("[reader-file-a07.csv](/InputDomainModeling/CsvTestFiles/reader-file-a07.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-08|Test a malformed csv file with uneven columns in rows with <br>default settings including default ignoreDifferentFieldCount value|Path file = Paths.get("[reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-09|Test a csv File with empty rows with default settings except<br> for alternative skipEmptyLines option|Path file = Paths.get("[reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .skipEmptyLines(false).ofCsvRecord(file));|
-|idm-r-10|Test a blank csv file with default settings|Path file = Paths.get("[reader-file-a10.csv](/InputDomainModeling/CsvTestFiles/reader-file-a10.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-11|Test a csv file with ';' as separators with default settings<br> and alternative fieldSeparator ';'|Path file = Paths.get("[reader-file-a11.csv](/InputDomainModeling/CsvTestFiles/reader-file-a11.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .fieldSeparator(';') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
-|idm-r-12|Test a csv file with '^' as quote character with default <br>settings and alternative quoteCharacter '^'|Path file = Paths.get("[reader-file-a12.csv](/InputDomainModeling/CsvTestFiles/reader-file-a12.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .quoteCharacter('^') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
-|idm-r-13|Test a csv file with blank lines with default settings <br>except for CommentStrategy of 'SKIP'|Path file = Paths.get("[reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
-|idm-r-14|Test a csv file with default settings except for using an<br> alternate comment character '@' and CommentStrategy of 'SKIP'|Path file = Paths.get("[reader-file-a14.csv](/InputDomainModeling/CsvTestFiles/reader-file-a14.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .commentCharacter('@') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
-|idm-r-15|Test a csv file that has a BOM header with default settings<br> except detectBOMHeader set to true.|Path file = Paths.get("[reader-file-a15.csv](/InputDomainModeling/CsvTestFiles/reader-file-a15.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .detectBomHeader(true) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));|
-|idm-r-16|Test a csv file with comments and default settings|Path file = Paths.get("[reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
-|idm-r-17|Test a malformed csv file with uneven columns in rows with <br>default settings including alternate<br> ignoreDifferentFieldCount value of 'false'|CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .ignoreDifferentFieldCount(false) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(Paths.get("[reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv)"));
-|idm-r-18|Test a csv file with empty lines and default settings|Path file = Paths.get("[reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));|
+| Test #   | Test Purpose/Description                                                                                                                           | Test Definition                                                                                                                                                                                                                                                                                                           |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| idm-r-01 | Test a valid csv file of strings with default settings                                                                                             | Path file = Paths.get("[reader-file-a01.csv](/InputDomainModeling/CsvTestFiles/reader-file-a01.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-02 | Test a csv file of special characters with default settings                                                                                        | Path file = Paths.get("[reader-file-a02.csv](/InputDomainModeling/CsvTestFiles/reader-file-a02.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-03 | Test a csv file with one column per row with default settings                                                                                      | Path file = Paths.get("[reader-file-a03.csv](/InputDomainModeling/CsvTestFiles/reader-file-a03.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-04 | Test a csv file with one row and many columns with default <br>settings                                                                            | Path file = Paths.get("[reader-file-a04.csv](/InputDomainModeling/CsvTestFiles/reader-file-a04.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-05 | Test a very large csv file with one million rows with default <br>settings                                                                         | Path file = Paths.get("[reader-file-a05.csv](/InputDomainModeling/CsvTestFiles/reader-file-a05.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file))                                                                                                                                               |
+| idm-r-06 | Test a csv file with commas as data with default settings<br> including quoteCharacter                                                             | Path file = Paths.get("[reader-file-a06.csv](/InputDomainModeling/CsvTestFiles/reader-file-a06.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-07 | Test a csv File that has quotes as data with default settings<br> including quoteCharacter                                                         | Path file = Paths.get("[reader-file-a07.csv](/InputDomainModeling/CsvTestFiles/reader-file-a07.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-08 | Test a malformed csv file with uneven columns in rows with <br>default settings including default ignoreDifferentFieldCount value                  | Path file = Paths.get("[reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-09 | Test a csv File with empty rows with default settings except<br> for alternative skipEmptyLines option                                             | Path file = Paths.get("[reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .skipEmptyLines(false).ofCsvRecord(file));                                                                                             |
+| idm-r-10 | Test a blank csv file with default settings                                                                                                        | Path file = Paths.get("[reader-file-a10.csv](/InputDomainModeling/CsvTestFiles/reader-file-a10.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-11 | Test a csv file with ';' as separators with default settings<br> and alternative fieldSeparator ';'                                                | Path file = Paths.get("[reader-file-a11.csv](/InputDomainModeling/CsvTestFiles/reader-file-a11.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .fieldSeparator(';') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));                                                                    |
+| idm-r-12 | Test a csv file with '^' as quote character with default <br>settings and alternative quoteCharacter '^'                                           | Path file = Paths.get("[reader-file-a12.csv](/InputDomainModeling/CsvTestFiles/reader-file-a12.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .quoteCharacter('^') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));                                                                    |
+| idm-r-13 | Test a csv file with blank lines with default settings <br>except for CommentStrategy of 'SKIP'                                                    | Path file = Paths.get("[reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));                                                  |
+| idm-r-14 | Test a csv file with default settings except for using an<br> alternate comment character '@' and CommentStrategy of 'SKIP'                        | Path file = Paths.get("[reader-file-a14.csv](/InputDomainModeling/CsvTestFiles/reader-file-a14.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .commentStrategy(CommentStrategy.SKIP) <br> &nbsp; &nbsp; &nbsp; .commentCharacter('@') <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file)); |
+| idm-r-15 | Test a csv file that has a BOM header with default settings<br> except detectBOMHeader set to true.                                                | Path file = Paths.get("[reader-file-a15.csv](/InputDomainModeling/CsvTestFiles/reader-file-a15.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .detectBomHeader(true) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(file));                                                                  |
+| idm-r-16 | Test a csv file with comments and default settings                                                                                                 | Path file = Paths.get("[reader-file-a13.csv](/InputDomainModeling/CsvTestFiles/reader-file-a13.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
+| idm-r-17 | Test a malformed csv file with uneven columns in rows with <br>default settings including alternate<br> ignoreDifferentFieldCount value of 'false' | CsvReader<CsvRecord> csv = CsvReader.builder() <br> &nbsp; &nbsp; &nbsp; .ignoreDifferentFieldCount(false) <br> &nbsp; &nbsp; &nbsp; .ofCsvRecord(Paths.get("[reader-file-a08.csv](/InputDomainModeling/CsvTestFiles/reader-file-a08.csv)"));                                                                             |
+| idm-r-18 | Test a csv file with empty lines and default settings                                                                                              | Path file = Paths.get("[reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
 
 **Execution Results**  
-|Test #  |Expected Results                                                                                           |Results  |
+|Test # |Expected Results |Results |
 |--------|-----------------------------------------------------------------------------------------------------------|---------|
-|idm-r-01|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}` |Pass     |
-|idm-r-02|`{{"!@#^(&@$(*@", "*#$&(@$@", "+)_(@*&)(&"}, {"<>//;[>", "~~~~~~", "/*-*-+"}, {"(*&*#(@$)", "#$@$@#$#", "+_)(*&^%$#@!~"}, {"~!@#$%^&", "{}{}{}", "///"}}`|Pass     |
-|idm-r-03|`{{"Adam"}, {"Santhosh"}, {"Bill"}, {"Ted"}, {"George"}, {"Thomas"}, {"Heather"}, {"Jane"}}`|Pass   |
-|idm-r-04|`{"Adam", "Santhosh", "Bill", "Ted", "George", "Thomas", "Heather", "Jane"}`|Pass    |
-|idm-r-05|Row 0: `{"Anne","Mack","(907) 789-3686")`<br> Row 191,783: `{"Sallie","Moss","(838) 455-8563"}`<br>Row 405,480 `{"Bill","Lee","(443) 584-2867"}`<br>Row 652,054 `{"Inez","Foster","(557) 675-1730"}`<br>Row 999,999 `{"Carolyn","Todd","(604) 860-4898"}`|Pass   |
-|idm-r-06|`{{"Adam", "24,324"}, {"Santhosh", "56,434"}, {"Bill", "23,145"}, {"Ted", ",,,,,"}, {"George", "1,"}, {",", ","}, {"Heather", "12,111"}, {"1,", "1,1,1,1,1"}}`|Pass     |
-|idm-r-07|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass     |
-|idm-r-08|`{{"Adam", "1", "2"}, {"Santhosh", "3"}, {"Pennsylvania", "1", "3", "4"}, {"Penn State", "1", "2", "3", "4", "5", "6"}}`|Pass    |
-|idm-r-09|Row 2: `""`|Pass     |
-|idm-r-10|`recs.size()=0`|Pass    |
-|idm-r-11|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
-|idm-r-12|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass    |
-|idm-r-13|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
-|idm-r-14|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
-|idm-r-15|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
-|idm-r-16|`{{"apple", "banana", "cantaloupe"}, {"#This is a comment"},{"11", "22", "33"},{"#This is another comment"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass    |
-|idm-r-17|Throws `CsvParseException.class`|Pass    |
-|idm-r-18|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass     |
+|idm-r-01|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}` |Pass |
+|idm-r-02|`{{"!@#^(&@$(*@", "*#$&(@$@", "+)_(@*&)(&"}, {"<>//;[>", "~~~~~~", "/*-*-+"}, {"(*&*#(@$)", "#$@$@#$#", "+_)(*&^%$#@!~"}, {"~!@#$%^&", "{}{}{}", "///"}}`|Pass |
+|idm-r-03|`{{"Adam"}, {"Santhosh"}, {"Bill"}, {"Ted"}, {"George"}, {"Thomas"}, {"Heather"}, {"Jane"}}`|Pass |
+|idm-r-04|`{"Adam", "Santhosh", "Bill", "Ted", "George", "Thomas", "Heather", "Jane"}`|Pass |
+|idm-r-05|Row 0: `{"Anne","Mack","(907) 789-3686")`<br> Row 191,783: `{"Sallie","Moss","(838) 455-8563"}`<br>Row 405,480 `{"Bill","Lee","(443) 584-2867"}`<br>Row 652,054 `{"Inez","Foster","(557) 675-1730"}`<br>Row 999,999 `{"Carolyn","Todd","(604) 860-4898"}`|Pass |
+|idm-r-06|`{{"Adam", "24,324"}, {"Santhosh", "56,434"}, {"Bill", "23,145"}, {"Ted", ",,,,,"}, {"George", "1,"}, {",", ","}, {"Heather", "12,111"}, {"1,", "1,1,1,1,1"}}`|Pass |
+|idm-r-07|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass |
+|idm-r-08|`{{"Adam", "1", "2"}, {"Santhosh", "3"}, {"Pennsylvania", "1", "3", "4"}, {"Penn State", "1", "2", "3", "4", "5", "6"}}`|Pass |
+|idm-r-09|Row 2: `""`|Pass |
+|idm-r-10|`recs.size()=0`|Pass |
+|idm-r-11|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
+|idm-r-12|`{{"\"Adam\"", "1"}, {"\"Santhosh\"", "\"2\""}, {"\"\"", "\"\""}}`|Pass |
+|idm-r-13|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
+|idm-r-14|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
+|idm-r-15|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
+|idm-r-16|`{{"apple", "banana", "cantaloupe"}, {"#This is a comment"},{"11", "22", "33"},{"#This is another comment"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
+|idm-r-17|Throws `CsvParseException.class`|Pass |
+|idm-r-18|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}`|Pass |
 
 ### 5.2.2 Graph Based Test Cases
 
@@ -374,7 +408,7 @@ The `skipLines(final Predicate<String> predicate, final int maxLines)` method wa
 
 **Control Flow Abstraction**
 
-The pseudocode below illustrates the logic of the method `skipLines(final Predicate<String> predicate, final int maxLines)`.  Note that for ease of abstraction all potential throws have been modelled as 'if' statements :
+The pseudocode below illustrates the logic of the method `skipLines(final Predicate<String> predicate, final int maxLines)`. Note that for ease of abstraction all potential throws have been modelled as 'if' statements :
 
 ```text
 
@@ -402,30 +436,31 @@ for (int i = 0; i < maxLines; i++)
 Throw CsvParseException;
 
 ```
+
 Based on the pseudo code for the `skipLines(final Predicate<String> predicate, final int maxLines)` method, I have numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
 
 **Node Numbering Scheme**
 
-| Node # | Action                                                     |
-| ------ | -----------------------------------------------------------|
-| 1      | `if (Objects.requireNonNull(predicate) == null)`           |
-| 2      | `Throw NullPointerException`                               |
-| 3      | `if(maxLines < 0):`                                        |
-| 4      | `Throw IllegalArgumentException`                           |
-| 5      | `if (maxLines == 0):`                                      |
-| 6      | `return 0`                                                 |
-| 7      | `i = 0` First Part of For Loop                             |
-| 8      | `i < maxLines` Condition check in For Loop                 |
-| 9      | `if(csvParser.peekline throws IOException)`                |
-| 10     | `Throw CSVParseException`                                  |
-| 11     | `Thow IOException`                                         |
-| 12     | `if(test(line)==true)`                                     |
-| 13     | `return i`                                                 |
-| 14     | `if(!csvParser.skipLine(line.length()) throws IOException)`|
-| 15     | `Throw IOException`                                        |
-| 16     | `if(!csvParser.skipLine(line.length()))`                   |
-| 17     | `Throw CsvParseException`                                  |
-| 18     | `i++` Loop back to 8                                       |
+| Node # | Action                                                      |
+| ------ | ----------------------------------------------------------- |
+| 1      | `if (Objects.requireNonNull(predicate) == null)`            |
+| 2      | `Throw NullPointerException`                                |
+| 3      | `if(maxLines < 0):`                                         |
+| 4      | `Throw IllegalArgumentException`                            |
+| 5      | `if (maxLines == 0):`                                       |
+| 6      | `return 0`                                                  |
+| 7      | `i = 0` First Part of For Loop                              |
+| 8      | `i < maxLines` Condition check in For Loop                  |
+| 9      | `if(csvParser.peekline throws IOException)`                 |
+| 10     | `Throw CSVParseException`                                   |
+| 11     | `Thow IOException`                                          |
+| 12     | `if(test(line)==true)`                                      |
+| 13     | `return i`                                                  |
+| 14     | `if(!csvParser.skipLine(line.length()) throws IOException)` |
+| 15     | `Throw IOException`                                         |
+| 16     | `if(!csvParser.skipLine(line.length()))`                    |
+| 17     | `Throw CsvParseException`                                   |
+| 18     | `i++` Loop back to 8                                        |
 
 ---
 
@@ -456,42 +491,42 @@ Where initial node is `1` and final nodes are `2, 4, 6, 10, 11, 13, 15, and 17`.
 
 **Corresponding Control Flow Graph (CFG) and Condensed Node Diagram**
 
-| Control Flow Diagram                                                 | Condensed Node Diagram                                                                        |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Control Flow Diagram                                                                                 | Condensed Node Diagram                                                                              |
+| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | <img src="GraphBasedTesting/Images/csvreader-skiplines.png" alt="Control Flow Diagram" width="500"/> | <img src="GraphBasedTesting/Images/NodeDiagramReader.png" alt="Node Diagram - Reader" width="500"/> |
 
-[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFGReader.puml) 
+[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFGReader.puml)
 
 ---
 
 **Testing Coverage Criteria**  
-Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.  
+Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.
 
 The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)
 
 **Test Cases**  
-|Test # |Test Purpose/Description                        |Test Definition (Refer to Above Graph)    |CSV File Used in Testing|
+|Test # |Test Purpose/Description |Test Definition (Refer to Above Graph) |CSV File Used in Testing|
 |----------|---------------------------------------------|------------------------------------------------|-----------------------------------------------|
 |g-r-01 |The desired header is found in the first iteration of the for loop | 1→3→5→7→8→9→12→13 |[reader-file-g01.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g01.csv) |
 |g-r-02 |The desired header is found in the second interation of the for loop| 1→3→5→7→8→9→12→14→16→18→8→9→12→13 |[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
 |g-r-03 |`Predicate<String>` is null| 1→2|[reader-file-g01.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g01.csv)|  
 |g-r-04 |`maxLines` is negative | 1→3→4|[reader-file-g01.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g01.csv) |
-|g-r-05 |`maxLines` equals 0 | 1→3→5→6|[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) 
+|g-r-05 |`maxLines` equals 0 | 1→3→5→6|[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv)
 |g-r-06 |The desired header is not found within specified max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
 |g-r-07 |The desired header is not found within specified max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 |[reader-file-g03.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g03.csv) |
 |g-r-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11| TODO|
 |g-r-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→14→15| TODO|
 
 **Execution Results**  
-|Test #  |Expected Results                                                                                           |Results  |
+|Test # |Expected Results |Results |
 |--------|-----------------------------------------------------------------------------------------------------------|---------|
-|g-r-01| Returns 0 |Pass     |
-|g-r-02| Returns 1 |Pass     |
-|g-r-03| Throws NullPointerException |Pass   |
-|g-r-04| Throws IllegalArgumentException |Pass    |
-|g-r-05| Returns 0 |Pass   |
-|g-r-06| Throws CsvParseException |Pass     |
-|g-r-07| Throws CsvParseException |Pass     |
+|g-r-01| Returns 0 |Pass |
+|g-r-02| Returns 1 |Pass |
+|g-r-03| Throws NullPointerException |Pass |
+|g-r-04| Throws IllegalArgumentException |Pass |
+|g-r-05| Returns 0 |Pass |
+|g-r-06| Throws CsvParseException |Pass |
+|g-r-07| Throws CsvParseException |Pass |
 |g-r-08| Throws IOException | TODO|
 |g-r-09| Throws IOException | TODO|
 
@@ -583,11 +618,11 @@ Where initial node is `1` and final node is `16`.
 
 **Corresponding Control Flow Graph (CFG) and Condensed Node Diagram**
 
-| Control Flow Diagram                                                 | Condensed Node Diagram                                                                        |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Control Flow Diagram                                                                 | Condensed Node Diagram                                                                                        |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | <img src="GraphBasedTesting/Images/CFG.png" alt="Control Flow Diagram" width="500"/> | <img src="GraphBasedTesting/Images/Condensed%20Node%20Diagram.png" alt="Condensed Node Diagram" width="500"/> |
 
-[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFG.puml)                                 
+[PlantUML Code](/GraphBasedTesting/ImageUMLs/CFG.puml)
 
 ---
 
@@ -641,43 +676,43 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 **Test Description**
 
-| Item                               | Details                                                                                                                 |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------|
-| Test Tour                          | Back Alley Tour                                                                                                         |
-| Description                        | To test several of more minor features of the program, specifically those involving compressed files and indexed reading|
-| Test Duration                      | 90 minutes                                                                                                              |
-| Tester                             | Adam Slager                                                                                                             |
-| Further Testing <br> Opportunities | Potential to continue testing additional minor features                                                                 |
+| Item                               | Details                                                                                                                  |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Test Tour                          | Back Alley Tour                                                                                                          |
+| Description                        | To test several of more minor features of the program, specifically those involving compressed files and indexed reading |
+| Test Duration                      | 90 minutes                                                                                                               |
+| Tester                             | Adam Slager                                                                                                              |
+| Further Testing <br> Opportunities | Potential to continue testing additional minor features                                                                  |
 
 **Test Protocol**
 
-| NR  | What Done                                                                  | Status        | Comment                                                                                           | Test Artifacts                                      |
-| --- | -------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------|
-| E-BA1-01   | Wrote test case to read small compressed file and test the output               | No Exceptions | Read in 4 rows and three columns without exception                                                | - [Input File](/ExploratoryTesting/CsvTestFiles/reader-file-a01.csv.gz) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png) |
-| E-BA1-02   | Wrote test case to read very large compressed file and test the output            | No Exceptions | File contains 10M entries                        | - Input File Excluded Due to Size <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png) |
-| E-BA1-03   | Wrote test case to write compressed file and subsequently read the same compressed file | No Exceptions | Wrote and read in 4 rows and 3 columns without exception   |  - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png) |                          |
-| E-BA1-04   | Tested indexed reading of very large (100M line) file | No Exceptions | - Initial file read under 10000ms<br>- Subequent indexed page reads took 12ms or less | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_2.png) |
+| NR       | What Done                                                                               | Status        | Comment                                                                               | Test Artifacts                                                                                                                                                                                               |
+| -------- | --------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| E-BA1-01 | Wrote test case to read small compressed file and test the output                       | No Exceptions | Read in 4 rows and three columns without exception                                    | - [Input File](/ExploratoryTesting/CsvTestFiles/reader-file-a01.csv.gz) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png) |
+| E-BA1-02 | Wrote test case to read very large compressed file and test the output                  | No Exceptions | File contains 10M entries                                                             | - Input File Excluded Due to Size <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png)                                       |
+| E-BA1-03 | Wrote test case to write compressed file and subsequently read the same compressed file | No Exceptions | Wrote and read in 4 rows and 3 columns without exception                              | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png)                                                                              |
+| E-BA1-04 | Tested indexed reading of very large (100M line) file                                   | No Exceptions | - Initial file read under 10000ms<br>- Subequent indexed page reads took 12ms or less | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_2.png)                                                                         |
 
 #### 5.2.3.2 Back Alley Tour - Part II
 
 **Test Description**
 
-| Item                               | Details                                                                                                                 |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------|
-| Test Tour                          | Back Alley Tour Part 2                                                                                                  |
-| Description                        | Continue testing minor features, including JavaBeans and handlings white space characters                               |
-| Test Duration                      | 90 minutes                                                                                                              |
-| Tester                             | Adam Slager                                                                                                             |
-| Further Testing <br> Opportunities | N/A                                                          |
+| Item                               | Details                                                                                   |
+| ---------------------------------- | ----------------------------------------------------------------------------------------- |
+| Test Tour                          | Back Alley Tour Part 2                                                                    |
+| Description                        | Continue testing minor features, including JavaBeans and handlings white space characters |
+| Test Duration                      | 90 minutes                                                                                |
+| Tester                             | Adam Slager                                                                               |
+| Further Testing <br> Opportunities | N/A                                                                                       |
 
 **Test Protocol**
 
-| NR  | What Done                                                                  | Status        | Comment                                                                                           | Test Artifacts                                      |
-| --- | -------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------|
-| E-BA2-01   | Test mapping of csv file to Java beans            | No Exceptions | Read in 3 row, 5 columns of data with mixed types and stored as Java Beans | - [Input File](/ExploratoryTesting/CsvTestFiles/testJavaBeans.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyJB_1.png) |
-| E-BA2-02   | Test trimming of standard ASCII space characters preceding and following value in CSV | No Exceptions | File contained no unicode spaces.  FastCSV successfully eliminated spaces  | - [Input File](/ExploratoryTesting/CsvTestFiles/testTrimSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_1.png)  |
-| E-BA2-03   | Tested trimming of unicode space characters preceding and following value in CSV | No Exceptions | Program correctly did not remove unicode space characters |  - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_2.png)  |                          
-| E-BA2-04   | Tested stripping of unicode space characters preceding and following value in CSV | No Exceptions | Program correctly removed unicode space characters |  - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_Strip1.png)  |  
+| NR       | What Done                                                                             | Status        | Comment                                                                    | Test Artifacts                                                                                                                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E-BA2-01 | Test mapping of csv file to Java beans                                                | No Exceptions | Read in 3 row, 5 columns of data with mixed types and stored as Java Beans | - [Input File](/ExploratoryTesting/CsvTestFiles/testJavaBeans.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyJB_1.png)          |
+| E-BA2-02 | Test trimming of standard ASCII space characters preceding and following value in CSV | No Exceptions | File contained no unicode spaces. FastCSV successfully eliminated spaces   | - [Input File](/ExploratoryTesting/CsvTestFiles/testTrimSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_1.png)   |
+| E-BA2-03 | Tested trimming of unicode space characters preceding and following value in CSV      | No Exceptions | Program correctly did not remove unicode space characters                  | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_2.png)  |
+| E-BA2-04 | Tested stripping of unicode space characters preceding and following value in CSV     | No Exceptions | Program correctly removed unicode space characters                         | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_Strip1.png) |
 
 #### 5.2.3.3 Collector's Tour Report
 
@@ -693,12 +728,12 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 **Test Protocol**
 
-| NR  | What Done                                                                  | Status        | Comment                                                                                           | Test Artifacts                                   |
-| --- | -------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| E-C-01   | Read `collector-input.csv`                                                 | No Exceptions | 4 rows, 3 columns; file loaded without error                                                      | [Input File](/ExploratoryTesting/CsvTestFiles/collector-input.csv) |
-| E-C-02   | Extracted and stored all unique values of `amount` in a set                | No Exceptions | Set contained 3 entries: `500`, `600`, `700`; duplicates correctly removed                        | [Test Script](/ExploratoryTesting/Tests/CollectorsTour.java)       |
-| E-C-03   | Printed count of unique values to console                                  | No Exceptions | Console log showed expected value count = 3                                                       | TODO(add screenshot)                             |
-| E-C-04   | Re-ran test after modifying data to include lowercase and formatted values | No Exceptions | Collector distinguished values with formatting; recommend normalization pass in future iterations | TODO(add screenshot)                             |
+| NR     | What Done                                                                  | Status        | Comment                                                                                           | Test Artifacts                                                     |
+| ------ | -------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| E-C-01 | Read `collector-input.csv`                                                 | No Exceptions | 4 rows, 3 columns; file loaded without error                                                      | [Input File](/ExploratoryTesting/CsvTestFiles/collector-input.csv) |
+| E-C-02 | Extracted and stored all unique values of `amount` in a set                | No Exceptions | Set contained 3 entries: `500`, `600`, `700`; duplicates correctly removed                        | [Test Script](/ExploratoryTesting/Tests/CollectorsTour.java)       |
+| E-C-03 | Printed count of unique values to console                                  | No Exceptions | Console log showed expected value count = 3                                                       | TODO(add screenshot)                                               |
+| E-C-04 | Re-ran test after modifying data to include lowercase and formatted values | No Exceptions | Collector distinguished values with formatting; recommend normalization pass in future iterations | TODO(add screenshot)                                               |
 
 #### 5.2.3.4 FedEx Tour Report
 
@@ -714,11 +749,11 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 **Test Protocol**
 
-| NR                 | What Done                                                      | Status                                                           | Comment                                                                                           | Test Artifacts                                                                       |
-| ------------------ | -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| NR                 | What Done                                                      | Status                                                           | Comment                                                                                           | Test Artifacts                                                                                                           |
+| ------------------ | -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | 1                  | Read `fedex-input.csv` and extracted columns `id` and `amount` | No Exceptions                                                    | Correct values were read from input, verified manually                                            | [Test Script](/ExploratoryTesting/Tests/FedExTour.java)<br>[Input CSV](/ExploratoryTesting/CsvTestFiles/fedex-input.csv) |
-| 2                  | Wrote selected columns to `fedex-output.csv` using `CsvWriter` | No Exceptions                                                    | File format and values were correct in output. Fields aligned and properly quoted where necessary | [Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)                                            |
-| FastCSV/app/inputs | 4                                                              | Opened output in spreadsheet viewer and verified layout visually | No Exceptions                                                                                     | Output is viewable and properly delimited by common spreadsheet tools                |
+| 2                  | Wrote selected columns to `fedex-output.csv` using `CsvWriter` | No Exceptions                                                    | File format and values were correct in output. Fields aligned and properly quoted where necessary | [Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)                                                              |
+| FastCSV/app/inputs | 4                                                              | Opened output in spreadsheet viewer and verified layout visually | No Exceptions                                                                                     | Output is viewable and properly delimited by common spreadsheet tools                                                    |
 
 #### 5.2.3.5 Intellectual Tour
 
@@ -734,12 +769,12 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 **Test Protocol**
 
-| NR  | What Done                                                                          | Status        | Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Test Artifacts                                                                                                                             |
-| --- | ---------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| E-I-01   | Tested reading of 100 million line file using CSVReader                            | No Exceptions | - Created 100 million line test file using below website with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 9636ms                                                                                                                                                                                                | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test1.png)                                                   |
-| E-I-02   | Tested reading of ~900 million line file using CSV Reader                          | No Exceptions | - Created ~900 million line test file using below website and manually copying and pasting data with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 85121ms                                                                                                                                                        | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test2.png)                                                   |
-| E-I-03   | Tested reading and writing of 100 million line file using CSVReader and CSVWriter  | No Exceptions | - Wrote Java program to read in lines from 100 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 20486ms<br>- Used Windows fc to compare files and noted that they were exact duplicates of each other                                                                                                                                                            | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test3a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test3c.png) |
-| E-I-04   | Tested reading and writing of ~900 million line file using CSVReader and CSVWriter | No Exceptions | - Wrote Java program to read in lines from ~900 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 176041ms<br>- Attemped to use Windows FC to compare files, but file size was too large. This is a limitation of Windows FC and not the program being tested.<br>- Visually compared size of files with Windows Explorer and noted that files appear identifical | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test4a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test4b.png) |
+| NR     | What Done                                                                          | Status        | Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Test Artifacts                                                                                                                                                                                         |
+| ------ | ---------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| E-I-01 | Tested reading of 100 million line file using CSVReader                            | No Exceptions | - Created 100 million line test file using below website with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 9636ms                                                                                                                                                                                                | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test1.png)                                                                       |
+| E-I-02 | Tested reading of ~900 million line file using CSV Reader                          | No Exceptions | - Created ~900 million line test file using below website and manually copying and pasting data with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 85121ms                                                                                                                                                        | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test2.png)                                                                       |
+| E-I-03 | Tested reading and writing of 100 million line file using CSVReader and CSVWriter  | No Exceptions | - Wrote Java program to read in lines from 100 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 20486ms<br>- Used Windows fc to compare files and noted that they were exact duplicates of each other                                                                                                                                                            | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test3a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test3c.png) |
+| E-I-04 | Tested reading and writing of ~900 million line file using CSVReader and CSVWriter | No Exceptions | - Wrote Java program to read in lines from ~900 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 176041ms<br>- Attemped to use Windows FC to compare files, but file size was too large. This is a limitation of Windows FC and not the program being tested.<br>- Visually compared size of files with Windows Explorer and noted that files appear identifical | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test4a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test4b.png) |
 
 #### 5.2.3.6 Landmark Tour
 
@@ -755,35 +790,196 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 **Test Protocol**
 
-| NR  | What Done                                                   | Status        | Comment                                                           | Test Artifacts                                     |
-| --- | ----------------------------------------------------------- | ------------- | ----------------------------------------------------------------- | -------------------------------------------------- |
-| E-L-01   | Loaded original data from `landmark-input.csv`              | No Exceptions | Verified 4 rows and 3 columns exist                               | [Input CSV](/ExploratoryTesting/CsvTestFiles/landmark-input.csv)     |
-| E-L-02   | Shuffled rows randomly and wrote to `landmark-temp.csv`     | No Exceptions | Manual comparison confirms sequence change, but data preserved    | [Temp Output](/ExploratoryTesting/CsvTestFiles/landmark-temp.csv)    |
-| E-L-03   | Read shuffled file and wrote to final `landmark-output.csv` | No Exceptions | Verified that structure remained unchanged after second I/O pass  | [Final Output](/ExploratoryTesting/CsvTestFiles/landmark-output.csv) |
-| E-L-04   | Compared first and second output using diff tool            | No Exceptions | Differences observed only in row order; values remained identical |                                                    |
-
+| NR     | What Done                                                   | Status        | Comment                                                           | Test Artifacts                                                       |
+| ------ | ----------------------------------------------------------- | ------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
+| E-L-01 | Loaded original data from `landmark-input.csv`              | No Exceptions | Verified 4 rows and 3 columns exist                               | [Input CSV](/ExploratoryTesting/CsvTestFiles/landmark-input.csv)     |
+| E-L-02 | Shuffled rows randomly and wrote to `landmark-temp.csv`     | No Exceptions | Manual comparison confirms sequence change, but data preserved    | [Temp Output](/ExploratoryTesting/CsvTestFiles/landmark-temp.csv)    |
+| E-L-03 | Read shuffled file and wrote to final `landmark-output.csv` | No Exceptions | Verified that structure remained unchanged after second I/O pass  | [Final Output](/ExploratoryTesting/CsvTestFiles/landmark-output.csv) |
+| E-L-04 | Compared first and second output using diff tool            | No Exceptions | Differences observed only in row order; values remained identical |                                                                      |
 
 ## 5.3 Traceability Matrix
 
 [Create a traceability matrix to map requirements to test cases]
 
+The traceability matrix maps the system’s formal requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
+
+**Formal Requirements: CsvReader**
+
+| Requirement ID | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
+| RDR-01         | The system shall read CSV files with configurable field separators.                     |
+| RDR-02         | The system shall handle fields enclosed in configurable quote characters.               |
+| RDR-03         | The system shall support comment lines with configurable comment characters.            |
+| RDR-04         | The system shall skip or retain comment lines based on the configured comment strategy. |
+| RDR-05         | The system shall correctly parse CSV files with inconsistent column counts.             |
+| RDR-06         | The system shall skip or retain empty lines based on configuration.                     |
+| RDR-07         | The system shall detect and handle BOM headers if enabled.                              |
+| RDR-08         | The system shall read large CSV files with acceptable performance.                      |
+| RDR-09         | The system shall support reading compressed CSV files (gzip).                           |
+| RDR-10         | The system shall support mapping CSV records into JavaBeans.                            |
+| RDR-11         | The system shall support skipping lines conditionally using a predicate and line limit. |
+| RDR-12         | The system shall throw appropriate exceptions for malformed CSV input.                  |
+
+**Formal Requirements: CsvWriter**
+
+| Requirement ID | Description                                                                                          |
+| -------------- | ---------------------------------------------------------------------------------------------------- |
+| WTR-01         | The system shall write CSV records using configurable field separators.                              |
+| WTR-02         | The system shall apply configurable quote characters when writing CSV fields.                        |
+| WTR-03         | The system shall implement configurable quote strategies, including "always" and "never".            |
+| WTR-04         | The system shall handle null and empty values correctly during writing.                              |
+| WTR-05         | The system shall support different line delimiters (e.g., CRLF, LF).                                 |
+| WTR-06         | The system shall escape special characters such as commas, quotes, and newlines.                     |
+| WTR-07         | The system shall write comments using configurable comment characters.                               |
+| WTR-08         | The system shall throw exceptions for invalid configurations (e.g., overlapping control characters). |
+| WTR-09         | The system shall support writing to OutputStreams and Writers.                                       |
+| WTR-10         | The system shall flush output automatically or manually as configured.                               |
+
+**Traceability Matrix**
+
+| Test Case ID | Description                                                                  |
+| ------------ | ---------------------------------------------------------------------------- |
+| TC-101       | Input Domain Modeling (IDM) test cases for CsvReader and CsvWriter           |
+| TC-102       | Exploratory testing sessions and tours, including edge case and stress tests |
+| TC-103       | Graph-based test cases for CsvReader, especially control flow tests          |
+| TC-104       | Cucumber-based acceptance tests for CsvWriter (Given–When–Then)              |
+
+| Requirement                                                       | TC-101 | TC-102 | TC-103 | TC-104 |
+| ----------------------------------------------------------------- | ------ | ------ | ------ | ------ |
+| RDR-01: Read CSV with configurable field separators               | X      |        |        |        |
+| RDR-02: Handle fields enclosed in quote characters                | X      |        |        |        |
+| RDR-03: Support comment lines with configurable comment character | X      |        |        |        |
+| RDR-04: Skip or retain comments based on strategy                 | X      |        |        |        |
+| RDR-05: Parse inconsistent column counts                          | X      |        |        |        |
+| RDR-06: Skip or retain empty lines                                | X      |        |        |        |
+| RDR-07: Handle BOM headers                                        | X      |        |        |        |
+| RDR-08: Read large CSV files with good performance                | X      |        |        |        |
+| RDR-09: Read compressed CSV files (gzip)                          |        | X      |        |        |
+| RDR-10: Map CSV records to JavaBeans                              |        | X      |        |        |
+| RDR-11: Conditional line skipping via predicate                   | X      |        |        |        |
+| RDR-12: Handle malformed input with exceptions                    | X      |        |        |        |
+| WTR-01: Write CSV with configurable separators                    | X      |        | X      |        |
+| WTR-02: Apply configurable quote characters                       | X      |        |        | X      |
+| WTR-03: Implement quote strategies                                | X      |        | X      | X      |
+| WTR-04: Handle null and empty values                              | X      |        | X      |        |
+| WTR-05: Support different line delimiters                         | X      |        |        | X      |
+| WTR-06: Escape special characters                                 | X      |        |        | X      |
+| WTR-07: Write comments to output                                  |        |        | X      |        |
+| WTR-08: Throw exceptions for invalid configurations               |        | X      |        | X      |
+| WTR-09: Write to OutputStream and Writer                          | X      | X      |        |        |
+| WTR-10: Control flushing behavior                                 | X      |        |        | X      |
+
+<details>
+<summary>Alternate representation</summary>
+
+| Requirement ID | Validated By Test Cases                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| **RDR-01**     | idm-r-11                                                                                 |
+| **RDR-02**     | idm-r-06, idm-r-07, idm-r-12                                                             |
+| **RDR-03**     | idm-r-13, idm-r-14                                                                       |
+| **RDR-04**     | idm-r-13, idm-r-14, idm-r-16                                                             |
+| **RDR-05**     | idm-r-08, idm-r-17                                                                       |
+| **RDR-06**     | idm-r-09, idm-r-18                                                                       |
+| **RDR-07**     | idm-r-15                                                                                 |
+| **RDR-08**     | idm-r-05                                                                                 |
+| **RDR-09**     | Exploratory Test - Collector's Tour (Gzip File Parsing)                                  |
+| **RDR-10**     | Exploratory Test - Landmark Tour (Java Bean Mapping)                                     |
+| **RDR-11**     | g-r-01 to g-r-09 (Graph-based tests for `skipLines(Predicate, int)`)                     |
+| **RDR-12**     | idm-r-17 (throws `CsvParseException`), g-r-06, g-r-07, g-r-09                            |
+| **WTR-01**     | idm-w-01, idm-w-05                                                                       |
+| **WTR-02**     | idm-w-01, idm-w-06                                                                       |
+| **WTR-03**     | idm-w-02, idm-w-03, idm-w-07                                                             |
+| **WTR-04**     | idm-w-02, idm-w-03                                                                       |
+| **WTR-05**     | idm-w-08                                                                                 |
+| **WTR-06**     | idm-w-04                                                                                 |
+| **WTR-07**     | Exploratory Test - Back Alley Tour (writing comments)                                    |
+| **WTR-08**     | Exploratory Test - Intellectual Tour (invalid config, e.g., fieldSeparator == quoteChar) |
+| **WTR-09**     | Exploratory Test - FedEx Tour (writing to Writer and OutputStream)                       |
+| **WTR-10**     | Exploratory Test - After-Hours Tour (autoFlush behavior validation)                      |
+
+**Notes**:
+
+- IDM refers to Input Domain Modeling test cases, e.g., `idm-w-01` for CsvWriter or `idm-r-06` for CsvReader.
+- g-r-\* refers to Graph-Based test cases for CsvReader's `skipLines()` method.
+- Exploratory Tours reference specific session-based tests targeting real-world behavior, error-handling, and performance.
+- This matrix helps ensure that every specified requirement is traceable to at least one concrete test execution, confirming test coverage.
+</details>
+
 # 6. Test Environment
+
+This section outlines the technical environment in which the testing activities were conducted. It includes hardware and software specifications, testing tools, and an overview of the architectural setup used to execute and validate tests for both CsvReader and CsvWriter components.
 
 ## 6.1 Multiple Test Environments
 
 [List the different test environments used if applicable.]
 
-## 6.2 Schematic Diagram
+All tests were executed in a local development environment. In order to validate the behavior across typical user setups, tests were run on two separate systems:
+
+- Environment A: NixOS 24.11, Java 17, VSCode 1.83.0, Gradle 8.4.1
+- Environment B: TODO:ADAM
+
+This dual-environment testing ensured cross-platform consistency and compatibility.
+
+### 6.2 Schematic Diagram
 
 [Provide a schematic diagram of the test environment setup if applicable.]
 
-## 6.3 Test Architecture Overview
+The test architecture was relatively straightforward. All JUnit-based tests (IDM and graph) and exploratory tests were implemented as part of a Maven project and Gradle project. The schematic below shows a rough representation of the test setup for both CsvReader and CsvWriter:
+
+<img src="Images/TestEnv.png" alt="Test Environment Diagram" width="500"/>
+
+<details>
+<summary>PlantUML</summary>
+
+```plantuml
+@startuml
+actor Tester
+package "Test Environment" {
+  node "Development Machine" {
+    component "JUnit 5" as J1
+    component "Cucumber" as C1
+    component "Test Files (.csv)" as F1
+    component "FastCSV Library" as L1
+    component "CsvReader Tests" as R1
+    component "CsvWriter Tests" as W1
+  }
+
+  J1 --> R1
+  J1 --> W1
+  C1 --> R1
+  C1 --> W1
+  R1 --> F1
+  W1 --> F1
+  R1 --> L1
+  W1 --> L1
+}
+@enduml
+```
+
+</details>
+
+### 6.3 Test Architecture Overview
 
 [Explain the overall test architecture if applicable.]
 
-## 6.4 Equipment Table
+Tests were implemented in Java using the JUnit 5 testing framework. Input Domain Modeling and Graph-Based Testing were manually derived and implemented through parameterized unit tests. Exploratory testing followed a session-based structure and was documented using a pre-defined charter format. Cucumber was introduced in the final phase for automating acceptance tests based on Given–When–Then user stories.
+
+Test data files were stored in organized subdirectories (e.g., `InputDomainModeling/CsvTestFiles`, `GraphBasedTesting/CsvTestFiles`) and referenced directly from test code. Tests were executed via IDE and command-line using Maven’s Surefire plugin and Gradle’s test task.
+
+### 6.4 Equipment Table
 
 [List the equipment and resources used in the testing environment if applicable.]
+
+| Resource              | Specification/Tool                                     |
+| --------------------- | ------------------------------------------------------ |
+| IDE                   | IntelliJ IDEA Community Edition 2023.3                 |
+| Java Version          | OpenJDK 17                                             |
+| Build Tool            | Apache Maven 3.9.3                                     |
+| Testing Framework     | JUnit 5                                                |
+| Acceptance Testing    | Cucumber + JUnit 5                                     |
+| Exploratory Docs Tool | Manual charter documentation using Markdown            |
+| OS Platforms          | Windows 11 (x64), macOS Ventura 13.5.1                 |
+| Hardware              | Intel Core i7, 16GB RAM (Windows); M1, 8GB RAM (macOS) |
 
 # 7. Testing Results
 
@@ -791,71 +987,84 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 The following table represents a summary of the testing results. Please note that these tests and their results are fully detailed in Section 5.2 above, but have been provided here in a consolidated table format for convenience and ease of reference.
 
-| Test ID  | Test Technique      | Test Result | Comments                                               |
-|----------|---------------------|-------------|--------------------------------------------------------|
-|IDM-R-01  | IDM                 | Pass        |                                                        | 
-|IDM-R-02  | IDM                 | Pass        |                                                        | 
-|IDM-R-03  | IDM                 | Pass        |                                                        | 
-|IDM-R-04  | IDM                 | Pass        |                                                        | 
-|IDM-R-05  | IDM                 | Pass        |                                                        | 
-|IDM-R-06  | IDM                 | Pass        |                                                        | 
-|IDM-R-07  | IDM                 | Pass        |                                                        | 
-|IDM-R-08  | IDM                 | Pass        |                                                        | 
-|IDM-R-09  | IDM                 | Pass        |                                                        | 
-|IDM-R-10  | IDM                 | Pass        |                                                        | 
-|IDM-R-11  | IDM                 | Pass        |                                                        | 
-|IDM-R-12  | IDM                 | Pass        |                                                        | 
-|IDM-R-13  | IDM                 | Pass        |                                                        | 
-|IDM-R-14  | IDM                 | Pass        |                                                        | 
-|IDM-R-15  | IDM                 | Pass        |                                                        | 
-|IDM-R-16  | IDM                 | Pass        |                                                        | 
-|IDM-R-17  | IDM                 | Pass        |                                                        | 
-|IDM-R-18  | IDM                 | Pass        |                                                        | 
-|IDM-W-01  | IDM                 | Pass        |                                                        |
-|IDM-W-02  | IDM                 | Pass        |                                                        |
-|IDM-W-03  | IDM                 | Pass        |                                                        |
-|IDM-W-04  | IDM                 | Pass        |                                                        |
-|IDM-W-05  | IDM                 | Pass        |                                                        |
-|IDM-W-06  | IDM                 | Pass        |                                                        |
-|IDM-W-07  | IDM                 | Pass        |                                                        |
-|IDM-W-08  | IDM                 | Pass        |                                                        | 
-|G-R-01    | Graph Based Testing | Pass        |                                                        |
-|G-R-02    | Graph Based Testing | Pass        |                                                        |
-|G-R-03    | Graph Based Testing | Pass        |                                                        |
-|G-R-04    | Graph Based Testing | Pass        |                                                        |
-|G-R-05    | Graph Based Testing | Pass        |                                                        |
-|G-W-01    | Graph Based Testing | Pass        |                                                        |
-|G-W-02    | Graph Based Testing | Pass        |                                                        |
-|G-W-03    | Graph Based Testing | Pass        |                                                        |
-|G-W-04    | Graph Based Testing | Pass        |                                                        |
-|G-W-05    | Graph Based Testing | Pass        |                                                        |
-|G-W-06    | Graph Based Testing | Pass        |                                                        |
-|G-W-07    | Graph Based Testing | Pass        |                                                        |
-|G-W-08    | Graph Based Testing | Open        |                                                        |
-|G-W-09    | Graph Based Testing | Open        |                                                        |
-|E-BA1-01  | Exploratory Testing | Pass        |                                                        |
-|E-BA1-02  | Exploratory Testing | Pass        |                                                        |
-|E-BA1-03  | Exploratory Testing | Pass        |                                                        |
-|E-BA1-04  | Exploratory Testing | Pass        |                                                        |
-|E-BA2-01  | Exploratory Testing | Pass        |                                                        |
-|E-BA2-02  | Exploratory Testing | Pass        |                                                        |
-|E-BA2-03  | Exploratory Testing | Pass        |                                                        |
-|E-BA2-04  | Exploratory Testing | Pass        |                                                        |
-|E-C-01    | Exploratory Testing | Pass        |                                                        |
-|E-C-02    | Exploratory Testing | Pass        |                                                        |
-|E-C-03    | Exploratory Testing | Pass        |                                                        |
-|E-C-04    | Exploratory Testing | Pass        |                                                        |
-|E-I-01    | Exploratory Testing | Pass        |                                                        |
-|E-I-02    | Exploratory Testing | Pass        |                                                        |
-|E-I-03    | Exploratory Testing | Pass        |                                                        |
-|E-I-04    | Exploratory Testing | Pass        |                                                        |
-|E-L-01    | Exploratory Testing | Pass        |                                                        |
-|E-L-02    | Exploratory Testing | Pass        |                                                        |
-|E-L-03    | Exploratory Testing | Pass        |                                                        |
-|E-L-04    | Exploratory Testing | Pass        |                                                        |
+| Test ID  | Test Technique      | Test Result | Comments |
+| -------- | ------------------- | ----------- | -------- |
+| IDM-R-01 | IDM                 | Pass        |          |
+| IDM-R-02 | IDM                 | Pass        |          |
+| IDM-R-03 | IDM                 | Pass        |          |
+| IDM-R-04 | IDM                 | Pass        |          |
+| IDM-R-05 | IDM                 | Pass        |          |
+| IDM-R-06 | IDM                 | Pass        |          |
+| IDM-R-07 | IDM                 | Pass        |          |
+| IDM-R-08 | IDM                 | Pass        |          |
+| IDM-R-09 | IDM                 | Pass        |          |
+| IDM-R-10 | IDM                 | Pass        |          |
+| IDM-R-11 | IDM                 | Pass        |          |
+| IDM-R-12 | IDM                 | Pass        |          |
+| IDM-R-13 | IDM                 | Pass        |          |
+| IDM-R-14 | IDM                 | Pass        |          |
+| IDM-R-15 | IDM                 | Pass        |          |
+| IDM-R-16 | IDM                 | Pass        |          |
+| IDM-R-17 | IDM                 | Pass        |          |
+| IDM-R-18 | IDM                 | Pass        |          |
+| IDM-W-01 | IDM                 | Pass        |          |
+| IDM-W-02 | IDM                 | Pass        |          |
+| IDM-W-03 | IDM                 | Pass        |          |
+| IDM-W-04 | IDM                 | Pass        |          |
+| IDM-W-05 | IDM                 | Pass        |          |
+| IDM-W-06 | IDM                 | Pass        |          |
+| IDM-W-07 | IDM                 | Pass        |          |
+| IDM-W-08 | IDM                 | Pass        |          |
+| G-R-01   | Graph Based Testing | Pass        |          |
+| G-R-02   | Graph Based Testing | Pass        |          |
+| G-R-03   | Graph Based Testing | Pass        |          |
+| G-R-04   | Graph Based Testing | Pass        |          |
+| G-R-05   | Graph Based Testing | Pass        |          |
+| G-W-01   | Graph Based Testing | Pass        |          |
+| G-W-02   | Graph Based Testing | Pass        |          |
+| G-W-03   | Graph Based Testing | Pass        |          |
+| G-W-04   | Graph Based Testing | Pass        |          |
+| G-W-05   | Graph Based Testing | Pass        |          |
+| G-W-06   | Graph Based Testing | Pass        |          |
+| G-W-07   | Graph Based Testing | Pass        |          |
+| G-W-08   | Graph Based Testing | Open        |          |
+| G-W-09   | Graph Based Testing | Open        |          |
+| E-BA1-01 | Exploratory Testing | Pass        |          |
+| E-BA1-02 | Exploratory Testing | Pass        |          |
+| E-BA1-03 | Exploratory Testing | Pass        |          |
+| E-BA1-04 | Exploratory Testing | Pass        |          |
+| E-BA2-01 | Exploratory Testing | Pass        |          |
+| E-BA2-02 | Exploratory Testing | Pass        |          |
+| E-BA2-03 | Exploratory Testing | Pass        |          |
+| E-BA2-04 | Exploratory Testing | Pass        |          |
+| E-C-01   | Exploratory Testing | Pass        |          |
+| E-C-02   | Exploratory Testing | Pass        |          |
+| E-C-03   | Exploratory Testing | Pass        |          |
+| E-C-04   | Exploratory Testing | Pass        |          |
+| E-I-01   | Exploratory Testing | Pass        |          |
+| E-I-02   | Exploratory Testing | Pass        |          |
+| E-I-03   | Exploratory Testing | Pass        |          |
+| E-I-04   | Exploratory Testing | Pass        |          |
+| E-L-01   | Exploratory Testing | Pass        |          |
+| E-L-02   | Exploratory Testing | Pass        |          |
+| E-L-03   | Exploratory Testing | Pass        |          |
+| E-L-04   | Exploratory Testing | Pass        |          |
 
 [NEED TO ADD FEDEX TOUR ONCE NUMBERING IS CORRECTED]
 
 # 8. Recommendations on Software Quality
 
 [Offer recommendations on improving the quality of the software based on testing results]
+
+Based on the testing activities performed throughout the course of this project, the team considers FastCSV to be a well-structured and high-performance library for CSV parsing and writing in Java. The design of the API is flexible and supports a wide range of use cases, from simple read/write operations to complex parsing and quoting configurations.
+
+The following are specific observations and recommendations derived from our testing efforts:
+
+- The CsvWriter component demonstrated strong reliability across varied input scenarios, including null values, special characters, and configurable delimiters. The quoting and escaping logic functioned correctly under all tested conditions. However, it may benefit from clearer error messages when configuration constraints (e.g., duplicate control characters) are violated.
+- CsvReader supported a comprehensive set of configurations, and all functional paths exercised during graph-based testing behaved as expected. Advanced features like BOM detection, comment skipping, and field trimming worked correctly even under large input volumes.
+- Performance was observed to be consistent and robust across both small and large datasets. During exploratory testing, the library successfully handled files containing up to 100 million rows without memory issues or significant latency.
+- Input Domain Modeling helped validate behavior under edge cases. However, additional tests focusing on malformed data (e.g., improperly escaped quotes or unclosed records) could improve fault tolerance coverage.
+- The API is designed to be thread-safe in most contexts; however, the documentation does not explicitly address concurrent use. We recommend clarifying the thread safety guarantees in future documentation updates.
+- From a usability perspective, the configuration interfaces for both reader and writer are logically organized, but some defaults may not align with certain industry conventions (e.g., not enforcing field count consistency). It may be beneficial to expose predefined profiles (e.g., RFC 4180-compliant, Excel-compatible) to simplify setup for new users.
+
+In conclusion, FastCSV offers a mature and flexible toolset for CSV processing in Java. Our testing did not uncover critical defects, and the tool can be confidently recommended for production use in data processing and integration workflows. Future enhancements may focus on clearer error reporting, expanded documentation, and optional stricter compliance modes.
