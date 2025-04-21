@@ -123,7 +123,16 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 
 ## 3.1 Test Case Exclusions
 
-[List any test cases or scenarios that are excluded from testing.]
+FastCSV is a mature and feature-heavy library for reading and writing CSVs.  Since its initial release in 2015, a significant amount of additional functionality has been added.  The team began the project by thoroughly reviewing the FastCSV’s documentation, including the detailed instructions and tutorials outlined on their website.   It quickly became clear that, due to time constraints, the team would have to adopt a testing approach that thoroughly tested the primary uses of the software (based on the team’s independent research and discussions), while deemphasizing or even excluding certain scenarios from our testing.  
+
+One of the team members has nearly two decades of experience utilizing CSV files, as they are very heavily used in business software applications, including general ledger, banking, and analytical systems.  Based on this knowledge, independent research, and the description in the FastCSV documentation, the team decided that their testing would exclude the following functionality:
+-	CsvReader Customization settings:
+    - acceptingCharsAfterQuotes
+    -	maxBufferSize
+-	Custom Callbank Handlers
+-	Writing CSV with Comments Santhosh is this correct?
+-	Reading from classpath
+
 
 ## 3.2 Test Tools, Formats, and Organizational Scheme
 
@@ -174,6 +183,12 @@ Two components were chosen to test using Graph Based Testing: **`writeRecord(Str
 JUnit was utilized to test both methods. [PlantUML](https://plantuml.com) was used to design the CFGs. The [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage) was utilized to further abstract the CFG into a standardized number node format.
 
 **Exploratory Testing**
+
+Exploratory testing is a less rigid approach to testing that can be utilized to augment traditional testing approaches.   The team’s exploratory tests began with defining “tours,” which, per the class slides, are “recommended testing charters.”  By reviewing the listing of predefined tours, the team was able to brainstorm appropriate tests that were not fully covered by the previous testing (input domain and graph-based).  Once a tour and a feature of the program was chosen, the team began to plan out the tests associated with the tour and determine a time limit of the testing session that was appropriate, given the nature of the tests.  Throughout the process, the team captured appropriate information (screen shots, test files, test scripts, etc.) to ensure that the process was repeatable. 
+
+As mentioned above, the team generally used exploratory testing as a chance to supplement the tests conducted in the previous sections, including lesser used features and other types of testing, such as stress tests and testing on data ordering, flow, and enumeration.  The team utilized exploratory testing to achieve additional comfort over the quality of the system, given the time constraints surrounding the project. The guidance of the tour definitions also steered our testing in directions that we may not have considered without utilizing exploratory testing.
+
+Generally, exploratory testing was performed in the IDE, using no additional tools. For several of the tests, however, Junit was utilized, as well.
 
 [Description, Tools, and Rationale]
 
