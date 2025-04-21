@@ -133,7 +133,6 @@ One of the team members has nearly two decades of experience utilizing CSV files
 -	Writing CSV with Comments Santhosh is this correct?
 -	Reading from classpath
 
-
 ## 3.2 Test Tools, Formats, and Organizational Scheme
 
 [List the testing tools, formats, and organizational schemes used.]
@@ -196,9 +195,18 @@ InputDomainModeling  <-- Files related to Input Domain Modeling<br>
 
 [Explain how past issues or defects were addressed if applicable.]
 
+As described in Section 3.1, FastCSV is mature software, that was first released in 2015.  Since then, the application has been widely used and issues/defects have been reports and tracked in the Issues section of the project’s GitHub repository. The team reviewed the Issues section of the repository and it appears to be actively monitored and curated by the developer, with any issues being addressed and closed out, as appropriate.  In some cases, the issue was remedied via a new version of the software being released and in other cases, the issue was deemed out of scope for the software.  Additionally, the Issues section has been used to make feature suggestions or to request help using the software.  As of the date of this document, all open issues have been marked as cleared.  Due to the above, the team has decided that past issues or defects will not have a notable impact on our testing strategy.  
+
 ## 4.2 Special Testing Considerations
 
 [Highlight any special considerations for testing.]
+
+The team has noted the following special considerations when developing our testing plan:
+-	As previously described, FastCSV is a Java library and not a standalone program.  Therefore, instead of focusing on interactions via a user interface, the team will be able to narrow the testing focus and perform deeper tests on the many configuration options of the library.  
+-	FastCSV has extensive documentation, and the domain of CSV file reading and writing is well documented and unambiguous. This removes much of the uncertainty about the intended performance of the program and therefore allows the team to write tests with confidence around the intended outcomes.
+-	As stated previously, the maturity level of the software and the active involvement of the developer decreases the likelihood of the team finding any major errors when performing the tests.  While this will not alter our testing plan significantly, it is important to note while interpreting the results. 
+-	The code around the software has been refactored and enhanced for over a decade and the developer has utilized advanced object-oriented concepts and Java features to streamline performance.  The team recognizes that object-oriented complexity and testability are often inversely related and will consider this when developing tests.
+
 
 ## 4.3 Test Strategy
 
