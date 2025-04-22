@@ -149,7 +149,7 @@ The full list of test tools utilized are listed in Section 4.3, as related to te
 
 **Testing Formats**
 
-The testing formats utilized generally parallel those that were covered in the course.  These are explaining in more detail, including the rational for choosing them, in Section 4.2.  The individual test formats are also explained in great detail in Section 5.2, alongside the test cases.
+The testing formats utilized generally parallel those that were covered in the course.  These are explained in more detail, including the rational for choosing them, in Section 4.2.  The individual test formats are also explained in great detail in Section 5.2, alongside the test cases.
 
 **Organizational Scheme**
 
