@@ -139,7 +139,7 @@ One of the team members has nearly two decades of experience utilizing CSV files
 
 **Testing Tools**
 
-The full list of test tools utilized are listed in Section 4.3, as related to testing strategy, and Section 6, as related to the overall test environment.  The following, however, serves as an introduction to the tools used along with the reasoning behind their usage.
+The full list of test tools utilized are listed in [Section 4.3](#43-test-strategy), as related to testing strategy, and [Section 6](#6-test-environment), as related to the overall test environment.  The following, however, serves as an introduction to the tools used along with the reasoning behind their usage.
   -	IntelliJ IDEA Community Edition – a robustly featured IDE developed and owned by JetBrains.  While the Community Edition has slightly fewer features than the full edition, it is still very robust and more than capable for the scope of this project.  Since FastCSV is written in Java, the team decided to utilize IntelliJ as the IDE for testing. This was selected for several reasons:
     -	The team has experience using IntelliJ, so there would be little to no learning curve
     -	The other testing tools utilized (namely, JUnit and Cucumber) are known to work well with IntelliJ IDEA and the team has experience using these tools in conjunction with IntelliJ IDEA.
@@ -149,7 +149,7 @@ The full list of test tools utilized are listed in Section 4.3, as related to te
 
 **Testing Formats**
 
-The testing formats utilized generally parallel those that were covered in the course.  These are explained in more detail, including the rational for choosing them, in Section 4.2.  The individual test formats are also explained in great detail in Section 5.2, alongside the test cases.
+The testing formats utilized generally parallel those that were covered in the course.  These are explained in more detail, including the rational for choosing them, in [Section 4.2](#42-special-testing-considerations).  The individual test formats are also explained in great detail in [Section 5.2](#52-test-cases), alongside the test cases.
 
 **Organizational Scheme**
 
@@ -195,7 +195,7 @@ InputDomainModeling  <-- Files related to Input Domain Modeling<br>
 
 [Explain how past issues or defects were addressed if applicable.]
 
-As described in Section 3.1, FastCSV is mature software, that was first released in 2015.  Since then, the application has been widely used and issues/defects have been reports and tracked in the Issues section of the project’s GitHub repository. The team reviewed the Issues section of the repository and it appears to be actively monitored and curated by the developer, with any issues being addressed and closed out, as appropriate.  In some cases, the issue was remedied via a new version of the software being released and in other cases, the issue was deemed out of scope for the software.  Additionally, the Issues section has been used to make feature suggestions or to request help using the software.  As of the date of this document, all open issues have been marked as cleared.  Due to the above, the team has decided that past issues or defects will not have a notable impact on our testing strategy.  
+As described in [Section 3.1](#31-test-case-exclusions), FastCSV is mature software, that was first released in 2015.  Since then, the application has been widely used and issues/defects have been reports and tracked in the Issues section of the project’s GitHub repository. The team reviewed the Issues section of the repository and it appears to be actively monitored and curated by the developer, with any issues being addressed and closed out, as appropriate.  In some cases, the issue was remedied via a new version of the software being released and in other cases, the issue was deemed out of scope for the software.  Additionally, the Issues section has been used to make feature suggestions or to request help using the software.  As of the date of this document, all open issues have been marked as cleared.  Due to the above, the team has decided that past issues or defects will not have a notable impact on our testing strategy.  
 
 ## 4.2 Special Testing Considerations
 
@@ -212,7 +212,7 @@ The team has noted the following special considerations when developing our test
 
 [Explain which testing techniques are used to test the different parts of the systems. Provide a rationale for the selection. Also include information on which tools, automation, and scripts are used to test each part of the system.]
 
-There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in Section 2). The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.
+There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in [Section 2](#2-feature-description)). The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.
 
 CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are overwhelmingly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comment or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
 
@@ -222,7 +222,7 @@ The following are the testing techniques that were utilized, along with a descri
 
 [Description, Tools, and Rationale]
 
-Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in Section 5.2 below.
+Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in [Section 5.2](#52-test-cases) below.
 
 Input Domain Modeling was chosen to test CSVReader and CSVWriter methods for several practical reasons:
 
@@ -260,11 +260,44 @@ Generally, exploratory testing was performed in the IDE, using no additional too
 
 [Categorize the test cases, e.g., functional, performance, security, etc.]
 
+All of tests that the team performed for FastCSV were functional.  The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality. 
+
+Several of our tests also covered non-functional categories, though, as described in Section 4.2 of the Canvas Module:
+
+-	Robustness Tests – Many of our tests also met the definition of Boundary Value tests.
+    - System Defaults - Per the Canvas module, boundary tests can target default values.  FastCSV is configured with many default values that represent the most common use case of the system.  The majority of the tests conducted by the team include at least one or more configuration options that remain at their default values.  While this category is noted, the team has decided to not utilize System Defaults as an additional classification for the tests, since all tests would be labeled as such providing little additional value.
+    - Special Values – Many of the team’s tests include testing edge cases or special values to ensure that they are handled properly by the system.  For example, some tests in the Input Domain Modeling section test how the system handles special characters, commas used as data (these are also used as field separators), etc. 
+    -	Invalid Data – Several of the tests involve providing invalid data to the System and ensuring that the System handles the error gracefully.
+-	Performance Tests – As part of our exploratory testing, the team tested the performance of the System while reading exceptionally large csv files.  
+-	Stress Tests – The same tests that were used to test performance were also targeted at trying to cause a failure by reading exceptionally large csv files.
+
+Given the above, in addition to Functional Tests, the team will classify tests using the following categories: Robustness-Special Values, Robustness-Invalid Data, Performance, and Stress.
+
+Refer to [Section 7](#7-testing-results) below for a complete list of Tests, Categories, and Results.
+
+
 # 5. Test Cases
 
 ## 5.1 Test Group Definition
 
 [This is where you will define how the test cases will be structured and organized. Define test groups and subgroups for organizing test cases. Specify the objective for each group.]
+
+The team's organization of test cases into groups and subgroups mirrors the organization of the test cases numbering pattern, as described in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).  The tests are divided into four distinct testing groups, one for each type of testing performed:
+
+|Group                 | Objective                                                                           |
+|----------------------|-------------------------------------------------------------------------------------|
+| Input Domain Modeling|                                                                                     |                                   
+| Graph Based Testing  |                                                                                     |
+| Exploratory Testing  |                                                                                     |
+| Acceptance Testing   |                                                                                     |
+
+Each of the main groups is further broken into subgroups:
+
+The subgroups for Input Domain Modeling, Graph Based Testing, and Acceptance Testing are: CSVWriter and CSVReader, which are the two primary functionalites of the software that were being tested.
+
+The subgroups for Exploratory Testing are Back Alley, Collector’s, FedEx, Intellectual, and Landmark, which correspond with the type of exploratory tour used.
+
+By examining each test case number, the read can clearly determine both the category and subcategory of the test case.  For example, test IDM-W-01 is category Input Domain Modeling and subcategory Writer. Test case EXP-C-02 is category Exploratory Tour and subcategory Collector's Tour.  The test case identifier schema is defined in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).
 
 ## 5.2 Test Cases
 
