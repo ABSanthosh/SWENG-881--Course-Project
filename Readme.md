@@ -347,6 +347,16 @@ Each test row (IDM-W-01, IDM-W-02, ...) targets specific block combinations of i
 | IDM-W-07 | `["quoted"]`                         | `','`            | `'"'`            | `QuoteStrategies.ALWAYS` | `CRLF`          | a3, b1, c1, d2, e1 |
 | IDM-W-08 | `["newline\ntext"]`                  | `','`            | `'"'`            | `null`                   | `LF`            | a4, b1, c1, d1, e2 |
 
+The below table shows an alternate view of the above.  Each test number as columns (the "IDM-R-" prefix has been removed for formatting). Each tested input variable is listed in a row. The intersections show the specific block of the input variable that is being covered by a specific test. 
+
+| test # (prefix = IDM-W-)  | 01  | 02  | 03  | 04  | 05  | 06  | 07  | 08  | 
+| ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | 
+| values                    | a3  | a1  | a2  | a4  | a3  | a3  | a3  | a4  | 
+| fieldSeperator            | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  | 
+| quoteCharacter            | c1  | c1  | c1  | c1  | c1  | c2  | c1  | c1  | 
+| quoteStrategy             | d1  | d2  | d2  | d1  | d1  | d1  | d2  | d1  | 
+| lineDelimiter             | e1  | e1  | e1  | e1  | e1  | e1  | e1  | e2  | 
+
 The code for the tests can be found in [TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)
 
 #### 5.2.1.2 CSVReader IDM Test Cases
