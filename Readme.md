@@ -16,6 +16,9 @@
 - [3. Assumptions](#3-assumptions)
   - [3.1 Test Case Exclusions](#31-test-case-exclusions)
   - [3.2 Test Tools, Formats, and Organizational Scheme](#32-test-tools-formats-and-organizational-scheme)
+      - [3.2.1 Test Tools](#321-test-tools)
+      - [3.2.2 Test Formats](#322-test-formats)
+      - [3.2.3 Organizational Scheme](#323-organizational-scheme)      
 - [4. Test Approach](#4-test-approach)
   - [4.1 Addressing Past Issues](#41-addressing-past-issues)
   - [4.2 Special Testing Considerations](#42-special-testing-considerations)
@@ -74,15 +77,19 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 
 - **CsvReader**
 
-  - **Standard Functionality:** Ability to read standard, comma separated values from a file
-  - **Configuration Ability** - Ability to configure the reading of the values via the following options
+  - **Standard Functionality:** Ability to read standard, comma separated values from a file.
+
+  - **Configuration Ability** - Ability to configure the reading of the values via the following options:
+
     - **Field Separator** - A field separator denotes the character used to logically delineate between the fields of data in the file. While the program defaults to utilizing commas, it provides the user with the option to select another field separator. For example, a user may wish to read in a file that is separated by semi-colons instead.
     - **Quote Character** – Using quote characters allows the parser to treat the data between the quote characters as a single field, even if it contains a field separator. For example, the user might want to read in a CSV field, which contains commas. In this case, the program defaults to allowing the user to surround that field with quotes, such as “ice cream, cake, and candy.” In this case, that phrase would be read in as a single field, excluding the quotation marks. In some instances, though, the user may wish to designate a different character to represent quotation marks, such as when the fields in a file contain lots of quotes. The user may therefore specify another character to use, such as a percentage sign. In this case %”ice cream, cake, and candy”% would be read in as a single field, including the quotation marks.
     - **Different Field Counts** – The program allows the user to set a configuration option that either enforces or does not enforce adherence to consistent field counts. For example, a csv file may have a first row with two columns (fields) and a second row with 3 columns. Depending on the user’s requirements, they may wish for the program to read this with no issue or to throw an exception. The program defaults to not enforcing this adherence, meaning that the CSV files may have varying numbers of columns per row.
     - **BOM Headers** – Certain programs, such as Microsoft Excel, generate CSV files that begin with a BOM (Byte Order Mark) header. Per the FastCSV website, the purpose of a BOM Header was originally to designate the encoding of the file, although now it is largely unnecessary, as almost all CSV files utilize UTF-8. The program provides the user with functionality to either detect (and ignore) the BOM header, which is useful if the file has a BOM header and the user does not want this to be included in their data, or to not detect the BOM header, which is the default behavior.
     - **Comments** – Certain CSV files may contain comments, which are often designated by a character, such as ‘#.’ FastCSV allows users to customize how the program handles these comments, by selecting a custom comment designator and by specifying whether comments should be skipped by the reader or read in as a field. For example, suppose the user processes a CSV file that has multiple comments that begin with '!' and the user does not want these comments to appear in their parsed data. The user can specify that any lines beginning with '!' should be skipped. They would designate the comment character and the comment behavior separately. The program defaults to '#' as the comment character and not skipping comments as the behavior.
     - **Empty Lines** – Certain CSV files may contain empty lines. By default, the program is configured to skip these empty lines (i.e. not read them in). Alternatively, if the user wishes to read these empty lines in as blank fields, the user can configure the program to do so.
+
   - **Advanced Capabilities** - Ability to handle the following less common situations:
+
     - **Indexing CSV files** – Provides the user with the option to read a large CSV file, while designating how many records belong on each “page” of the file. Once the file is initially parsed, the user can quickly access any individual page of the file without having to parse the file again. This can save substantial amounts of time if the user needs to access a certain page (for instance, paginated web data).
     - **Field Modification** – Provides the user with the ability to modify fields as they are being read. A common use case for this is trimming or stripping leading or trailing blank characters from a field, if applicable.
     - **Reading Compressed CSV files** – The program allows the user to read CSV files that were compressed using the gzip format. The program handles the extraction process and then reads the files in as if they were not compressed.
@@ -137,7 +144,7 @@ One of the team members has nearly two decades of experience utilizing CSV files
 
 [List the testing tools, formats, and organizational schemes used.]
 
-**Testing Tools**
+### 3.2.1 Test Tools
 
 The full list of test tools utilized are listed in [Section 4.3](#43-test-strategy), as related to testing strategy, and [Section 6](#6-test-environment), as related to the overall test environment.  The following, however, serves as an introduction to the tools used along with the reasoning behind their usage.
   -	**IntelliJ IDEA Community Edition** – a robustly featured IDE developed and owned by JetBrains.  While the Community Edition has slightly fewer features than the full edition, it is still very robust and more than capable for the scope of this project.  Since FastCSV is written in Java, the team decided to utilize IntelliJ as the IDE for testing. This was selected for several reasons:
@@ -145,15 +152,19 @@ The full list of test tools utilized are listed in [Section 4.3](#43-test-strate
     -	The other testing tools utilized (namely, JUnit and Cucumber) are known to work well with IntelliJ IDEA and the team has experience using these tools in conjunction with IntelliJ IDEA.
     -	IntelliJ IDEA is one of the most popular and supported Java IDEs on the market. 
   -	**JUnit** – an open-source testing framework that is widely used in industry and academia.  It uses a combination of assertions and annotations to organize and automate testing.  This was selected due to its popularity and the team’s experience in using JUnit for testing. 
+
   -	**Cucumber** –an open-source framework that allows for acceptance test criteria to be written in a natural language that both the technical and non-technical stakeholders can understand.  Cucumber utilizes .feature files to write these plain language tests, which are then directly linked to the Java code and JUnit tests that actually test the code.  The team selected Cucumber due to their experience using it and the simplicity of implementation.
 
-**Testing Formats**
+### 3.2.2 Test Formats
 
 The testing formats utilized generally parallel those that were covered in the course.  These are explained in more detail, including the rational for choosing them, in [Section 4.2](#42-special-testing-considerations).  The individual test formats are also explained in great detail in [Section 5.2](#52-test-cases), alongside the test cases.
 
-**Organizational Scheme**
+### 3.2.3 Organizational Scheme
 
 Several organizational conventions were utilized when developing this testing document:
+
+**Unique Identifiers**
+
 -	**Unique Test Identification**: In order to facilitate traceability, all test cases were assigned a unique identifier in the following format: `111-2-33` where:
     -	`111` represents a three-letter code designating the type of testing that was performed
         -	`IDM`: input domain modeling
@@ -173,6 +184,8 @@ Several organizational conventions were utilized when developing this testing do
     -	Requirements targeting the CSVWriter functionality are formatted with REQ-W-XX where XX represents the requirement number
     -	Requirements targeting the CSVReader functionality are formatted with REQ-W-XX where XX represents the requirement number
 -	**Unique Block Identifiers** - For Input Domain Testing, each input variable is partitioned into blocks.  Those blocks are uniquely numbered with a character representing the input variable and a number representing the partition number.
+
+**GitHub Structure**
 
 Additionally, GitHub is being used to organize all files related to testing.  The GitHub folder structure is as follows:
 
@@ -379,7 +392,7 @@ The following chart lists the test cases, along with their test category, group,
 
 ### 5.2.1 Input Domain Modeling Test Cases
 
-#### 5.2.1.1 CSVWriter IDM Test Cases
+#### **5.2.1.1 CSVWriter IDM Test Cases**
 
 **Function Under Test: `writeRecord(String...)` in `CsvWriter`**
 
@@ -466,7 +479,7 @@ The below table shows an alternate view of the above.  Each test number as colum
 
 The code for the tests can be found in [TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)
 
-#### 5.2.1.2 CSVReader IDM Test Cases
+#### **5.2.1.2 CSVReader IDM Test Cases**
 
 **Selected Functions/Features for Input Domain Modeling**  
 For the `CsvReader` component, the team selected the `ofCsvRecord(Path file)` method for testing with input domain modeling. This method is a high-level entry point for reading CSV files, leveraging the `CsvReaderBuilder` and `CsvParser` to process file input into `CsvRecord` objects. It’s a suitable choice as it encapsulates the full reading process and allows testing of file-based input handling.
@@ -593,7 +606,7 @@ The code for the tests can be found in [TestReaderIDM.java](/InputDomainModeling
 
 ### 5.2.2 Graph Based Test Cases
 
-#### 5.2.2.1 CsvReader Graph Based Test Cases
+#### **5.2.2.1 CsvReader Graph Based Test Cases**
 
 **Identified Component for Graph-Based Testing**  
 The `skipLines(final Predicate<String> predicate, final int maxLines)` method was chosen as a suitable target for graph-based testing. Certain CSV files may have header information, such as comments or column headers, that the user may wish to skip. This function accepts a `Predicate<String> predicate` to define the header row will be the first non-skipped row of information and an integer to represent the maximum number of rows that should be searched for the predicate condition. It returns an integer representing the row in which the predicate is found.
@@ -722,7 +735,7 @@ The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting
 |GBT-R-08| Throws IOException | TODO|
 |GBT-R-09| Throws IOException | TODO|
 
-#### 5.2.2.2 CsvWriter Graph Based Test Cases
+#### **5.2.2.2 CsvWriter Graph Based Test Cases**
 
 **Identified Component for Graph-Based Testing**
 
@@ -864,7 +877,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 ### 5.2.3 Exploratory Test Cases
 
-#### 5.2.3.1 Back Alley Tour - Part I
+#### **5.2.3.1 Back Alley Tour - Part I**
 
 **Test Description**
 
@@ -885,7 +898,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-B-03 | Wrote test case to write compressed file and subsequently read the same compressed file | No Exceptions | Wrote and read in 4 rows and 3 columns without exception                              | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png)                                                                              |
 | EXP-B-04 | Tested indexed reading of very large (100M line) file                                   | No Exceptions | - Initial file read under 10000ms<br>- Subequent indexed page reads took 12ms or less | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_2.png)                                                                         |
 
-#### 5.2.3.2 Back Alley Tour - Part II
+#### **5.2.3.2 Back Alley Tour - Part II**
 
 **Test Description**
 
@@ -906,7 +919,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-B-07 | Tested trimming of unicode space characters preceding and following value in CSV      | No Exceptions | Program correctly did not remove unicode space characters                  | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_2.png)  |
 | EXP-B-08 | Tested stripping of unicode space characters preceding and following value in CSV     | No Exceptions | Program correctly removed unicode space characters                         | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_Strip1.png) |
 
-#### 5.2.3.3 Collector's Tour Report
+#### **5.2.3.3 Collector's Tour Report**
 
 **Test Description**
 
@@ -927,7 +940,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-C-03 | Printed count of unique values to console                                  | No Exceptions | Console log showed expected value count = 3                                                       | TODO(add screenshot)                                               |
 | EXP-C-04 | Re-ran test after modifying data to include lowercase and formatted values | No Exceptions | Collector distinguished values with formatting; recommend normalization pass in future iterations | TODO(add screenshot)                                               |
 
-#### 5.2.3.4 FedEx Tour Report
+#### **5.2.3.4 FedEx Tour Report**
 
 **Test Description**
 
@@ -947,7 +960,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-F-02             | Wrote selected columns to `fedex-output.csv` using `CsvWriter` | No Exceptions                                                    | File format and values were correct in output. Fields aligned and properly quoted where necessary | [Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)                                                              |
 | FastCSV/app/inputs | 4                                                              | Opened output in spreadsheet viewer and verified layout visually | No Exceptions                                                                                     | Output is viewable and properly delimited by common spreadsheet tools                                                    |
 
-#### 5.2.3.5 Intellectual Tour
+#### **5.2.3.5 Intellectual Tour**
 
 **Test Description**
 
@@ -968,7 +981,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-I-03 | Tested reading and writing of 100 million line file using CSVReader and CSVWriter  | No Exceptions | - Wrote Java program to read in lines from 100 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 20486ms<br>- Used Windows fc to compare files and noted that they were exact duplicates of each other                                                                                                                                                            | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test3a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test3c.png) |
 | EXP-I-04 | Tested reading and writing of ~900 million line file using CSVReader and CSVWriter | No Exceptions | - Wrote Java program to read in lines from ~900 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 176041ms<br>- Attemped to use Windows FC to compare files, but file size was too large. This is a limitation of Windows FC and not the program being tested.<br>- Visually compared size of files with Windows Explorer and noted that files appear identifical | - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test4a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test4b.png) |
 
-#### 5.2.3.6 Landmark Tour
+#### **5.2.3.6 Landmark Tour**
 
 **Test Description**
 
