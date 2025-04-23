@@ -170,7 +170,7 @@ Several organizational conventions were utilized when developing this testing do
         -	`IDM`: input domain modeling
         -	`GBT`: graph based testing
         -	`EXP`: exploratory testing
-        -	`ACC`: acceptance testing.
+        -	`ACC`: acceptance testing
     -	`2` represents a one or two character abbreviation for a subcategory of test
         -	`W`: a test that targets the CSVWriter functionality
         -	`R`: a test that targets the CSVReader functionality
@@ -277,12 +277,12 @@ All of tests that the team performed for FastCSV were functional.  The functiona
 
 Several of our tests also covered non-functional categories, though, as described in Section 4.2 of the Canvas Module:
 
--	Robustness Tests – Many of our tests also met the definition of Boundary Value tests.
-    - System Defaults - Per the Canvas module, boundary tests can target default values.  FastCSV is configured with many default values that represent the most common use case of the system.  The majority of the tests conducted by the team include at least one or more configuration options that remain at their default values.  While this category is noted, the team has decided to not utilize System Defaults as an additional classification for the tests, since all tests would be labeled as such providing little additional value.
-    - Special Values – Many of the team’s tests include testing edge cases or special values to ensure that they are handled properly by the system.  For example, some tests in the Input Domain Modeling section test how the system handles special characters, commas used as data (these are also used as field separators), etc. 
-    -	Invalid Data – Several of the tests involve providing invalid data (including data that should correctly throw errors) to the System and ensuring that the System handles the error gracefully.
--	Performance Tests – As part of our exploratory testing, the team tested the performance of the System while reading exceptionally large csv files.  
--	Stress Tests – The same tests that were used to test performance were also targeted at trying to cause a failure by reading exceptionally large csv files.
+-	**Robustness Tests** – Many of our tests also met the definition of Boundary Value tests.
+    - **System Defaults** - Per the Canvas module, boundary tests can target default values.  FastCSV is configured with many default values that represent the most common use case of the system.  The majority of the tests conducted by the team include at least one or more configuration options that remain at their default values.  While this category is noted, the team has decided to not utilize System Defaults as an additional classification for the tests, since all tests would be labeled as such providing little additional value.
+    - **Special Values** – Many of the team’s tests include testing edge cases or special values to ensure that they are handled properly by the system.  For example, some tests in the Input Domain Modeling section test how the system handles special characters, commas used as data (these are also used as field separators), etc. 
+    -	**Invalid Data** – Several of the tests involve providing invalid data (including data that should correctly throw errors) to the System and ensuring that the System handles the error gracefully.
+-	**Performance Tests** – As part of our exploratory testing, the team tested the performance of the System while reading exceptionally large csv files.  
+-	**Stress Tests** – The same tests that were used to test performance were also targeted at trying to cause a failure by reading exceptionally large csv files.
 
 Given the above, the team will classify tests using the following categories: 
 - Functional
