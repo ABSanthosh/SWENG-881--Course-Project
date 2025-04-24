@@ -275,6 +275,7 @@ Several of our tests also covered non-functional categories, though, as describe
 -	**Stress Tests** – The same tests that were used to test performance were also targeted at trying to cause a failure by reading exceptionally large csv files.
 
 Given the above, the team will classify tests using the following categories: 
+
 - Functional
 - Robustness-Special Values ("Spec Val")
 - Robustness-Invalid Data ("Invalid Data")
@@ -291,16 +292,24 @@ The team's organization of test cases into groups and subgroups mirrors the orga
 
 |Group                 | Objective                                                                           |
 |----------------------|-------------------------------------------------------------------------------------|
-| Input Domain Modeling|          TODO                                                                       |                                   
-| Graph Based Testing  |          TODO                                                                       |
-| Exploratory Testing  |          TODO                                                                       |
-| Acceptance Testing   |          TODO                                                                       |
+| Input Domain Modeling| To ensure that the primary functionality of the two major features of the system match the expectations set forth in the requirements by segmenting inputs into blocks of related possible values and selecting tests values from those blocks in order to efficiently achieve coverage of a wide variety of input values. |                                   
+| Graph Based Testing  | To test the branching paths of code and ensure that all possible paths match the expected results set forth in the requirements by abstracting the code into graphs and designing test cases to cover the edges of the graphs |
+| Exploratory Testing  | To cover areas not thoroughly tested in the previous methodologies by utilizing timed sessions and tester creativity within the confines of predefined test charters to ensure the system meets its requirements through developing and executing less formalized ad hoc tests.|
+| Acceptance Testing   | To test the system from the perpective of the end user by developing natural language acceptance criteria for user stories and linking coded tests to the criteria, helping to bridge the gap between technical testing and domain knowledge.|
 
 Each of the main groups is further broken into subgroups:
 
-The subgroups for Input Domain Modeling, Graph Based Testing, and Acceptance Testing are: CSVWriter and CSVReader, which are the two primary functionalites of the software that were being tested.
+|Subgroup        | Parent Group(s)      |Objective                                                               |
+|----------------|----------------------|------------------------------------------------------------------------|
+| CSVWriter| Input Domain Modeling<br>Graph Based Testing<br>Acceptance Testing| To test the functionality of the CSVWriter feature|
+| CSVReader| Input Domain Modeling<br>Graph Based Testing<br>Acceptance Testing| To test the functionality of the CSVReader feature|
+| Back Alley  | Exploratory Testing| To test less common features of the software    |
+| Collector’s | Exploratory Testing | SANTHOSH TODO    |
+| FedEx | Exploratory Testing | SANTHOSH TODO   |
+| Intellectual | Exploratory Testing | To test the robustness of the software while handling large sets of data | 
+| Landmark | Exploratory Testing | SANTHOSH TODO |
 
-The subgroups for Exploratory Testing are Back Alley, Collector’s, FedEx, Intellectual, and Landmark, which correspond with the type of exploratory tour used.
+Note: The definition for the tours in the above table were adapted from the Canvas module.
 
 By examining each test case number, the read can clearly determine both the category and subcategory of the test case.  For example, test IDM-W-01 is category Input Domain Modeling and subcategory Writer. Test case EXP-C-02 is category Exploratory Tour and subcategory Collector's Tour.  The test case identifier schema is defined in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).
 
