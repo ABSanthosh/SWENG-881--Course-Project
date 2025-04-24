@@ -21,7 +21,7 @@ public class TestReaderIDM {
     public void test() {
 
         /**************************************************************************************************************
-         * Test:        idm-r-01
+         * Test:        IDM-R-01
          * Description: Test a valid csv file of strings with default settings
          *************************************************************************************************************/
 
@@ -44,7 +44,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-02
+         * Test:        IDM-R-02
          * Description: Test a csv file of special characters with default settings
          *************************************************************************************************************/
 
@@ -67,7 +67,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-03
+         * Test:        IDM-R-03
          * Description: Test a csv file with one column per row with default settings
          *************************************************************************************************************/
 
@@ -90,7 +90,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-04
+         * Test:        IDM-R-04
          * Description: Test a csv file with one row and many columns with default settings
          *************************************************************************************************************/
 
@@ -111,7 +111,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-05
+         * Test:        IDM-R-05
          * Description: Test a very large csv file with one million rows with default settings
          *************************************************************************************************************/
 
@@ -149,7 +149,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-06
+         * Test:        IDM-R-06
          * Description: Test a csv file with commas as data with default settings including quoteCharacter
          *************************************************************************************************************/
 
@@ -172,7 +172,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-07
+         * Test:        IDM-R-07
          * Description: Test a csv File that has quotes as data with default settings including quoteCharacter
          *************************************************************************************************************/
 
@@ -195,7 +195,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-08
+         * Test:        IDM-R-08
          * Description: Test a malformed csv file with uneven columns in rows with default settings including
          *              default ignoreDifferentFieldCount value
          *************************************************************************************************************/
@@ -219,7 +219,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-09
+         * Test:        IDM-R-09
          * Description: Test a csv File with empty rows with default settings except for alternative skipEmptyLines
          *              option
          *************************************************************************************************************/
@@ -240,7 +240,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-10
+         * Test:        IDM-R-10
          * Description: Test a blank csv file with default settings
          *************************************************************************************************************/
 
@@ -258,7 +258,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-11
+         * Test:        IDM-R-11
          * Description: Test a csv file with ';' as separators with default settings and alternative fieldSeparator ';'
          *************************************************************************************************************/
 
@@ -281,7 +281,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-12
+         * Test:        IDM-R-12
          * Description: Test a csv file with '^' as quote character with default settings and alternative
          *              quoteCharacter '^'
          *************************************************************************************************************/
@@ -305,7 +305,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-13
+         * Test:        IDM-R-13
          * Description: Test a csv file with blank lines with default settings except for CommentStrategy of 'SKIP'
          *************************************************************************************************************/
 
@@ -328,7 +328,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-14
+         * Test:        IDM-R-14
          * Description: Test a csv file with default settings except for using an alternate comment character '@' and
          *              CommentStrategy of 'SKIP'
          *************************************************************************************************************/
@@ -352,7 +352,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-15
+         * Test:        IDM-R-15
          * Description: Test a csv file that has a BOM header with default settings except detectBOMHeader set to true.
          *************************************************************************************************************/
 
@@ -375,7 +375,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-16
+         * Test:        IDM-R-16
          * Description: Test a csv file with comments and default settings
          *************************************************************************************************************/
 
@@ -398,7 +398,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-17
+         * Test:        IDM-R-17
          * Description: Test a malformed csv file with uneven columns in rows with default settings including alternate
          *              ignoreDifferentFieldCount value of 'false'
          *************************************************************************************************************/
@@ -416,7 +416,7 @@ public class TestReaderIDM {
 
 
         /**************************************************************************************************************
-         * Test:        idm-r-18
+         * Test:        IDM-R-18
          * Description: Test a csv file with empty lines and default settings
          *************************************************************************************************************/
 

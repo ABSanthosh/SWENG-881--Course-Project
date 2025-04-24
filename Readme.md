@@ -562,6 +562,9 @@ The code for the tests can be found in [TestReaderIDM.java](/InputDomainModeling
 | IDM-R-18 | Test a csv file with empty lines and default settings                                                                                              | Path file = Paths.get("[reader-file-a09.csv](/InputDomainModeling/CsvTestFiles/reader-file-a09.csv)");<br>CsvReader<CsvRecord> csv = CsvReader.builder().ofCsvRecord(file));                                                                                                                                              |
 
 **Execution Results**  
+
+A screenshot of the results can found at: [IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)
+
 |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;\#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |Expected Results |Results |
 |--------|-----------------------------------------------------------------------------------------------------------|---------|
 |IDM-R-01|`{{"apple", "banana", "cantaloupe"}, {"11", "22", "33"}, {"xray", "yogurt", "zebra"}, {"44", "55", "66"}}` |Pass |
@@ -702,6 +705,9 @@ The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting
 |GBT-R-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→14→15| TODO|
 
 **Execution Results**  
+
+A screenshot of the results can found at: [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)
+
 |Test # |Expected Results |Results |
 |--------|-----------------------------------------------------------------------------------------------------------|---------|
 |GBT-R-01| Returns 0 |Pass |
@@ -1164,70 +1170,70 @@ Test data files were stored in organized subdirectories (e.g., `InputDomainModel
 
 The following table represents a summary of the testing results. Please note that these tests and their results are fully detailed in Section 5.2 above, but have been provided here in a consolidated table format for convenience and ease of reference.
 
-| Test ID  | Test Technique      | Test Result | Comments | Link to Test Code   |
-| -------- | ------------------- | ----------- | -------- |---------------------|
-| IDM-R-01 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|                   
-| IDM-R-02 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-03 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-04 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-05 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-06 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-07 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-08 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-09 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-10 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-11 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-12 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-13 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-14 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-15 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-16 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-17 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-R-18 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
-| IDM-W-01 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-02 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-03 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-04 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-05 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-06 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-07 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| IDM-W-08 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
-| GBT-W-01 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
-| GBT-W-02 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
-| GBT-W-03 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
-| GBT-W-04 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
-| GBT-W-05 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
-| GBT-R-01 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-02 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-03 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-04 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-05 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-06 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
-| GBT-R-07 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| Test ID  | Test Technique      | Test Result | Comments | Link to Test Code   | Results Screenshot |
+| -------- | ------------------- | ----------- | -------- |---------------------|--------------------|
+| IDM-R-01 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-02 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-03 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-04 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-05 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-06 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-07 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-08 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-09 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-10 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-11 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-12 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-13 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-14 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-15 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-16 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-17 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-R-18 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|[IDMReaderResults.png](/InputDomainModeling/Images/IDMReaderResults.png)|               
+| IDM-W-01 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-02 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-03 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-04 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-05 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-06 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-07 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| IDM-W-08 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|OPEN|
+| GBT-W-01 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|OPEN|
+| GBT-W-02 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|OPEN|
+| GBT-W-03 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|OPEN|
+| GBT-W-04 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|OPEN|
+| GBT-W-05 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|OPEN|
+| GBT-R-01 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-02 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-03 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-04 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-05 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-06 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
+| GBT-R-07 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|[GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)|
 | GBT-R-08 | Graph Based Testing | Open        |          |OPEN|
 | GBT-R-09 | Graph Based Testing | Open        |          |OPEN|
-| EXP-B-01 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
-| EXP-B-02 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
-| EXP-B-03 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
-| EXP-B-04 | Exploratory Testing | Pass        |          |[BackAlleyTourIndex.java](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)|
-| EXP-B-05 | Exploratory Testing | Pass        |          |[BackAlleyTour2_JB.java](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)|
-| EXP-B-06 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
-| EXP-B-07 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
-| EXP-B-08 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
-| EXP-C-01 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
-| EXP-C-02 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
-| EXP-C-03 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
-| EXP-C-04 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
-| EXP-F-01 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|
-| EXP-F-02 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|
-| EXP-I-01 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
-| EXP-I-02 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
-| EXP-I-03 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
-| EXP-I-04 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
-| EXP-L-01 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
-| EXP-L-02 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
-| EXP-L-03 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
-| EXP-L-04 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
+| EXP-B-01 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|[BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)|
+| EXP-B-02 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|[BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)|
+| EXP-B-03 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|[BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)|
+| EXP-B-04 | Exploratory Testing | Pass        |          |[BackAlleyTourIndex.java](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)|[BackAlley_2.png](/ExploratoryTesting/Images/BackAlley_1.png)|
+| EXP-B-05 | Exploratory Testing | Pass        |          |[BackAlleyTour2_JB.java](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)|[BackAlleyJB_1.png](/ExploratoryTesting/Images/BackAlleyJB_1.png)| 
+| EXP-B-06 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|[BackAlleyTrim_1.png](/ExploratoryTesting/Images/BackAlleyTrim_1.png)| 
+| EXP-B-07 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|[BackAlleyTrim_2.png](/ExploratoryTesting/Images/BackAlleyTrim_2.png)|
+| EXP-B-08 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|[BackAlley_Strip1.png](/ExploratoryTesting/Images/BackAlley_Strip1.png)|
+| EXP-C-01 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|OPEN|
+| EXP-C-02 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|OPEN|
+| EXP-C-03 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|OPEN|
+| EXP-C-04 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|OPEN|
+| EXP-F-01 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|OPEN|
+| EXP-F-02 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|OPEN|
+| EXP-I-01 | Exploratory Testing | Pass        |          |[IntellectualTour1.java](/ExploratoryTesting/Tests/IntellectualTour1.java)|[E1_Test1.png](/ExploratoryTesting/Images/E1_Test1.png)|
+| EXP-I-02 | Exploratory Testing | Pass        |          |[IntellectualTour1.java](/ExploratoryTesting/Tests/IntellectualTour1.java)|[E1_Test2.png](/ExploratoryTesting/Images/E1_Test2.png)|           
+| EXP-I-03 | Exploratory Testing | Pass        |          |[IntellectualTour1.java](/ExploratoryTesting/Tests/IntellectualTour1.java)|[E1_Test3a.png](/ExploratoryTesting/Images/E1_Test3a.png)<br>[E1_Test3c.png](/ExploratoryTesting/Images/E1_Test3c.png)|
+| EXP-I-04 | Exploratory Testing | Pass        |          |[IntellectualTour1.java](/ExploratoryTesting/Tests/IntellectualTour1.java)|[E1_Test4a.png](/ExploratoryTesting/Images/E1_Test4a.png)<br>[E1_Test4b.png](/ExploratoryTesting/Images/E1_Test4b.png)|
+| EXP-L-01 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
+| EXP-L-02 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
+| EXP-L-03 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
+| EXP-L-04 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
 
 # 8. Recommendations on Software Quality
 
