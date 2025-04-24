@@ -139,7 +139,7 @@ One of the team members has nearly two decades of experience utilizing CSV files
     - acceptingCharsAfterQuotes
     -	maxBufferSize
 -	Custom Callbank Handlers
--	Writing CSV with Comments Santhosh is this correct?
+-	Writing CSV with Comments TODO - Santhosh is this correct?
 -	Reading from classpath
 
 ## 3.2 Test Tools, Formats, and Organizational Scheme
@@ -885,7 +885,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | Description                        | To test several of more minor features of the program, specifically those involving compressed files and indexed reading |
 | Test Duration                      | 90 minutes                                                                                                               |
 | Tester                             | Adam Slager                                                                                                              |
-| Further Testing <br> Opportunities | Potential to continue testing additional minor features                                                                  |
+| Further Testing <br> Opportunities | Potential to continue testing additional minor features (this inspired the creation of a second back alley tour) |
 
 **Test Protocol**
 
@@ -906,7 +906,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | Description                        | Continue testing minor features, including JavaBeans and handlings white space characters |
 | Test Duration                      | 90 minutes                                                                                |
 | Tester                             | Adam Slager                                                                               |
-| Further Testing <br> Opportunities | N/A                                                                                       |
+| Further Testing <br> Opportunities | Potential to continue testing minor features, such as custom callback handling and several other reader customization settings  |
 
 **Test Protocol**
 
@@ -968,7 +968,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | Description                        | The goal is to see how the software will handle under stress by testing the reading and writing of large files |
 | Test Duration                      | 90 minutes                                                                                                     |
 | Tester                             | Adam Slager                                                                                                    |
-| Further Testing <br> Opportunities | TBD                                                                                                            |
+| Further Testing <br> Opportunities | Potential opportunity to test multiple FastCSV instances running at the same time or testing continual reading and writing of random data over the course of a multiple hour period of time.|
 
 **Test Protocol**
 
