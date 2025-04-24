@@ -456,7 +456,7 @@ The below table shows an alternate view of the above.  Each test number as colum
 | quoteStrategy             | d1  | d2  | d2  | d1  | d1  | d1  | d2  | d1  | 
 | lineDelimiter             | e1  | e1  | e1  | e1  | e1  | e1  | e1  | e2  | 
 
-The code for the tests can be found in [TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)
+The code for the tests can be found in [TestWriterIDM.java](InputDomainModeling/Tests/TestWriterIDM.java)
 
 #### **5.2.1.2 CSVReader IDM Test Cases**
 
@@ -987,6 +987,57 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-L-03 | Read shuffled file and wrote to final `landmark-output.csv` | No Exceptions | Verified that structure remained unchanged after second I/O pass  | [Final Output](/ExploratoryTesting/CsvTestFiles/landmark-output.csv) |
 | EXP-L-04 | Compared first and second output using diff tool            | No Exceptions | Differences observed only in row order; values remained identical |                                                                      |
 
+### 5.2.4 Acceptance Testing Cases
+
+#### 5.2.4.1 CSVReader Acceptance Test Cases
+
+**Reason for Testing**
+
+The standard use of FastCSV’s reader involves parsing a file with comma separated values.  However, in some real-life scenarios, such as retrieving data from APIs, a file is never being read.  Instead, the data resides in a String variable prior to being parsed by FastCSV.  Additionally, data can be organized with a space character as the field separator, instead of a comma.  While other types of customized field separators have previously been tested, a space character is an interesting scenario, since it is used commonly for purposes other than field separation.  
+
+**User Story**
+
+The following user story was derived given the above:
+
+<div style="margin-left: 25px;">As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program</div><br>
+
+**Acceptance Criteria**
+
+Based on this user story, the following acceptance criteria was created:
+-	The function should read a String and accept a space as a field separator
+-	The function should return an object containing the parsed data that should match the order and content of the data in the String.
+-	The function should be able to handle data fields that contain spaces (wrapped in quotes) while still utilizing a space as the field separator.
+
+From this general acceptance criteria, two Given-When-Then format acceptance criteria can be generated:  
+
+<div style="margin-left: 25px;">
+1 – For string data separated by spaces, without spaces in the actual data (Tested by Test #<b>ACC-R-01</b>):
+<br><br>
+<div style="margin-left: 40px;">
+<b>Given</b>: the user has input a String of space separated values WITHOUT spaces as data<br>
+<b>When</b>: the user runs CsvReader configured with field separator " " and WITHOUT spaces as data<br>
+<b>Then</b>: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITHOUT spaces as data<br>
+</div>
+<br>
+
+2 – For string data separated by spaces, containing spaces in the actual data (Tested by Test #<b>ACC-R-02</b>):
+
+<div style="margin-left: 40px;">
+<b>Given</b>: the user has input a String of space separated values WITH spaces as data<br>
+<b>When</b>: the user runs CsvReader configured with field separator " " and WITH spaces as data<br>
+<b>Then</b>: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITH spaces as data<br>
+</div>
+</div>
+<br>
+
+**Testing Results**
+
+Both ACC-R-01 and ACC-R-02 passed.  
+
+Test Results Screenshot: [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)|<br>
+Feature File: [SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)<br>
+Testing Files: [SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java) and [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)
+
 ## 5.3 Traceability Matrix
 
 The traceability matrix maps the system’s formal requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
@@ -1234,6 +1285,8 @@ The following table represents a summary of the testing results. Please note tha
 | EXP-L-02 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
 | EXP-L-03 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
 | EXP-L-04 | Exploratory Testing | Pass        |          |[LandmarkTour.java](/ExploratoryTesting/Tests/LandmarkTour.java)|OPEN|
+| ACC-R-01 | Acceptance Testing  | Pass        |          |[SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)<br>[SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java)<br> [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)| [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)|
+| ACC-R-02 | Acceptance Testing  | Pass        |          |[SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)<br>[SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java)<br> [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)| [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)|
 
 # 8. Recommendations on Software Quality
 
