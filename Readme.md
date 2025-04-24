@@ -1038,11 +1038,10 @@ From this general acceptance criteria, two Given-When-Then format acceptance cri
 
 **Testing Results**
 
-Both ACC-R-01 and ACC-R-02 passed.  
-
-Test Results Screenshot: [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)|<br>
-Feature File: [SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)<br>
-Testing Files: [SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java) and [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)
+- Both ACC-R-01 and ACC-R-02 passed.  
+- Test Results Screenshot: [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)|<br>
+- Feature File: [SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)<br>
+- Testing Files: [SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java) and [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)
 
 ## 5.3 Traceability Matrix
 
