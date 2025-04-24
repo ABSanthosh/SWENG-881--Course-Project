@@ -259,6 +259,8 @@ Generally, exploratory testing was performed in the IDE, using no additional too
 
 **Acceptance Testing**
 
+
+
 ## 4.4 Test Categories
 
 All of tests that the team performed for FastCSV were functional.  The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality. 
@@ -1000,7 +1002,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 ### 5.2.4 Acceptance Testing Cases
 
-#### 5.2.4.1 CSVReader Acceptance Test Cases
+#### **5.2.4.1 CSVReader Acceptance Test Cases**
 
 **Reason for Testing**
 
@@ -1010,7 +1012,7 @@ The standard use of FastCSV’s reader involves parsing a file with comma separa
 
 The following user story was derived given the above:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program<br>
+- As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program<br>
 
 **Acceptance Criteria**
 
@@ -1022,17 +1024,17 @@ Based on this user story, the following acceptance criteria was created:
 From this general acceptance criteria, two Given-When-Then format acceptance criteria can be generated:  
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 – For string data separated by spaces, without spaces in the actual data (Tested by Test #**ACC-R-01**):
+- 1 – For string data separated by spaces, without spaces in the actual data (Tested by Test #**ACC-R-01**):
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Given**: the user has input a String of space separated values WITHOUT spaces as data<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**When**: the user runs CsvReader configured with field separator " " and WITHOUT spaces as data<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITHOUT spaces as data<br>
+    - **Given**: the user has input a String of space separated values WITHOUT spaces as data<br>
+    - **When**: the user runs CsvReader configured with field separator " " and WITHOUT spaces as data<br>
+    - **Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITHOUT spaces as data<br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 – For string data separated by spaces, containing spaces in the actual data (Tested by Test #**ACC-R-02**):
+- 2 – For string data separated by spaces, containing spaces in the actual data (Tested by Test #**ACC-R-02**):
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Given**: the user has input a String of space separated values WITH spaces as data<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**When**: the user runs CsvReader configured with field separator " " and WITH spaces as data<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITH spaces as data<br>
+    - **Given**: the user has input a String of space separated values WITH spaces as data<br>
+    - **When**: the user runs CsvReader configured with field separator " " and WITH spaces as data<br>
+    - **Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITH spaces as data<br>
 
 **Testing Results**
 
