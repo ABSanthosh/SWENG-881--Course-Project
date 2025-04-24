@@ -1,11 +1,12 @@
-# Course Project
+# Testing Report for FastCSV
+## SWENG 881 Course Project
 
 ## Authors:
 
 - Santhosh Anitha Boominathan
 - Adam Slager
 
-### Date: April 27, 2024
+### Date: April 27, 2025
 
 # Table of Contents
 
@@ -53,11 +54,14 @@
 
 ## 1.1 Test Project Name
 
-FastCSV
+**Software Name:** FastCSV
+
+**Software Github Repo:** [https://github.com/osiegmar/FastCSV](https://github.com/osiegmar/FastCSV)
+
+**Software Website:** [https://fastcsv.org/](https://fastcsv.org/)
+
 
 ## 1.2 Summary of the Rest of the Test Plan
-
-[Provide a brief summary of the remaining sections of the testing report.]
 
 The following is a brief description of the remaining portions of the testing report.
 
@@ -70,8 +74,6 @@ The following is a brief description of the remaining portions of the testing re
 - **Recommendations on Software Quality:** This section provides the team’s assessment of the quality of the software along with any recommendations for potential improvements.
 
 # 2. Feature Description
-
-[Describe the features of the selected open-source course application.]
 
 Per the official FastCSV website, “FastCSV is a high-performance CSV parser and writer for Java.” The functionality of the system can be logically bifurcated into those features belonging to each of the CsvReader and CsvWriter classes. The website and related documentation outline the features and design goals of the software; however, based on the team’s exploration of the documentation and our own use of the software, the team believes that the following are the primary features of these classes.
 
@@ -142,8 +144,6 @@ One of the team members has nearly two decades of experience utilizing CSV files
 
 ## 3.2 Test Tools, Formats, and Organizational Scheme
 
-[List the testing tools, formats, and organizational schemes used.]
-
 ### 3.2.1 Test Tools
 
 The full list of test tools utilized are listed in [Section 4.3](#43-test-strategy), as related to testing strategy, and [Section 6](#6-test-environment), as related to the overall test environment.  The following, however, serves as an introduction to the tools used along with the reasoning behind their usage.
@@ -206,13 +206,9 @@ InputDomainModeling  <-- Files related to Input Domain Modeling<br>
 
 ## 4.1 Addressing Past Issues
 
-[Explain how past issues or defects were addressed if applicable.]
-
 As described in [Section 3.1](#31-test-case-exclusions), FastCSV is mature software, that was first released in 2015.  Since then, the application has been widely used and issues/defects have been reports and tracked in the Issues section of the project’s GitHub repository. The team reviewed the Issues section of the repository and it appears to be actively monitored and curated by the developer, with any issues being addressed and closed out, as appropriate.  In some cases, the issue was remedied via a new version of the software being released and in other cases, the issue was deemed out of scope for the software.  Additionally, the Issues section has been used to make feature suggestions or to request help using the software.  As of the date of this document, all open issues have been marked as cleared.  Due to the above, the team has decided that past issues or defects will not have a notable impact on our testing strategy.  
 
 ## 4.2 Special Testing Considerations
-
-[Highlight any special considerations for testing.]
 
 The team has noted the following special considerations when developing our testing plan:
 -	As previously described, FastCSV is a Java library and not a standalone program.  Therefore, instead of focusing on interactions via a user interface, the team will be able to narrow the testing focus and perform deeper tests on the many configuration options of the library.  
@@ -223,8 +219,6 @@ The team has noted the following special considerations when developing our test
 
 ## 4.3 Test Strategy
 
-[Explain which testing techniques are used to test the different parts of the systems. Provide a rationale for the selection. Also include information on which tools, automation, and scripts are used to test each part of the system.]
-
 There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in [Section 2](#2-feature-description)). The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.
 
 CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are overwhelmingly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comment or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
@@ -232,8 +226,6 @@ CSV files are commonly used as an application-agnostic format to transfer inform
 The following are the testing techniques that were utilized, along with a description of how the testing was performed:
 
 **Input Domain Modeling**
-
-[Description, Tools, and Rationale]
 
 Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in [Section 5.2](#52-test-cases) below.
 
@@ -246,8 +238,6 @@ Input Domain Modeling was chosen to test CSVReader and CSVWriter methods for sev
 JUnit was utilized to test both CSVReader and CSVWriter.
 
 **Graph Based Testing**
-
-[Description, Tools, and Rationale]
 
 The team utilzed Control Flow Graphs (CFGs) for our graph based testing. CFGs are used to abstract the flow of a section code into a graph in order design tests based on that abstraction. CFGs provide a visual representation of often complex functionality. Once the graph is created, it allows for generating test cases that ensure coverage of a the nodes and edges of the CFG in varying combinations of traversal. The team selected edge coverage for our criteria, as, per the Canvas module, it ensures "that each edge is traversed at least once."
 
@@ -263,15 +253,11 @@ As mentioned above, the team generally used exploratory testing as a chance to s
 
 Generally, exploratory testing was performed in the IDE, using no additional tools. For several of the tests, however, Junit was utilized, as well.
 
-[Description, Tools, and Rationale]
-
 **Acceptance Testing**
 
-[Description, Tools, and Rationale]
+
 
 ## 4.4 Test Categories
-
-[Categorize the test cases, e.g., functional, performance, security, etc.]
 
 All of tests that the team performed for FastCSV were functional.  The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality. 
 
@@ -293,12 +279,9 @@ Given the above, the team will classify tests using the following categories:
 
 Refer to [Section 7](#7-testing-results) below for a complete list of Tests, Categories, and Results.
 
-
 # 5. Test Cases
 
 ## 5.1 Test Group Definition
-
-[This is where you will define how the test cases will be structured and organized. Define test groups and subgroups for organizing test cases. Specify the objective for each group.]
 
 The team's organization of test cases into groups and subgroups mirrors the organization of the test cases numbering pattern, as described in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).  The tests are divided into four distinct testing groups, one for each type of testing performed:
 
@@ -319,10 +302,7 @@ By examining each test case number, the read can clearly determine both the cate
 
 ## 5.2 Test Cases
 
-[List all test cases. Or provide a link to the test cases. Ensure that the link you provide is accessible to the instructor.]
-
 The following chart lists the test cases, along with their test category, group, and subgroup.
-
 
 | Test ID  | Categories              |Group                  | Subgroup    | Test Section                                      |
 | -------- | ------------------------| --------------------- | ----------- |---------------------------------------------------|
@@ -388,7 +368,6 @@ The following chart lists the test cases, along with their test category, group,
 | EXP-L-02 | Functional              | Exploratory Testing   | Landmark    | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-03 | Functional              | Exploratory Testing   | Landmark    | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-04 | Functional              | Exploratory Testing   | Landmark    | [5.2.3.6](#5236-landmark-tour)                    |
-
 
 ### 5.2.1 Input Domain Modeling Test Cases
 
@@ -1004,8 +983,6 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 ## 5.3 Traceability Matrix
 
-[Create a traceability matrix to map requirements to test cases]
-
 The traceability matrix maps the system’s formal requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
 
 **Formal Requirements: CsvReader**
@@ -1121,8 +1098,6 @@ This section outlines the technical environment in which the testing activities 
 
 ## 6.1 Multiple Test Environments
 
-[List the different test environments used if applicable.]
-
 All tests were executed in a local development environment. In order to validate the behavior across typical user setups, tests were run on two separate systems:
 
 - Environment A: NixOS 24.11, Java 17, VSCode 1.83.0, Gradle 8.4.1
@@ -1131,8 +1106,6 @@ All tests were executed in a local development environment. In order to validate
 This dual-environment testing ensured cross-platform consistency and compatibility.
 
 ### 6.2 Schematic Diagram
-
-[Provide a schematic diagram of the test environment setup if applicable.]
 
 The test architecture was relatively straightforward. All JUnit-based tests (IDM and graph) and exploratory tests were implemented as part of a Maven project and Gradle project. The schematic below shows a rough representation of the test setup for both CsvReader and CsvWriter:
 
@@ -1170,15 +1143,11 @@ package "Test Environment" {
 
 ### 6.3 Test Architecture Overview
 
-[Explain the overall test architecture if applicable.]
-
 Tests were implemented in Java using the JUnit 5 testing framework. Input Domain Modeling and Graph-Based Testing were manually derived and implemented through parameterized unit tests. Exploratory testing followed a session-based structure and was documented using a pre-defined charter format. Cucumber was introduced in the final phase for automating acceptance tests based on Given–When–Then user stories.
 
 Test data files were stored in organized subdirectories (e.g., `InputDomainModeling/CsvTestFiles`, `GraphBasedTesting/CsvTestFiles`) and referenced directly from test code. Tests were executed via IDE and command-line using Maven’s Surefire plugin and Gradle’s test task.
 
 ### 6.4 Equipment Table
-
-[List the equipment and resources used in the testing environment if applicable.]
 
 | Resource              | Specification/Tool                                     |
 | --------------------- | ------------------------------------------------------ |
@@ -1193,78 +1162,74 @@ Test data files were stored in organized subdirectories (e.g., `InputDomainModel
 
 # 7. Testing Results
 
-[Provide a summary of testing results, including passed, failed, and unresolved issues]
-
 The following table represents a summary of the testing results. Please note that these tests and their results are fully detailed in Section 5.2 above, but have been provided here in a consolidated table format for convenience and ease of reference.
 
-| Test ID  | Test Technique      | Test Result | Comments |
-| -------- | ------------------- | ----------- | -------- |
-| IDM-R-01 | IDM                 | Pass        |          |
-| IDM-R-02 | IDM                 | Pass        |          |
-| IDM-R-03 | IDM                 | Pass        |          |
-| IDM-R-04 | IDM                 | Pass        |          |
-| IDM-R-05 | IDM                 | Pass        |          |
-| IDM-R-06 | IDM                 | Pass        |          |
-| IDM-R-07 | IDM                 | Pass        |          |
-| IDM-R-08 | IDM                 | Pass        |          |
-| IDM-R-09 | IDM                 | Pass        |          |
-| IDM-R-10 | IDM                 | Pass        |          |
-| IDM-R-11 | IDM                 | Pass        |          |
-| IDM-R-12 | IDM                 | Pass        |          |
-| IDM-R-13 | IDM                 | Pass        |          |
-| IDM-R-14 | IDM                 | Pass        |          |
-| IDM-R-15 | IDM                 | Pass        |          |
-| IDM-R-16 | IDM                 | Pass        |          |
-| IDM-R-17 | IDM                 | Pass        |          |
-| IDM-R-18 | IDM                 | Pass        |          |
-| IDM-W-01 | IDM                 | Pass        |          |
-| IDM-W-02 | IDM                 | Pass        |          |
-| IDM-W-03 | IDM                 | Pass        |          |
-| IDM-W-04 | IDM                 | Pass        |          |
-| IDM-W-05 | IDM                 | Pass        |          |
-| IDM-W-06 | IDM                 | Pass        |          |
-| IDM-W-07 | IDM                 | Pass        |          |
-| IDM-W-08 | IDM                 | Pass        |          |
-| GBT-W-01 | Graph Based Testing | Pass        |          |
-| GBT-W-02 | Graph Based Testing | Pass        |          |
-| GBT-W-03 | Graph Based Testing | Pass        |          |
-| GBT-W-04 | Graph Based Testing | Pass        |          |
-| GBT-W-05 | Graph Based Testing | Pass        |          |
-| GBT-R-01 | Graph Based Testing | Pass        |          |
-| GBT-R-02 | Graph Based Testing | Pass        |          |
-| GBT-R-03 | Graph Based Testing | Pass        |          |
-| GBT-R-04 | Graph Based Testing | Pass        |          |
-| GBT-R-05 | Graph Based Testing | Pass        |          |
-| GBT-R-06 | Graph Based Testing | Pass        |          |
-| GBT-R-07 | Graph Based Testing | Pass        |          |
-| GBT-R-08 | Graph Based Testing | Open        |          |
-| GBT-R-09 | Graph Based Testing | Open        |          |
-| EXP-B-01 | Exploratory Testing | Pass        |          |
-| EXP-B-02 | Exploratory Testing | Pass        |          |
-| EXP-B-03 | Exploratory Testing | Pass        |          |
-| EXP-B-04 | Exploratory Testing | Pass        |          |
-| EXP-B-05 | Exploratory Testing | Pass        |          |
-| EXP-B-06 | Exploratory Testing | Pass        |          |
-| EXP-B-07 | Exploratory Testing | Pass        |          |
-| EXP-B-08 | Exploratory Testing | Pass        |          |
-| EXP-C-01 | Exploratory Testing | Pass        |          |
-| EXP-C-02 | Exploratory Testing | Pass        |          |
-| EXP-C-03 | Exploratory Testing | Pass        |          |
-| EXP-C-04 | Exploratory Testing | Pass        |          |
-| EXP-F-01 | Exploratory Testing | Pass        |          |
-| EXP-F-02 | Exploratory Testing | Pass        |          |
-| EXP-I-01 | Exploratory Testing | Pass        |          |
-| EXP-I-02 | Exploratory Testing | Pass        |          |
-| EXP-I-03 | Exploratory Testing | Pass        |          |
-| EXP-I-04 | Exploratory Testing | Pass        |          |
-| EXP-L-01 | Exploratory Testing | Pass        |          |
-| EXP-L-02 | Exploratory Testing | Pass        |          |
-| EXP-L-03 | Exploratory Testing | Pass        |          |
-| EXP-L-04 | Exploratory Testing | Pass        |          |
+| Test ID  | Test Technique      | Test Result | Comments | Link to Test Code   |
+| -------- | ------------------- | ----------- | -------- |---------------------|
+| IDM-R-01 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|                   
+| IDM-R-02 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-03 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-04 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-05 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-06 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-07 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-08 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-09 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-10 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-11 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-12 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-13 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-14 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-15 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-16 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-17 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-R-18 | IDM                 | Pass        |          |[TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)|
+| IDM-W-01 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-02 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-03 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-04 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-05 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-06 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-07 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| IDM-W-08 | IDM                 | Pass        |          |[TestWriterGraph.java](InputDomainModeling/Tests/TestWriterIDM.java)|
+| GBT-W-01 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
+| GBT-W-02 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
+| GBT-W-03 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
+| GBT-W-04 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
+| GBT-W-05 | Graph Based Testing | Pass        |          |[TestWriterGraph.java](GraphBasedTesting/Tests/TestWriterGraph.java)|
+| GBT-R-01 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-02 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-03 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-04 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-05 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-06 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-07 | Graph Based Testing | Pass        |          |[TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)|
+| GBT-R-08 | Graph Based Testing | Open        |          |OPEN|
+| GBT-R-09 | Graph Based Testing | Open        |          |OPEN|
+| EXP-B-01 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
+| EXP-B-02 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
+| EXP-B-03 | Exploratory Testing | Pass        |          |[BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)|
+| EXP-B-04 | Exploratory Testing | Pass        |          |[BackAlleyTourIndex.java](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)|
+| EXP-B-05 | Exploratory Testing | Pass        |          |[BackAlleyTour2_JB.java](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)|
+| EXP-B-06 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
+| EXP-B-07 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
+| EXP-B-08 | Exploratory Testing | Pass        |          |[BackAlleyTour2_Modify.java](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)|
+| EXP-C-01 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
+| EXP-C-02 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
+| EXP-C-03 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
+| EXP-C-04 | Exploratory Testing | Pass        |          |[CollectorsTour.java](/ExploratoryTesting/Tests/CollectorsTour.java)|
+| EXP-F-01 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|
+| EXP-F-02 | Exploratory Testing | Pass        |          |[FedExTour.java](/ExploratoryTesting/Tests/FedExTour.java)|
+| EXP-I-01 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
+| EXP-I-02 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
+| EXP-I-03 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
+| EXP-I-04 | Exploratory Testing | Pass        |          |[Intellectual Tour](/ExploratoryTesting/Tests/IntellectualTour1.java)|
+| EXP-L-01 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
+| EXP-L-02 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
+| EXP-L-03 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
+| EXP-L-04 | Exploratory Testing | Pass        |          |[Landmark Tour](/ExploratoryTesting/Tests/LandmarkTour.java)|
 
 # 8. Recommendations on Software Quality
-
-[Offer recommendations on improving the quality of the software based on testing results]
 
 Based on the testing activities performed throughout the course of this project, the team considers FastCSV to be a well-structured and high-performance library for CSV parsing and writing in Java. The design of the API is flexible and supports a wide range of use cases, from simple read/write operations to complex parsing and quoting configurations.
 
