@@ -259,8 +259,6 @@ Generally, exploratory testing was performed in the IDE, using no additional too
 
 **Acceptance Testing**
 
-
-
 ## 4.4 Test Categories
 
 All of tests that the team performed for FastCSV were functional.  The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality. 
@@ -1012,7 +1010,7 @@ The standard use of FastCSV’s reader involves parsing a file with comma separa
 
 The following user story was derived given the above:
 
-<div style="margin-left: 25px;">As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program</div><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program<br>
 
 **Acceptance Criteria**
 
@@ -1023,25 +1021,18 @@ Based on this user story, the following acceptance criteria was created:
 
 From this general acceptance criteria, two Given-When-Then format acceptance criteria can be generated:  
 
-<div style="margin-left: 25px;">
-1 – For string data separated by spaces, without spaces in the actual data (Tested by Test #<b>ACC-R-01</b>):
-<br><br>
-<div style="margin-left: 40px;">
-<b>Given</b>: the user has input a String of space separated values WITHOUT spaces as data<br>
-<b>When</b>: the user runs CsvReader configured with field separator " " and WITHOUT spaces as data<br>
-<b>Then</b>: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITHOUT spaces as data<br>
-</div>
-<br>
 
-2 – For string data separated by spaces, containing spaces in the actual data (Tested by Test #<b>ACC-R-02</b>):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 – For string data separated by spaces, without spaces in the actual data (Tested by Test #**ACC-R-01**):
 
-<div style="margin-left: 40px;">
-<b>Given</b>: the user has input a String of space separated values WITH spaces as data<br>
-<b>When</b>: the user runs CsvReader configured with field separator " " and WITH spaces as data<br>
-<b>Then</b>: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITH spaces as data<br>
-</div>
-</div>
-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Given**: the user has input a String of space separated values WITHOUT spaces as data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**When**: the user runs CsvReader configured with field separator " " and WITHOUT spaces as data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITHOUT spaces as data<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 – For string data separated by spaces, containing spaces in the actual data (Tested by Test #**ACC-R-02**):
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Given**: the user has input a String of space separated values WITH spaces as data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**When**: the user runs CsvReader configured with field separator " " and WITH spaces as data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Then**: the user should be returned a CsvReader<CsvRecord> with elements that match the order specified in the String WITH spaces as data<br>
 
 **Testing Results**
 
@@ -1171,7 +1162,7 @@ This section outlines the technical environment in which the testing activities 
 All tests were executed in a local development environment. In order to validate the behavior across typical user setups, tests were run on two separate systems:
 
 - Environment A: NixOS 24.11, Java 17, VSCode 1.83.0, Gradle 8.4.1
-- Environment B: TODO:ADAM
+- Environment B: Windows 11, Java 17, IntelliJ Idea 2024.3.5 (Community Edition), Maven 3.9.9
 
 This dual-environment testing ensured cross-platform consistency and compatibility.
 
@@ -1221,7 +1212,7 @@ Test data files were stored in organized subdirectories (e.g., `InputDomainModel
 
 | Resource              | Specification/Tool                                     |
 | --------------------- | ------------------------------------------------------ |
-| IDE                   | IntelliJ IDEA Community Edition 2023.3                 |
+| IDEs                  | IntelliJ Idea 2024.3.5 (Community Edition)             |
 | Java Version          | OpenJDK 17                                             |
 | Build Tool            | Apache Maven 3.9.3                                     |
 | Testing Framework     | JUnit 5                                                |
