@@ -42,6 +42,9 @@
       - [5.2.3.4 FedEx Tour Report](#5234-fedex-tour-report)
       - [5.2.3.5 Intellectual Tour](#5235-intellectual-tour)
       - [5.2.3.6 Landmark Tour](#5236-landmark-tour)
+    - [5.2.4 Acceptance Test Cases](#524-acceptance-testing-cases)
+      - [5.2.4.1 CSVReader Acceptance Test Cases](#5241-csvreader-acceptance-test-cases)
+      - [5.2.4.2 CSVWriter Acceptance Test Case](#5242-csvwriter-acceptance-test-case)
   - [5.3 Traceability Matrix](#53-traceability-matrix)
 - [6. Test Environment](#6-test-environment)
   - [6.1 Multiple Test Environments](#61-multiple-test-environments)
@@ -163,6 +166,7 @@ The full list of test tools utilized are listed in [Section 4.3](#43-test-strate
   - IntelliJ IDEA is one of the most popular and supported Java IDEs on the market.
 - **Visual Studio Code (VSCode)** – the primary IDE used by Santhosh for all test implementation and documentation tasks. VSCode provided strong support for Java development, CSV file inspection, and markdown editing. Its lightweight interface and extensibility through extensions like Java Language Support, Markdown Preview, and Git integration made it the central tool for development, testing, and reporting.
 - **JUnit** – an open-source testing framework that is widely used in industry and academia. It uses a combination of assertions and annotations to organize and automate testing. This was selected due to its popularity and the team’s experience in using JUnit for testing.
+- **Mockito** - an open-source framework that integrates with Java and allows the tester to mock objects to simulate desired behavior from the mocked methods.  The team specifically used Mockito to throw IOExceptions when performing Graph Based Testing for the CSVReader in [Section 5.2.2.1](#5221-csvreader-graph-based-test-cases)
 
 - **Cucumber** –an open-source framework that allows for acceptance test criteria to be written in a natural language that both the technical and non-technical stakeholders can understand. Cucumber utilizes .feature files to write these plain language tests, which are then directly linked to the Java code and JUnit tests that actually test the code. The team selected Cucumber due to their experience using it and the simplicity of implementation.
 
@@ -278,7 +282,7 @@ Graphs were chosen specifically for:
 - Risk of silent failure (e.g., skipping incorrect lines, misplacing delimiters)
 - Validating proper exception throwing on invalid or edge input
 
-JUnit was utilized to test both methods. [PlantUML](https://plantuml.com) was used to design the CFGs. The [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage) was utilized to further abstract the CFG into a standardized number node format.
+JUnit was utilized to test both methods. [PlantUML](https://plantuml.com) was used to design the CFGs. The [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage) was utilized to further abstract the CFG into a standardized number node format. Mockito was used to mock `IOException` throws for CSVReader.
 
 **Exploratory Testing**
 
@@ -437,8 +441,14 @@ The following chart lists the test cases, along with their test category, group,
 | EXP-C-02 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-C-03 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-C-04 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
+| EXP-C-05 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
+| EXP-C-06 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-F-01 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-F-02 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
+| EXP-F-03 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
+| EXP-F-04 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
+| EXP-F-05 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
+| EXP-F-06 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-I-01 | Functional/Stress/Perf  | Exploratory Testing   | Intellectual | [5.2.3.5](#5235-intellectual-tour)                |
 | EXP-I-02 | Functional/Stress/Perf  | Exploratory Testing   | Intellectual | [5.2.3.5](#5235-intellectual-tour)                |
 | EXP-I-03 | Functional/Stress/Perf  | Exploratory Testing   | Intellectual | [5.2.3.5](#5235-intellectual-tour)                |
@@ -447,6 +457,13 @@ The following chart lists the test cases, along with their test category, group,
 | EXP-L-02 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-03 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-04 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
+| EXP-L-05 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
+| EXP-L-06 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
+| ACC-R-01 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.4.1](#5241-csvreader-acceptance-test-cases)  |
+| ACC-R-02 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.4.1](#5241-csvreader-acceptance-test-cases)  |
+| ACC-W-01 | Functional              | Exploratory Testing   | Landmark     | [5.2.4.2](#5242-csvwriter-acceptance-test-case)   |
+
+
 
 ### 5.2.1 Input Domain Modeling Test Cases
 
@@ -735,7 +752,7 @@ Throw CsvParseException;
 
 ```
 
-Based on the pseudo code for the `skipLines(final Predicate<String> predicate, final int maxLines)` method, I have numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
+Based on the pseudo code for the `skipLines(final Predicate<String> predicate, final int maxLines)` method, the team numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
 
 **Node Numbering Scheme**
 
@@ -800,7 +817,7 @@ Where initial node is `1` and final nodes are `2, 4, 6, 10, 11, 13, 15, and 17`.
 **Testing Coverage Criteria**  
 Edge coverage was selected as the testing coverage criteria, in order to ensure that every edge is covered by testing at least once. Edge coverage was considered appropriate for this function, as every edge is able to be tested using nine test cases, a relatively low number of cases given the rather complex branching of the graph.
 
-The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)
+The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java) and [TestReaderGraphMock.java](/GraphBasedTesting/Tests/TestReaderGraphMock.java) 
 
 **Test Cases**  
 |Test# |Test Purpose/Description |Test Definition (Refer to Above Graph) |CSV File Used in Testing|
@@ -812,12 +829,12 @@ The code for the tests can be found in [TestReaderGraph.java](/GraphBasedTesting
 |GBT-R-05 |`maxLines` equals 0 | 1→3→5→6|[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv)
 |GBT-R-06 |The desired header is not found within specified max lines (`maxLines`) which is less than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→10 |[reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
 |GBT-R-07 |The desired header is not found within specified max lines (`maxLines`) which is greater than max lines in file| 1→3→5→7→8→9→12→14→16→18→8→9→12→14→16→17 |[reader-file-g03.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g03.csv) |
-|GBT-R-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11| TODO|
-|GBT-R-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→14→15| TODO|
+|GBT-R-08 |`IOException` is thrown when running csvParser.peekline| 1→3→5→7→8→9→11| [reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
+|GBT-R-09 |`IOException` is thrown when running csvParser.skipLine| 1→3→5→7→8→9→12→14→15| [reader-file-g02.csv](/GraphBasedTesting/CsvTestFiles/reader-file-g02.csv) |
 
 **Execution Results**
 
-A screenshot of the results can found at: [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)
+A screenshot of the results can found at: [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png) and [GBTReaderResults8-9.png](/GraphBasedTesting/Images/GBTReaderResults8-9.png)
 
 | Test #   | Expected Results                | Results |
 | -------- | ------------------------------- | ------- |
@@ -828,8 +845,13 @@ A screenshot of the results can found at: [GBTReaderResults.png](/GraphBasedTest
 | GBT-R-05 | Returns 0                       | Pass    |
 | GBT-R-06 | Throws CsvParseException        | Pass    |
 | GBT-R-07 | Throws CsvParseException        | Pass    |
-| GBT-R-08 | Throws IOException              | TODO    |
-| GBT-R-09 | Throws IOException              | TODO    |
+| GBT-R-08 | Throws IOException              | Pass    |
+| GBT-R-09 | Throws IOException              | Pass    |
+
+**Challenges in Testing**
+
+Test cases GBT-R-08 and GBT-R-09 presented unique challenges while testing. GBT-R-08 represents a path where `skipLines()` calls `CsvParser.peekline()` and an `IOException` is thrown. Similarly, GBT-R-09 represents a path where `skipLines()` calls `CsvParser.skipLines()` and an `IOException` is thrown. Typically, Mockito could be used to mock an `IOException` being thrown when those methods are called; however, `skiplines` does not take a `CsvParser` object as a parameter making it impossible to use Mockito without altering the method. In order to test these edges, the team decided to modify a copy of the `skipLines` method to accept a mocked CsvParser class, as a parameter and used Mockito to simulate the IOException throws. This solution worked well and the tests passed.
+
 
 #### **5.2.2.2 CsvWriter Graph Based Test Cases**
 
@@ -1117,7 +1139,9 @@ The standard use of FastCSV’s reader involves parsing a file with comma separa
 
 The following user story was derived given the above:
 
-- As a user, I want to read and parse data with space separators from a String, so that I use the data elsewhere in my program<br>
+As a user,<br>
+I want to read and parse data with space separators from a String,<br>
+So that I use the data elsewhere in my program<br>
 
 **Acceptance Criteria**
 
@@ -1147,6 +1171,8 @@ From this general acceptance criteria, two Given-When-Then format acceptance cri
 - Test Results Screenshot: [ReaderAccResults.png](/AcceptanceTesting/Images/ReaderAccResults.png)
 - Feature File: [SpaceSep.feature](/AcceptanceTesting/Tests/SpaceSep.feature)
 - Testing Files: [SpaceSepSteps.java](/AcceptanceTesting/Tests/SpaceSepSteps.java) and [CucumberTest.java](/AcceptanceTesting/Tests/CucumberTest.java)
+
+#### **5.2.4.2 CSVWriter Acceptance Test Case**
 
 **User Story**
 
@@ -1327,6 +1353,7 @@ Test data files were stored in organized subdirectories (e.g., `InputDomainModel
 | Java Version          | OpenJDK 17 (Adam)<br>OpenJDK 21.0.5 (Santhosh - NixOS build)                                                |
 | Build Tool            | Apache Maven 3.9.3 (Adam)<br>Gradle 8.x (Santhosh)                                                          |
 | Testing Framework     | JUnit 5                                                                                                     |
+| Mocking Framework     | Mockito 5                                                                                                   |
 | Acceptance Testing    | Cucumber + JUnit 5                                                                                          |
 | Exploratory Docs Tool | Manual charter documentation using Markdown                                                                 |
 | OS Platforms          | Windows 11 x64 (Adam)<br>macOS Ventura 13.5.1 (Adam)<br>NixOS 24.11 (Vicuna) x86_64 (Santhosh)              |
@@ -1376,8 +1403,8 @@ The following table represents a summary of the testing results. Please note tha
 | GBT-R-05 | Graph Based Testing | Pass        |          | [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)                                                                                                                                                                                   | [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)                                                 |
 | GBT-R-06 | Graph Based Testing | Pass        |          | [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)                                                                                                                                                                                   | [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)                                                 |
 | GBT-R-07 | Graph Based Testing | Pass        |          | [TestReaderGraph.java](/GraphBasedTesting/Tests/TestReaderGraph.java)                                                                                                                                                                                   | [GBTReaderResults.png](/GraphBasedTesting/Images/GBTReaderResults.png)                                                 |
-| GBT-R-08 | Graph Based Testing | Open        |          | OPEN                                                                                                                                                                                                                                                    |                                                                                                                        |
-| GBT-R-09 | Graph Based Testing | Open        |          | OPEN                                                                                                                                                                                                                                                    |                                                                                                                        |
+| GBT-R-08 | Graph Based Testing | Pass        |          | [TestReaderGraphMock.java](/GraphBasedTesting/Tests/TestReaderGraphMock.java) | [GBTReaderResults8-9.png](/GraphBasedTesting/Images/GBTReaderResults8-9.png)                                                                                                                                                                                                                                                    |                                                                                                                        |
+| GBT-R-09 | Graph Based Testing | Pass        |          | [TestReaderGraphMock.java](/GraphBasedTesting/Tests/TestReaderGraphMock.java) | [GBTReaderResults8-9.png](/GraphBasedTesting/Images/GBTReaderResults8-9.png)                                                                                                                                                                                                                                                    |                                                                                                                        |
 | EXP-B-01 | Exploratory Testing | Pass        |          | [BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)                                                                                                                                                                                      | [BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)                                                          |
 | EXP-B-02 | Exploratory Testing | Pass        |          | [BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)                                                                                                                                                                                      | [BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)                                                          |
 | EXP-B-03 | Exploratory Testing | Pass        |          | [BackAlleyTour.java](/ExploratoryTesting/Tests/BackAlleyTour.java)                                                                                                                                                                                      | [BackAlley_1.png](/ExploratoryTesting/Images/BackAlley_1.png)                                                          |
