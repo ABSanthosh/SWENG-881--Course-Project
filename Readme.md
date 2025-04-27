@@ -450,13 +450,13 @@ The following chart lists the test cases, along with their test category, group,
 | EXP-C-02 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-C-03 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-C-04 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
-| EXP-C-05 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
-| EXP-C-06 | Functional              | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
+| EXP-C-05 | Functional/Spec Val     | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
+| EXP-C-06 | Functional/Spec Val     | Exploratory Testing   | Collector's  | [5.2.3.3](#5233-collectors-tour-report)           |
 | EXP-F-01 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-F-02 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-F-03 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-F-04 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
-| EXP-F-05 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
+| EXP-F-05 | Functional/Spec Val     | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-F-06 | Functional              | Exploratory Testing   | Fedex        | [5.2.3.4](#5234-fedex-tour-report)                |
 | EXP-I-01 | Functional/Stress/Perf  | Exploratory Testing   | Intellectual | [5.2.3.5](#5235-intellectual-tour)                |
 | EXP-I-02 | Functional/Stress/Perf  | Exploratory Testing   | Intellectual | [5.2.3.5](#5235-intellectual-tour)                |
@@ -466,8 +466,8 @@ The following chart lists the test cases, along with their test category, group,
 | EXP-L-02 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-03 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
 | EXP-L-04 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
-| EXP-L-05 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
-| EXP-L-06 | Functional              | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
+| EXP-L-05 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
+| EXP-L-06 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.3.6](#5236-landmark-tour)                    |
 | ACC-R-01 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.4.1](#5241-csvreader-acceptance-test-cases)  |
 | ACC-R-02 | Functional/Spec Val     | Exploratory Testing   | Landmark     | [5.2.4.1](#5241-csvreader-acceptance-test-cases)  |
 | ACC-W-01 | Functional              | Exploratory Testing   | Landmark     | [5.2.4.2](#5242-csvwriter-acceptance-test-case)   |
@@ -1064,10 +1064,10 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 | Test #   | What Done                                                                                                       | Status    | Comment                                                                                                         | Test Artifacts                                                                                                                                                                                                                                              |
 | -------- | --------------------------------------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EXP-C-01 | Read `collector-input.csv`                                                                                      | Completed | 4 rows, 3 columns; file loaded without error                                                                    | - [Input File](/ExploratoryTesting/CsvTestFiles/collector-input.csv)<br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png)                                                                                                               |
-| EXP-C-02 | Extracted and stored all unique values of `amount` in a set                                                     | Completed | Set contained 3 entries: `500`, `600`, `700`; duplicates correctly removed                                      | - [Test Script](/ExploratoryTesting/Tests/CollectorsTour.java) <br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png)                                                                                                                    |
-| EXP-C-03 | Printed count of unique values to console                                                                       | Completed | Console log showed expected value count = 3                                                                     | - [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java) <br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png)                                                                                                                |
-| EXP-C-04 | Re-ran test after modifying data to include lowercase and formatted values                                      | Completed | Collector distinguished values with formatting; recommend normalization pass in future iterations               | - [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java) <br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png)                                                                                                                |
+| EXP-C-01 | Read `collector-input.csv`                                                                                      | Completed | 4 rows, 3 columns; file loaded without error                                                                    | - [Input File](/ExploratoryTesting/CsvTestFiles/collector-input.csv)                                                                                                               |
+| EXP-C-02 | Extracted and stored all unique values of `amount` in a set                                                     | Completed | Set contained 3 entries: `500`, `600`, `700`; duplicates correctly removed                                      | - [Test Script](/ExploratoryTesting/Tests/CollectorsTour.java)                                                                                                                     |
+| EXP-C-03 | Printed count of unique values to console                                                                       | Completed | Console log showed expected value count = 3                                                                     | - [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java)                                                                                                                 |
+| EXP-C-04 | Re-ran test after modifying data to include lowercase and formatted values                                      | Completed | Collector distinguished values with formatting; recommend normalization pass in future iterations               | - [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java)                                                                                        |
 | EXP-C-05 | Tested writing a CSV row with null, empty string, quoted string, comma-separated, and newline-containing fields | Completed | All fields were successfully written using `QuoteStrategies.ALWAYS` to enforce quoting for all field variations | - [collectors-output.csv](/ExploratoryTesting/CsvTestFiles/collectors-output.csv) <br>- [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java) <br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png)                          |
 | EXP-C-06 | Wrote multiple rows to a CSV with each row targeting a unique field variation (null, empty, quote, newline)     | Completed | Validated correct quoting and escaping behavior per field type; newline preserved, quote correctly escaped      | - [collectors-output-multivariant.csv](/ExploratoryTesting/CsvTestFiles/collectors-output-multivariant.csv) <br>- [Test Script](/ExploratoryTesting/Tests/CollectorsTourTest.java)<br>- [Test Execution.png](/ExploratoryTesting/Images/CollectorsTour.png) |
 
@@ -1087,7 +1087,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 
 | NR       | What Done                                                                                  | Status    | Comment                                                                                           | Test Artifacts                                                                                                                                                                                                                                                           |
 | -------- | ------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| EXP-F-01 | Read `fedex-input.csv` and extracted columns `id` and `amount`                             | Completed | Correct values were read from input, verified manually                                            | -[Test Script](/ExploratoryTesting/Tests/FedExTour.java)<br>-[Input CSV](/ExploratoryTesting/CsvTestFiles/fedex-input.csv)<br>-[Test Script](/ExploratoryTesting/Tests/FedExTour.java)                                                                                   |
+| EXP-F-01 | Read `fedex-input.csv` and extracted columns `id` and `amount`                             | Completed | Correct values were read from input, verified manually                                            | -[Test Script](/ExploratoryTesting/Tests/FedExTour.java)<br>-[Input CSV](/ExploratoryTesting/CsvTestFiles/fedex-input.csv)                                                                                   |
 | EXP-F-02 | Wrote selected columns to `fedex-output.csv` using `CsvWriter`                             | Completed | File format and values were correct in output. Fields aligned and properly quoted where necessary | -[Output](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)<br>-[Test Script](/ExploratoryTesting/Tests/FedExTour.java)                                                                                                                                                 |
 | EXP-F-03 | Tested writing of structured input CSV using default CSVWriter settings                    | Completed | Verified that each input row from `fedex-input.csv` was correctly written to `fedex-output.csv`   | -[fedex-input.csv](/ExploratoryTesting/CsvTestFiles/fedex-input.csv)<br>[fedex-output.csv](/ExploratoryTesting/CsvTestFiles/fedex-output.csv)-<br>[Test Execution.png](/ExploratoryTesting/Images/FedEx.png)-[Test Script](/ExploratoryTesting/Tests/FedExTourTest.java) |
 | EXP-F-04 | Tested writing of CSV with semicolon `;` as custom field separator                         | Completed | Created new file with expected semicolon-separated values using same input                        | -[fedex-output-semicolon.csv](/ExploratoryTesting/CsvTestFiles/fedex-output-semicolon.csv)-<br>[Test Execution.png](/ExploratoryTesting/Images/FedEx.png)-[Test Script](/ExploratoryTesting/Tests/FedExTourTest.java)                                                    |
@@ -1277,44 +1277,10 @@ The totals along the right side of the matrix indicate how many requirements eac
 
 **Test Span Analysis**
 <br><br>
-The below chart was adapted from those demonstrated in Lesson 5.3 of the Canvas Module. This visual demonstrates that the team's project had 25 requirements, covered by 75 tests, with 178 links between the tests and requirements.  This means that, on average, each requirement was covered by approximately 7 tests (178 links divided by 25 requirements) and that, conversely, each test covered an average of ~2.4 requirements (178 links divided by 75 tests).  The team believes that these numbers show an appropriate balance between thoroughness of testing and workload.
+The below chart was adapted from those demonstrated in Lesson 5.3 of the Canvas Module. This visually demonstrates that the team's project had 25 requirements, covered by 75 tests, with 126 links between the tests and requirements.  This means that, on average, each requirement was covered by approximately 5 tests (126 links divided by 25 requirements) and that, conversely, each test covered an average of ~1.68 requirements (126 links divided by 75 tests).  The team believes that these numbers show an appropriate balance between thoroughness of testing and workload.
 <br><br>
 <img src="Images/TestSpan.png" alt="Test Span" width="600px"/>
 <br>
-
-**Summary Matrix**
-
-The following represents a summary view of the traceability matrix found above, with test groups across the top and requirements listed down the left side.
-
-| Requirement                                                         |  IDM   |  GBT   |  EXP   |  ACC   |
-| ------------------------------------------------------------------- | ------ | ------ | ------ | ------ |
-| REQ-R-01: Read CSV with configurable field separators               | X      |        |        | X      |
-| REQ-R-02: Handle fields enclosed in quote characters                | X      |        |        |        |
-| REQ-R-03: Support comment lines with configurable comment character | X      |        |        |        |
-| REQ-R-04: Skip or retain comments based on strategy                 | X      |        |        |        |
-| REQ-R-05: Parse inconsistent column counts                          | X      |        |        |        |
-| REQ-R-06: Skip or retain empty lines                                | X      |        |        |        |
-| REQ-R-07: Handle BOM headers                                        | X      |        |        |        |
-| REQ-R-08: Read large CSV files with good performance                | X      |        | X      |        |
-| REQ-R-09: Read compressed CSV files (gzip)                          |        |        | X      |        |
-| REQ-R-10: Map CSV records to JavaBeans                              |        |        | X      |        |
-| REQ-R-11: Conditional line skipping via predicate                   |        | X      | X      |        |
-| REQ-R-12: Handle malformed input with exceptions                    | X      |        |        |        |
-| REQ-R-13: Read "standard" CSV files w/no config changes             | X      |        | X      |        |
-| REQ-R-14: Trimming and stripping of space characters                |        |        | X      |        |
-| REQ-R-15: User Story - space separators/read from String            |        |        |        | X      |
-| REQ-W-01: Write CSV with configurable separators                    | X      |        | X      | X      |
-| REQ-W-02: Apply configurable quote characters                       | X      |        |        | X      |
-| REQ-W-03: Implement quote strategies                                | X      |        | X      | X      |
-| REQ-W-04: Handle null and empty values                              | X      | X      | X      | X      |
-| REQ-W-05: Support different line delimiters                         | X      |        | X      | X      |
-| REQ-W-06: Escape special characters                                 | X      |        | X      | X      |
-| REQ-W-07: Write comments to output                                  |        |        | X      |        |
-| REQ-W-08: Write to OutputStream and Writer                          |        | X      |        |        |
-| REQ-W-09: Write "standard" CSV files w/no config changes            | X      |        | X      | X      |
-| REQ-W-10: User Story - structured records                           |        |        |        | X      |
-
-Note: IDM, GBT, EXP, and ACC represent the test groups described in [Section 5.1](#51-test-group-definition)
 
 # 6. Test Environment
 
