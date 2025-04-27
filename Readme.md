@@ -1273,11 +1273,14 @@ The below Traceability Matrix lists the requirements, as detailed above, across 
 The totals along the right side of the matrix indicate how many requirements each test covered.  The totals along the bottom of the matrix indicate how many tests covered each requirement.  
 
 <img src="Images/Traceability.png" alt="Traceability Matrix"/>
-<br><br>
+<br>
+
+**Test Span Analysis**
+<br>
 The below chart was adapted from those demonstrated in Lesson 5.3 of the Canvas Module. This visual demonstrates that the team's project had 25 requirements, covered by 75 tests, with 178 links between the tests and requirements.  This means that, on average, each requirement was covered by approximately 7 tests (178 links divided by 25 requirements) and that, conversely, each test covered an average of ~2.4 requirements (178 links divided by 75 tests).  The team believes that these numbers show an appropriate balance between thoroughness of testing and workload.
 <br><br>
-<img src="Images/TestSpan.png" alt="Test Span" width="800px"/>
-<br><br>
+<img src="Images/TestSpan.png" alt="Test Span" width="600px"/>
+<br>
 
 **Summary Matrix**
 
