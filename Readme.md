@@ -207,20 +207,22 @@ Additionally, GitHub is being used to organize all files related to testing. The
 ```
 ProjectRoot/
 ├── AcceptanceTesting/ ← Files related to Acceptance Testing
-├── Images/ ← Screenshots supporting acceptance tests
-│ └── Tests/ ← .java and .feature files
+|   ├── Images/ ← Screenshots supporting acceptance tests
+│   └── Tests/ ← .java and .feature files
 ├── ExploratoryTesting/ ← Files related to Exploratory Testing
-├── CsvTestFiles/ ← Input/output CSV files
-├── Images/ ← Images from exploratory sessions
-│ └── Tests/ ← Exploratory .java test scripts
+|   ├── CsvTestFiles/ ← Input/output CSV files
+|   ├── Images/ ← Images from exploratory sessions
+│   └── Tests/ ← Exploratory .java test scripts
 ├── GraphBasedTesting/ ← Files related to Graph-Based Testing
-├── CsvTestFiles/ ← Input files in CSV format
-├── ImageUMLs/ ← PlantUML source files for graphs
-├── Images/ ← Rendered graph images
-│ └── Tests/ ← Graph-based .java test cases
-│ └── InputDomainModeling/ ← Files related to Input Domain Modeling
-├── CsvTestFiles/ ← Input/output CSV files
-└── Tests/ ← IDM .java test scripts
+|   ├── CsvTestFiles/ ← Input files in CSV format
+|   ├── Images/ ← Screenshots support GBT and rendered graph images
+|   ├── ImageUMLs/ ← PlantUML source files for graphs
+│   └── Tests/ ← Graph-based .java test cases
+├── Images/ ← Images unrelated to testing group
+└── InputDomainModeling/ ← Files related to Input Domain Modeling
+    ├── CsvTestFiles/ ← Input/output CSV files
+    ├── Images/ ← Screenshots supporting IDM tests
+    └── Tests/ ← IDM .java test scripts
 ```
 
 # 4. Test Approach
@@ -547,7 +549,7 @@ The below table shows an alternate view of the above. Each test number as column
 | test # (prefix = IDM-W-) | 01  | 02  | 03  | 04  | 05  | 06  | 07  | 08  |
 | ------------------------ | --- | --- | --- | --- | --- | --- | --- | --- |
 | values                   | a3  | a1  | a2  | a4  | a3  | a3  | a3  | a4  |
-| fieldSeperator           | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  |
+| fieldSeparator           | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  |
 | quoteCharacter           | c1  | c1  | c1  | c1  | c1  | c2  | c1  | c1  |
 | quoteStrategy            | d1  | d2  | d2  | d1  | d1  | d1  | d2  | d1  |
 | lineDelimiter            | e1  | e1  | e1  | e1  | e1  | e1  | e1  | e2  |
@@ -653,14 +655,14 @@ For the `CsvReader` component, the team selected the `ofCsvRecord(Path file)` me
 The "Each-Choice" coverage criterion was selected to ensure each block is tested at least once, providing broad coverage of file reading scenarios (e.g., valid input, edge cases) while keeping the test set manageable.
 
 **Test Set Definition**<br>
-The below table shows each test number as columns (the "IDM-R-" prefix has been removed for formatting). Each tested input variable is listed in a row. The intersections show the specific block of the input variable that is being covered by a specific test. For example, Test # 07 covers block a7 of the `file` input variable, block b1 of the `field seperator` input variable, block c1 of the `quote strategy` input variable and block h1 of the `detectBomHeader` input variable.
+The below table shows each test number as columns (the "IDM-R-" prefix has been removed for formatting). Each tested input variable is listed in a row. The intersections show the specific block of the input variable that is being covered by a specific test. For example, Test # 07 covers block a7 of the `file` input variable, block b1 of the `field separator` input variable, block c1 of the `quote strategy` input variable and block h1 of the `detectBomHeader` input variable.
 
 The code for the tests can be found in [TestReaderIDM.java](/InputDomainModeling/Tests/TestReaderIDM.java)
 
 | test # (prefix = IDM-R-)  | 01  | 02  | 03  | 04  | 05  | 06  | 07  | 08  | 09  | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  |
 | ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | file                      | a1  | a2  | a3  | a4  | a5  | a6  | a7  | a8  | a9  | a10 | a11 | a12 | a13 | a14 | a15 | a13 | a8  | a9  |
-| fieldSeperator            | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  | b1  | b1  | b1  | b1  |
+| fieldSeparator            | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b1  | b2  | b1  | b1  | b1  | b1  | b1  | b1  | b1  |
 | quoteCharacter            |     |     |     |     |     | c1  | c1  |     |     |     |     | c2  |     |     |     |     |     |     |
 | commentStrategy           |     |     |     |     |     |     |     |     |     |     |     |     | d2  | d2  |     | d1  |     |     |
 | commentCharacter          |     |     |     |     |     |     |     |     |     |     |     |     | e1  | e2  |     | e1  |     |     |
@@ -1014,7 +1016,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-B-01 | Wrote test case to read small compressed file and test the output                       | No Exceptions | Read in 4 rows and three columns without exception                                    | - [Input File](/ExploratoryTesting/CsvTestFiles/reader-file-a01.csv.gz) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png) |
 | EXP-B-02 | Wrote test case to read very large compressed file and test the output                  | No Exceptions | File contains 10M entries                                                             | - Input File Excluded Due to Size <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png)                                       |
 | EXP-B-03 | Wrote test case to write compressed file and subsequently read the same compressed file | No Exceptions | Wrote and read in 4 rows and 3 columns without exception                              | - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_1.png)                                                                              |
-| EXP-B-04 | Tested indexed reading of very large (100M line) file                                   | No Exceptions | - Initial file read under 10000ms<br>- Subequent indexed page reads took 12ms or less | - Input File Excluded Due to Size <br>- [Test Script](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_2.png)                                   |
+| EXP-B-04 | Tested indexed reading of very large (100M line) file                                   | No Exceptions | - Initial file read under 10000ms<br>- Subsequent indexed page reads took 12ms or less | - Input File Excluded Due to Size <br>- [Test Script](/ExploratoryTesting/Tests/BackAlleyTourIndex.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_2.png)                                   |
 
 #### **5.2.3.2 Back Alley Tour - Part II**
 
@@ -1033,9 +1035,9 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | Test#    | What Done                                                                             | Status        | Comment                                                                    | Test Artifacts                                                                                                                                                                                                         |
 | -------- | ------------------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EXP-B-05 | Test mapping of csv file to Java beans                                                | No Exceptions | Read in 3 row, 5 columns of data with mixed types and stored as Java Beans | - [Input File](/ExploratoryTesting/CsvTestFiles/testJavaBeans.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_JB.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyJB_1.png)          |
-| EXP-B-06 | Test trimming of standard ASCII space characters preceding and following value in CSV | No Exceptions | File contained no unicode spaces. FastCSV successfully eliminated spaces   | - [Input File](/ExploratoryTesting/CsvTestFiles/testTrimSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_1.png)   |
-| EXP-B-07 | Tested trimming of unicode space characters preceding and following value in CSV      | No Exceptions | Program correctly did not remove unicode space characters                  | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_2.png)  |
-| EXP-B-08 | Tested stripping of unicode space characters preceding and following value in CSV     | No Exceptions | Program correctly removed unicode space characters                         | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_Strip1.png) |
+| EXP-B-06 | Test trimming of standard ASCII space characters preceding and following value in CSV | No Exceptions | File contained no Unicode spaces. FastCSV successfully eliminated spaces   | - [Input File](/ExploratoryTesting/CsvTestFiles/testTrimSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_1.png)   |
+| EXP-B-07 | Tested trimming of Unicode space characters preceding and following value in CSV      | No Exceptions | Program correctly did not remove Unicode space characters                  | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlleyTrim_2.png)  |
+| EXP-B-08 | Tested stripping of Unicode space characters preceding and following value in CSV     | No Exceptions | Program correctly removed Unicode space characters                         | - [Input File](/ExploratoryTesting/CsvTestFiles/testStripSpaces.csv) <br> - [Test Script](/ExploratoryTesting/Tests/BackAlleyTour2_Modify.java)<br>- [Test Execution](/ExploratoryTesting/Images/BackAlley_Strip1.png) |
 
 #### **5.2.3.3 Collector's Tour Report**
 
@@ -1102,7 +1104,7 @@ The code for the tests can be found in [TestWriterGraph.java](GraphBasedTesting/
 | EXP-I-01 | Tested reading of 100 million line file using CSVReader                            | No Exceptions | - Created 100 million line test file using below website with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 9636ms                                                                                                                                                                                                | - Input File Excluded Due to Size <br>- [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test1.png)                                                                        |
 | EXP-I-02 | Tested reading of ~900 million line file using CSV Reader                          | No Exceptions | - Created ~900 million line test file using below website and manually copying and pasting data with columns for 'first', 'last', and 'phone' https://www.convertcsv.com/generate-test-data.htm<br>- Wrote and executed Java program to read in file and count number of lines read.<br> - Noted that run time for processing file was 85121ms                                                                                                                                                        | - Input File Excluded Due to Size <br>- [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test2.png)                                                                        |
 | EXP-I-03 | Tested reading and writing of 100 million line file using CSVReader and CSVWriter  | No Exceptions | - Wrote Java program to read in lines from 100 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 20486ms<br>- Used Windows fc to compare files and noted that they were exact duplicates of each other                                                                                                                                                            | - Input File Excluded Due to Size <br>- [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test3a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test3c.png)  |
-| EXP-I-04 | Tested reading and writing of ~900 million line file using CSVReader and CSVWriter | No Exceptions | - Wrote Java program to read in lines from ~900 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 176041ms<br>- Attemped to use Windows FC to compare files, but file size was too large. This is a limitation of Windows FC and not the program being tested.<br>- Visually compared size of files with Windows Explorer and noted that files appear identifical | - Input File Excluded Due to Size <br> - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test4a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test4b.png) |
+| EXP-I-04 | Tested reading and writing of ~900 million line file using CSVReader and CSVWriter | No Exceptions | - Wrote Java program to read in lines from ~900 million line file created above using CSVReader and immediately write those lines to a new csv file using CSVWriter<br> - Executed program and noted that run time for processing was 176041ms<br>- Attempted to use Windows FC to compare files, but file size was too large. This is a limitation of Windows FC and not the program being tested.<br>- Visually compared size of files with Windows Explorer and noted that files appear identical | - Input File Excluded Due to Size <br> - [Test Script](/ExploratoryTesting/Tests/IntellectualTour1.java)<br>- [Test Execution](/ExploratoryTesting/Images/E1_Test4a.png)<br>- [Output Verification](/ExploratoryTesting/Images/E1_Test4b.png) |
 
 #### **5.2.3.6 Landmark Tour**
 
@@ -1211,9 +1213,11 @@ The test verifies that the `CsvWriter` properly writes structured input records 
 
 ## 5.3 Traceability Matrix
 
-The traceability matrix maps the system’s formal requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
+The traceability matrix maps the system’s requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
 
-**Formal Requirements: CsvReader**
+Note: All requirements are listed as formal requirements, with the exception of REQ-R-15 and REQ-W-12, which are user stories created during the acceptance tests.
+
+** Requirements: CsvReader**
 
 | Requirement ID | Description                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------- |
@@ -1231,8 +1235,9 @@ The traceability matrix maps the system’s formal requirements to the test case
 | REQ-R-12       | The system shall throw appropriate exceptions for malformed CSV input.                              |
 | REQ-R-13       | The system shall read standard CSV files (comma separated) with no additional configuration changes |
 | REQ-R-14       | The system shall support the automatic trimming and stripping of space characters                   |
+| REQ-R-15       | As a user,<br>I want to read and parse data with space separators from a String,<br>So that I use the data elsewhere in my program |
 
-**Formal Requirements: CsvWriter**
+** Requirements: CsvWriter**
 
 | Requirement ID | Description                                                                                          |
 | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -1247,6 +1252,7 @@ The traceability matrix maps the system’s formal requirements to the test case
 | REQ-W-09       | The system shall support writing to OutputStreams and Writers.                                       |
 | REQ-W-10       | The system shall flush output automatically or manually as configured.                               |
 | REQ-W-11       | The system shall write standard CSV files (comma separated) with no additional configuration changes |
+| REQ-W-12       | As a software user,<br> I want to be able to write structured records to a CSV file using CSVWriter,  <br>So that I can reliably generate well-formatted CSV output files for downstream use.|
 
 **Traceability Matrix**
 
