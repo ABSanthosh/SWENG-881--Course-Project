@@ -1266,7 +1266,7 @@ Note: The following are two examples of requirements that were acknowledged as v
 
 **Traceability Matrix**
 
-<img src="Images/Traceability.png" alt="Traceability Matrix" width="500"/>
+<img src="Images/Traceability.png" alt="Traceability Matrix"/>
 
 The following represents a summary view of the traceability matrix found above.
 
