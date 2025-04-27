@@ -135,22 +135,27 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 
 ## 3.1 Test Case Exclusions
 
-FastCSV is a mature and feature-heavy library for reading and writing CSVs. Since its initial release in 2015, a significant amount of additional functionality has been added. The team began the project by thoroughly reviewing the FastCSV’s documentation, including the detailed instructions and tutorials outlined on their website. It quickly became clear that, due to time constraints, the team would have to adopt a testing approach that thoroughly tested the primary uses of the software (based on the team’s independent research and discussions), while deemphasizing or even excluding certain scenarios from our testing.
+FastCSV is a mature and feature-heavy library for reading and writing CSVs. Since its initial release in 2015, a significant amount of additional functionality has been added. The team began the project by thoroughly reviewing the FastCSV’s documentation, including the detailed instructions and tutorials outlined on their website. It quickly became clear that, due to time constraints, the team would have to adopt a testing approach that thoroughly tested the primary uses of the software (based on the team’s independent research and internal discussions), while deemphasizing or even excluding certain scenarios from our testing.
 
-One of the team members has nearly two decades of experience utilizing CSV files, as they are very heavily used in business software applications, including general ledger, banking, and analytical systems. Based on this knowledge, independent research, and the description in the FastCSV documentation, the team decided that their testing would exclude the following functionality:
+One of the team members has nearly two decades of experience utilizing CSV files, as they are very heavily used in business software applications, including general ledger, banking, and analytical systems. 
 
-- **CsvReader Customization Parameters (Out of Scope for CSVWriter)**  
-  Though part of the broader FastCSV library, the following `CsvReader` configuration settings were explicitly excluded as they do not affect the functionality or performance of `CSVWriter`:
-  - `acceptingCharsAfterQuotes`: This affects how `CsvReader` tolerates unexpected characters after closing quotes. It is a parsing behavior and has no impact on writing logic.
-  - `maxBufferSize`: Affects reader-side performance and limits during input processing. Not applicable to the write-path tested in this project.
-- **Custom Callback Handlers**  
-  The FastCSV library provides advanced extension points via `CsvCallbackHandler`, `AbstractBaseCsvCallbackHandler`, and `AbstractInternalCsvCallbackHandler`. These allow deep control over how records are processed during reading. As the focus of this project was limited to `CSVWriter`, and these handlers do not influence file output writing, they were not instantiated or tested.
-- **Comment-Writing Functionality in CSVWriter**  
-  The `CsvWriter` component does not provide API-level support for inserting comment lines into output CSVs (unlike `CsvReader`, which does recognize comment lines). As such, test cases related to writing comments were not applicable and therefore excluded.
-- **Error Handling for File System Failures**  
-  Test cases involving low-level I/O errors (e.g., disk full, permission denied, file locks) were excluded as they pertain to Java’s standard file I/O mechanisms, not the logic of `CSVWriter`. These conditions are better suited for integration or system-level testing environments.
+**Based our personal knowledge, independent research, and the description in the FastCSV documentation, the team decided that their testing would exclude the following functionality:**
+
+
 - **CSVWriterBuilder Customization Edge Cases**  
   Scenarios involving non-default encodings, exotic delimiters, or extreme buffer configurations were not explored. These represent valid edge conditions but were deprioritized due to time constraints and low relevance to core functionality validation.
+  - **CsvReader Customization Parameters**  
+  The following `CsvReader` configuration settings were explicitly excluded due to time constraints and the team's evaluation of their priority:
+  - `acceptingCharsAfterQuotes`: This affects how `CsvReader` tolerates unexpected characters after closing quotes.
+  - `maxBufferSize`: Affects reader-side performance and limits during input processing.
+- **Custom Callback Handlers**  
+  The team team explicity excluded Custom Callbank Handlers due to the team's evaluation of their usage potential and time contraints.  The FastCSV library provides advanced extension points via `CsvCallbackHandler`, `AbstractBaseCsvCallbackHandler`, and `AbstractInternalCsvCallbackHandler`. These allow deep control over how records are processed during reading. 
+- **Error Handling for File System Failures**  
+  Test cases involving low-level I/O errors (e.g., disk full, permission denied, file locks) were depriortized as they pertain to Java’s standard file I/O mechanisms, not the logic of the program. These conditions are better suited for integration or system-level testing environments.
+- **CSVWriter Exceptions for Invalid Configurations**
+  Testing of exceptions for certain invalid configurations (e.g., overlapping control characters) were excluded from testing due to time constraints
+- **Auto-Flushing:**
+  Test cases involving auto-flushing were excluded, due to the team's evaluation of their usage potential and time contraints.
 
 No other exclusions were identified during test planning or execution.
 
@@ -364,10 +369,10 @@ The team's organization of test cases into groups and subgroups mirrors the orga
 
 | Group                 | Objective                                                                                                                                                                                                                                                                                                                  |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Input Domain Modeling | To ensure that the primary functionality of the two major features of the system match the expectations set forth in the requirements by segmenting inputs into blocks of related possible values and selecting tests values from those blocks in order to efficiently achieve coverage of a wide variety of input values. |
-| Graph Based Testing   | To test the branching paths of code and ensure that all possible paths match the expected results set forth in the requirements by abstracting the code into graphs and designing test cases to cover the edges of the graphs                                                                                              |
-| Exploratory Testing   | To cover areas not thoroughly tested in the previous methodologies by utilizing timed sessions and tester creativity within the confines of predefined test charters to ensure the system meets its requirements through developing and executing less formalized ad hoc tests.                                            |
-| Acceptance Testing    | To test the system from the perspective of the end user by developing natural language acceptance criteria for user stories and linking coded tests to the criteria, helping to bridge the gap between technical testing and domain knowledge.                                                                              |
+| Input Domain Modeling ("IDM")| To ensure that the primary functionality of the two major features of the system match the expectations set forth in the requirements by segmenting inputs into blocks of related possible values and selecting tests values from those blocks in order to efficiently achieve coverage of a wide variety of input values. |
+| Graph Based Testing ("GBT")  | To test the branching paths of code and ensure that all possible paths match the expected results set forth in the requirements by abstracting the code into graphs and designing test cases to cover the edges of the graphs                                                                                              |
+| Exploratory Testing ("EXP")  | To cover areas not thoroughly tested in the previous methodologies by utilizing timed sessions and tester creativity within the confines of predefined test charters to ensure the system meets its requirements through developing and executing less formalized ad hoc tests.                                            |
+| Acceptance Testing ("ACC")   | To test the system from the perspective of the end user by developing natural language acceptance criteria for user stories and linking coded tests to the criteria, helping to bridge the gap between technical testing and domain knowledge.                                                                              |
 
 Each of the main groups is further broken into subgroups:
 
@@ -1219,7 +1224,7 @@ The test verifies that the `CsvWriter` properly writes structured input records 
 
 The traceability matrix maps the system’s requirements to the test cases designed and executed by the team. This mapping ensures that all functional requirements for the CsvReader and CsvWriter components have been validated through specific and targeted tests. The matrix also provides a means of verifying test completeness and assessing coverage gaps, if any.
 
-Note: All requirements are listed as formal requirements, with the exception of REQ-R-15 and REQ-W-12, which are user stories created during the acceptance tests.
+Note: All requirements are listed as formal requirements, with the exception of REQ-R-15 and REQ-W-10, which are user stories created during the acceptance tests.
 
 ** Requirements: CsvReader**
 
@@ -1243,8 +1248,6 @@ Note: All requirements are listed as formal requirements, with the exception of 
 
 ** Requirements: CsvWriter**
 
-| Requirement ID | Description                                                                                          |
-| -------------- | ---------------------------------------------------------------------------------------------------- |
 | REQ-W-01       | The system shall write CSV records using configurable field separators.                              |
 | REQ-W-02       | The system shall apply configurable quote characters when writing CSV fields.                        |
 | REQ-W-03       | The system shall implement configurable quote strategies, including "always" and "never".            |
@@ -1252,53 +1255,50 @@ Note: All requirements are listed as formal requirements, with the exception of 
 | REQ-W-05       | The system shall support different line delimiters (e.g., CRLF, LF).                                 |
 | REQ-W-06       | The system shall escape special characters such as commas, quotes, and newlines.                     |
 | REQ-W-07       | The system shall write comments using configurable comment characters.                               |
-| REQ-W-08       | The system shall throw exceptions for invalid configurations (e.g., overlapping control characters). |
-| REQ-W-09       | The system shall support writing to OutputStreams and Writers.                                       |
-| REQ-W-10       | The system shall flush output automatically or manually as configured.                               |
-| REQ-W-11       | The system shall write standard CSV files (comma separated) with no additional configuration changes |
-| REQ-W-12       | As a software user,<br> I want to be able to write structured records to a CSV file using CSVWriter,  <br>So that I can reliably generate well-formatted CSV output files for downstream use.|
+| REQ-W-08       | The system shall support writing to OutputStreams and Writers.                                       |
+| REQ-W-09       | The system shall write standard CSV files (comma separated) with no additional configuration changes |
+| REQ-W-10       | As a software user,<br> I want to be able to write structured records to a CSV file using CSVWriter,  <br>So that I can reliably generate well-formatted CSV output files for downstream use.|
+
+Note: The following are two examples of requirements that were acknowledged as valid formal requirements but were *excluded* due to the team's prioritization and time constraints. Further note that other valid requirements could be formulated, but were excluded due to the team's testing limitations:
+
+- The system shall throw exceptions for invalid configurations (e.g., overlapping control characters).
+- The system shall flush output automatically or manually as configured.     
 
 **Traceability Matrix**
 
-| Test Case ID | Description                                                                  | Requirements Covered                                                       |
-| ------------ | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| TC-101       | Input Domain Modeling (IDM) test cases for CsvReader and CsvWriter           | REQ-R-01 to REQ-R-08, REQ-R-11 to REQ-R-13, REQ-W-01 to REQ-W-06, REQ-W-11 |
-| TC-102       | Exploratory testing sessions and tours, including edge case and stress tests | REQ-R-09, REQ-R-10, REQ-W-07, REQ-W-08, REQ-W-09                           |
-| TC-103       | Graph-based test cases for CsvReader, especially control flow tests          | REQ-R-11, REQ-R-13, REQ-W-01, REQ-W-03                                     |
-| TC-104       | Cucumber-based acceptance tests for CsvWriter (Given–When–Then)              | REQ-W-01, REQ-W-02, REQ-W-03, REQ-W-05, REQ-W-06, REQ-W-08, REQ-W-10       |
+<img src="Images/Traceability.png" alt="Traceability Matrix" width="500"/>
 
-| Requirement                                                         | TC-101 | TC-102 | TC-103 | TC-104 |
+The following represents a summary view of the traceability matrix found above.
+
+| Requirement                                                         |  IDM   |  GBT   |  EXP   |  ACC   |
 | ------------------------------------------------------------------- | ------ | ------ | ------ | ------ |
-| REQ-R-01: Read CSV with configurable field separators               | X      |        |        |        |
+| REQ-R-01: Read CSV with configurable field separators               | X      |        |        | X      |
 | REQ-R-02: Handle fields enclosed in quote characters                | X      |        |        |        |
 | REQ-R-03: Support comment lines with configurable comment character | X      |        |        |        |
 | REQ-R-04: Skip or retain comments based on strategy                 | X      |        |        |        |
 | REQ-R-05: Parse inconsistent column counts                          | X      |        |        |        |
 | REQ-R-06: Skip or retain empty lines                                | X      |        |        |        |
 | REQ-R-07: Handle BOM headers                                        | X      |        |        |        |
-| REQ-R-08: Read large CSV files with good performance                | X      |        |        |        |
-| REQ-R-09: Read compressed CSV files (gzip)                          |        | X      |        |        |
-| REQ-R-10: Map CSV records to JavaBeans                              |        | X      |        |        |
-| REQ-R-11: Conditional line skipping via predicate                   | X      |        | X      |        |
+| REQ-R-08: Read large CSV files with good performance                | X      |        | X      |        |
+| REQ-R-09: Read compressed CSV files (gzip)                          |        |        | X      |        |
+| REQ-R-10: Map CSV records to JavaBeans                              |        |        | X      |        |
+| REQ-R-11: Conditional line skipping via predicate                   |        | X      | X      |        |
 | REQ-R-12: Handle malformed input with exceptions                    | X      |        |        |        |
 | REQ-R-13: Read "standard" CSV files w/no config changes             | X      |        | X      |        |
+| REQ-R-14: Trimming and stripping of space characters                |        |        | X      |        |
+| REQ-R-15: User Story - space separators/read from String            |        |        |        | X      |
 | REQ-W-01: Write CSV with configurable separators                    | X      |        | X      | X      |
 | REQ-W-02: Apply configurable quote characters                       | X      |        |        | X      |
 | REQ-W-03: Implement quote strategies                                | X      |        | X      | X      |
-| REQ-W-04: Handle null and empty values                              | X      |        | X      |        |
-| REQ-W-05: Support different line delimiters                         | X      |        |        | X      |
-| REQ-W-06: Escape special characters                                 | X      |        |        | X      |
-| REQ-W-07: Write comments to output                                  |        | X      |        |        |
-| REQ-W-08: Throw exceptions for invalid configurations               |        | X      |        | X      |
-| REQ-W-09: Write to OutputStream and Writer                          | X      | X      |        |        |
-| REQ-W-10: Control flushing behavior                                 |        |        |        | X      |
-| REQ-W-11: Write "standard" CSV files w/no config changes            | X      |        |        |        |
+| REQ-W-04: Handle null and empty values                              | X      | X      | X      | X      |
+| REQ-W-05: Support different line delimiters                         | X      |        | X      | X      |
+| REQ-W-06: Escape special characters                                 | X      |        | X      | X      |
+| REQ-W-07: Write comments to output                                  |        |        | X      |        |
+| REQ-W-08: Write to OutputStream and Writer                          |        | X      |        |        |
+| REQ-W-09: Write "standard" CSV files w/no config changes            | X      |        | X      | X      |
+| REQ-W-10: User Story - structured records                           |        |        |        | X      |
 
-- IDM refers to Input Domain Modeling test cases, e.g., `IDM-W-01` for CsvWriter or `IDM-R-06` for CsvReader.
-- GBT-R-\* refers to Graph-Based test cases for CsvReader's `skipLines()` method.
-- Exploratory Tours reference specific session-based tests targeting real-world behavior, error-handling, and performance.
-- This matrix helps ensure that every specified requirement is traceable to at least one concrete test execution, confirming test coverage.
-</details>
+Note: IDM, GBT, EXP, and ACC represent the test groups described in [Section 5.1](#51-test-group-definition)
 
 # 6. Test Environment
 
