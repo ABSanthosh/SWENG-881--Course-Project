@@ -68,9 +68,9 @@
 
 The following is a brief description of the remaining portions of the testing report.
 
-- **Feature Description:** This section provides a high-level overview of the primary features of FastCSV. The purpose of this section is to educate the reader on the software and to provide a detailed description of the team’s assessment of primary functionality. This section serves both as an introduction to the software and as a reference for the testing described in the remainder of the document.
+- **Feature Description:** This section provides a high-level overview of the primary features of FastCSV. The purpose of this section is to educate the reader on the software and to provide a detailed description of the team’s assessment of its primary functionality. This section serves both as an introduction to the software and as a reference for the testing described in the remainder of the document.
 - **Assumptions:** This section serves two primary purposes. Firstly, it lays out the team’s reasoning for excluding certain features and requirements of the software from the testing plan. This section can be crucial, as it serves to memorialize the logic around the exclusions and to provide the reader with a roadmap of any additional testing that might be required to get comfort over their particular usage of the software. Secondly, it describes the tools utilized during the testing and details pertinent organization structures utilized to describe the testing in the remainder of the document.
-- **Test Approach:** This primary purpose of this section is to document the team’s test strategy and the reasoning behind choosing these approaches, including any special situations that might fall outside of the general approach. This section also lays out any past issues that are pertinent to our testing, which in the case of an open-source application like FastCSV are generally well-documented. Finally, this section outlines the categories of tests cases for the software, including categories for certain non-functional requirements of the software.
+- **Test Approach:** The primary purpose of this section is to document the team’s test strategy and the reasoning behind choosing these approaches, including any special situations that might fall outside of the general approach. This section also lays out any past issues that are pertinent to our testing, which in the case of a mature application like FastCSV are generally minimal and well-documented. Finally, this section outlines the categories of tests cases for the software.
 - **Test Cases:** This section serves to categorize and document the specific tests that were performed. It also details the organization structure of the test cases and provides a traceability matrix to tie the tests into the specific software requirements.
 - **Test Environment:** The purpose of this section is to describe the specifics around the test environment, both in terms of the hardware used in testing and the organization of the software environment. A primary purpose of this section is to enhance the reproducibility of the tests by specifying this aforementioned information.
 - **Testing Results:** This section serves as a running log of the results of each test performed, including their status and any observations made during the testing.
@@ -135,9 +135,7 @@ Per the official FastCSV website, “FastCSV is a high-performance CSV parser an
 
 ## 3.1 Test Case Exclusions
 
-FastCSV is a mature and feature-heavy library for reading and writing CSVs. Since its initial release in 2015, a significant amount of additional functionality has been added. The team began the project by thoroughly reviewing the FastCSV’s documentation, including the detailed instructions and tutorials outlined on their website. It quickly became clear that, due to time constraints, the team would have to adopt a testing approach that thoroughly tested the primary uses of the software (based on the team’s independent research and internal discussions), while deemphasizing or even excluding certain scenarios from our testing.
-
-One of the team members has nearly two decades of experience utilizing CSV files, as they are very heavily used in business software applications, including general ledger, banking, and analytical systems. 
+FastCSV is a mature and feature-heavy library for reading and writing CSVs. Since its initial release in 2015, a significant amount of additional functionality has been added. The team began the project by thoroughly reviewing FastCSV’s documentation, including the detailed instructions and tutorials outlined on their website. It quickly became clear that, due to time constraints, the team would have to adopt a testing approach that thoroughly tested the primary uses of the software (based on the team’s independent research and internal discussions), while deemphasizing or even excluding certain scenarios from our testing.
 
 **Based our personal knowledge, independent research, and the description in the FastCSV documentation, the team decided that their testing would exclude the following functionality:**
 
@@ -145,17 +143,17 @@ One of the team members has nearly two decades of experience utilizing CSV files
 - **CSVWriterBuilder Customization Edge Cases**  
   Scenarios involving non-default encodings, exotic delimiters, or extreme buffer configurations were not explored. These represent valid edge conditions but were deprioritized due to time constraints and low relevance to core functionality validation.
   - **CsvReader Customization Parameters**  
-  The following `CsvReader` configuration settings were explicitly excluded due to time constraints and the team's evaluation of their priority:
-  - `acceptingCharsAfterQuotes`: This affects how `CsvReader` tolerates unexpected characters after closing quotes.
+  The following CsvReader configuration settings were excluded due to time constraints and the team's evaluation of their priority:
+  - `acceptingCharsAfterQuotes`: This affects how CsvReader tolerates unexpected characters after closing quotes.
   - `maxBufferSize`: Affects reader-side performance and limits during input processing.
 - **Custom Callback Handlers**  
-  The team team explicity excluded Custom Callbank Handlers due to the team's evaluation of their usage potential and time contraints.  The FastCSV library provides advanced extension points via `CsvCallbackHandler`, `AbstractBaseCsvCallbackHandler`, and `AbstractInternalCsvCallbackHandler`. These allow deep control over how records are processed during reading. 
+  The team excluded Custom Callback Handlers, which allow custom control over the reading of records, due to the team's evaluation of their usage potential and time constraints.
 - **Error Handling for File System Failures**  
-  Test cases involving low-level I/O errors (e.g., disk full, permission denied, file locks) were depriortized as they pertain to Java’s standard file I/O mechanisms, not the logic of the program. These conditions are better suited for integration or system-level testing environments.
+  Test cases involving low-level I/O errors (e.g., disk full, permission denied, file locks) were deprioritized as they pertain to Java’s standard file I/O mechanisms, not the logic of the program. These conditions are better suited for integration or system-level testing environments.
 - **CSVWriter Exceptions for Invalid Configurations**
   Testing of exceptions for certain invalid configurations (e.g., overlapping control characters) were excluded from testing due to time constraints
 - **Auto-Flushing:**
-  Test cases involving auto-flushing were excluded, due to the team's evaluation of their usage potential and time contraints.
+  Test cases involving auto-flushing were excluded, due to the team's evaluation of their usage potential and time constraints.
 
 No other exclusions were identified during test planning or execution.
 
@@ -165,19 +163,19 @@ No other exclusions were identified during test planning or execution.
 
 The full list of test tools utilized are listed in [Section 4.3](#43-test-strategy), as related to testing strategy, and [Section 6](#6-test-environment), as related to the overall test environment. The following, however, serves as an introduction to the tools used along with the reasoning behind their usage.
 
-- **IntelliJ IDEA Community Edition** – a robustly featured IDE developed and owned by JetBrains. While the Community Edition has slightly fewer features than the full edition, it is still very robust and more than capable for the scope of this project. Since FastCSV is written in Java, the team decided to utilize IntelliJ as the IDE for testing. This was selected for several reasons:
-  - The team has experience using IntelliJ, so there would be little to no learning curve
-  - The other testing tools utilized (namely, JUnit and Cucumber) are known to work well with IntelliJ IDEA and the team has experience using these tools in conjunction with IntelliJ IDEA.
+- **IntelliJ IDEA Community Edition** – a robustly featured IDE developed and owned by JetBrains. While the Community Edition has fewer features than the full edition, it is still very robust and more than capable for the scope of this project. Since FastCSV is written in Java, Adam decided to utilize IntelliJ as the IDE for testing. This was selected for several reasons:
+  - Adam has experience using IntelliJ, so there would be little to no learning curve
+  - The other testing tools utilized (namely, JUnit and Cucumber) are known to work well with IntelliJ IDEA and Adam has experience using these tools in conjunction with IntelliJ IDEA.
   - IntelliJ IDEA is one of the most popular and supported Java IDEs on the market.
 - **Visual Studio Code (VSCode)** – the primary IDE used by Santhosh for all test implementation and documentation tasks. VSCode provided strong support for Java development, CSV file inspection, and markdown editing. Its lightweight interface and extensibility through extensions like Java Language Support, Markdown Preview, and Git integration made it the central tool for development, testing, and reporting.
 - **JUnit** – an open-source testing framework that is widely used in industry and academia. It uses a combination of assertions and annotations to organize and automate testing. This was selected due to its popularity and the team’s experience in using JUnit for testing.
 - **Mockito** - an open-source framework that integrates with Java and allows the tester to mock objects to simulate desired behavior from the mocked methods.  The team specifically used Mockito to throw IOExceptions when performing Graph Based Testing for the CSVReader in [Section 5.2.2.1](#5221-csvreader-graph-based-test-cases)
 
-- **Cucumber** –an open-source framework that allows for acceptance test criteria to be written in a natural language that both the technical and non-technical stakeholders can understand. Cucumber utilizes .feature files to write these plain language tests, which are then directly linked to the Java code and JUnit tests that actually test the code. The team selected Cucumber due to their experience using it and the simplicity of implementation.
+- **Cucumber** –an open-source framework that allows for acceptance test criteria to be written in a natural language that both technical and non-technical stakeholders can understand. Cucumber utilizes .feature files to write these plain language tests, which are then directly linked to the Java code and JUnit tests that actually test the code. The team selected Cucumber due to their experience using it and the simplicity of implementation.
 
 ### 3.2.2 Test Formats
 
-The testing formats utilized generally parallel those that were covered in the course. These are explained in more detail, including the rational for choosing them, in [Section 4.2](#42-special-testing-considerations). The individual test formats are also explained in great detail in [Section 5.2](#52-test-cases), alongside the test cases.
+The testing formats utilized generally parallel those that were covered in the course. These are explained in more detail, including the rational for choosing them, in [Section 4.3](#43-test-strategy). The individual test formats are also explained in great detail in [Section 5.2](#52-test-cases), alongside the test cases.
 
 ### 3.2.3 Organizational Scheme
 
@@ -199,10 +197,10 @@ Several organizational conventions were utilized when developing this testing do
     - `F`: an exploratory test that is part of the FedEx Tour
     - `I`: an exploratory test that is part of the Intellectual Tour
     - `L`: an exploratory test that is part of the Landmark Tour
-  - `33` represents the unique test number that is part of the preceding categorizations.
+  - `33`: represents the unique test number that is part of the preceding categorizations.
 - **Unique Requirement Identifiers**
   - Requirements targeting the CSVWriter functionality are formatted with REQ-W-XX where XX represents the requirement number
-  - Requirements targeting the CSVReader functionality are formatted with REQ-W-XX where XX represents the requirement number
+  - Requirements targeting the CSVReader functionality are formatted with REQ-R-XX where XX represents the requirement number
 - **Unique Block Identifiers** - For Input Domain Testing, each input variable is partitioned into blocks. Those blocks are uniquely numbered with a character representing the input variable and a number representing the partition number.
 
 **GitHub Structure**
@@ -249,7 +247,7 @@ The team has noted the following special considerations when developing our test
 
 There are two primary parts of FastCSV: CSVReader and CSVWriter. Both parts have deep functionality, with multiple uses and customization options (as described previously in [Section 2](#2-feature-description)). The team decided to apply various testing strategies across both parts of the software, to diversify testing and maximize coverage, while strategically targeting the most common uses of the software.
 
-CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are overwhelmingly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comment or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
+CSV files are commonly used as an application-agnostic format to transfer information between spreadsheets, from spreadsheets to other applications, or between non-spreadsheet applications. One of the authors has extensive experience in the finance industry and has seen CSV files used to transfer information between spreadsheets and general ledger, banking, and specialty subledger systems. These files are most commonly formatted with a consistent number of columns between rows, with values separated by commas, and with no extraneous comments or blank rows. When designing and planning our testing approach, the team decided to focus predominantly on this most common usage, while also ensuring that edge case CSV format and program functionality was covered.
 
 The following are the testing techniques that were utilized, along with a description of how the testing was performed:
 
@@ -266,13 +264,15 @@ Our testing approach was designed with the following core objectives:
 
 **Input Domain Modeling**
 
-Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, the a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in [Section 5.2](#52-test-cases) below.
+Per the Canvas module, Input Domain Modeling involves partitioning each parameter of a function into blocks of logically related input values and then testing a value from each of the blocks. In the case of CSVReader and CSVWriter, a selection of input variables were chosen as the target parameters that were then partioned and tested. More about the variables, the chosen coverage criteria, and the selected tests can be found in [Section 5.2](#52-test-cases) below.
 
 Input Domain Modeling was chosen to test CSVReader and CSVWriter methods as this technique prioritized **core functionality** and **high-impact configuration combinations**, based on:
 
 - Realistic usage patterns (e.g., comma vs. semicolon separators)
 - Documented edge behavior (e.g., nulls, embedded quotes/newlines)
 - Risk of data corruption (e.g., malformed quoting logic)
+
+Additional reasons for selecting Input Domain Modeling are as follows:
 - Using Input Domain Modeling on these higher-level components provides the team with an opportunity to understand the major functionality of FastCSV early in the testing process. This understanding will assist in designing subsequent tests.
 - Since FastCSV is already in production and the primary functionality is fully operational, testing at this level is a practical option at this early stage in the testing process. If this were an early sprint in an Agile project, this level of testing might not be available, since the functionality would not be fully developed.
 - The components, and in particular the csv files themselves, are good targets for Input Domain Testing. The input domain of the csv files is practically infinite, but those possibilities can be logically partitioned into blocks representing both common use cases and edge cases. This allowed the team to develop a manageable framework for testing a large input space.
@@ -281,19 +281,19 @@ JUnit was utilized to test both CSVReader and CSVWriter.
 
 **Graph Based Testing**
 
-For logic-heavy methods like `skipLines(Predicate, int)` and `writeRecord(...)`, we abstracted their behavior into Control Flow Graphs (CFGs) for our graph based testing. CFGs are used to abstract the flow of a section code into a graph in order design tests based on that abstraction. CFGs provide a visual representation of often complex functionality. Once the graph is created, it allows for generating test cases that ensure coverage of a the nodes and edges of the CFG in varying combinations of traversal. The team selected edge coverage for our criteria, as, per the Canvas module, it ensures "that each edge is traversed at least once."
+For logic-heavy methods like `skipLines(Predicate, int)` and `writeRecord(...)`, we abstracted their behavior into Control Flow Graphs (CFGs) for our graph based testing. CFGs are used to abstract the flow of a section code into a graph in order to design tests based on that abstraction. CFGs provide a visual representation of often complex functionality. Once the graph is created, it allows for generating test cases that ensure coverage of a the nodes and edges of the CFG in varying combinations of traversal. The team selected edge coverage for our criteria since, per the Canvas module, it ensures "that each edge is traversed at least once."
 
-Graphs were chosen specifically for:
+More specifically, the team utilized Graph Based Testing for :
 
-- Complex branching or nested decision structures
-- Risk of silent failure (e.g., skipping incorrect lines, misplacing delimiters)
+- Testing complex branching or nested decision structures
+- Mitigating the risk of silent failure (e.g., skipping incorrect lines, misplacing delimiters)
 - Validating proper exception throwing on invalid or edge input
 
 JUnit was utilized to test both methods. [PlantUML](https://plantuml.com) was used to design the CFGs. The [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage) was utilized to further abstract the CFG into a standardized number node format. Mockito was used to mock `IOException` throws for CSVReader.
 
 **Exploratory Testing**
 
-Exploratory testing is a less rigid approach to testing that can be utilized to augment traditional testing approaches. The team’s exploratory tests began with defining “tours,” which, per the class slides, are “recommended testing charters.” By reviewing the listing of predefined tours, the team was able to brainstorm appropriate tests that were not fully covered by the previous testing (input domain and graph-based).
+Exploratory testing is a less rigid approach to testing that can be utilized to augment traditional testing approaches. The team’s exploratory tests began with defining “tours,” which, per the class slides, are “recommended testing charters.” By reviewing the listing of predefined tours, the team was able to brainstorm appropriate tests that were not fully covered by the previous testing.
 
 The tour themes were chosen based on:
 
@@ -313,9 +313,9 @@ The team employed acceptance testing to validate the system’s behavior against
 
 Each acceptance test scenario was linked directly to its corresponding feature implementation, allowing for automated verification of expected outcomes. These tests served both as a validation mechanism and as living documentation of the system’s behavior. The acceptance tests primarily targeted high-value use cases within the CSVWriter component, ensuring that output formatting, quoting behavior, and error handling conformed to user expectations.
 
-The tests were executed within the IntelliJ and VSCode IDEs, and results were verified through the Cucumber test runner interface. Evidence of test execution was preserved as screenshots and
+The tests were executed within the IntelliJ and VSCode IDEs, and results were verified through the Cucumber test runner interface. 
 
-To ensure key functionality met user-facing expectations, we implemented **Given–When–Then** acceptance tests using **Cucumber and JUnit 5**. These scenarios validated end-to-end behavior, particularly:
+The acceptance tests validated end-to-end behavior, particularly:
 
 - File writing integrity (`ACC-W-01`)
 - Alternate separator handling (`ACC-R-01`)
@@ -340,12 +340,12 @@ Robustness was embedded into each category by including:
 
 ## 4.4 Test Categories
 
-All of tests that the team performed for FastCSV were functional. The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality.
+All of the tests that the team performed for FastCSV were functional. The functionality for the software is deep and highly configurable, so the team planned to focus the testing on this functionality.
 
 Several of our tests also covered non-functional categories, though, as described in Section 4.2 of the Canvas Module:
 
 - **Robustness Tests** – Many of our tests also met the definition of Boundary Value tests.
-  - **System Defaults** - Per the Canvas module, boundary tests can target default values. FastCSV is configured with many default values that represent the most common use case of the system. The majority of the tests conducted by the team include at least one or more configuration options that remain at their default values. While this category is noted, the team has decided to not utilize System Defaults as an additional classification for the tests, since all tests would be labeled as such providing little additional value.
+  - **System Defaults** - Per the Canvas module, boundary tests can target default values. FastCSV is configured with many default values that represent the most common use case of the system. The majority of the tests conducted by the team include at least one or more configuration options that remain at their default values. While this category is noted, the team has decided to *not* utilize System Defaults as an additional classification for the tests, since all tests would be labeled as such providing little additional value.
   - **Special Values** – Many of the team’s tests include testing edge cases or special values to ensure that they are handled properly by the system. For example, some tests in the Input Domain Modeling section test how the system handles special characters, commas used as data (these are also used as field separators), etc.
   - **Invalid Data** – Several of the tests involve providing invalid data (including data that should correctly throw errors) to the System and ensuring that the System handles the error gracefully.
 - **Performance Tests** – As part of our exploratory testing, the team tested the performance of the System while reading exceptionally large csv files.
@@ -353,11 +353,11 @@ Several of our tests also covered non-functional categories, though, as describe
 
 Given the above, the team will classify tests using the following categories:
 
-- Functional
-- Robustness-Special Values ("Spec Val")
-- Robustness-Invalid Data ("Invalid Data")
-- Performance ("Perf")
-- Stress
+- **Functional**
+- **Robustness-Special Values ("Spec Val")**
+- **Robustness-Invalid Data ("Invalid Data")**
+- **Performance ("Perf")**
+- **Stress**
 
 Refer to [Section 7](#7-testing-results) below for a complete list of Tests, Categories, and Results.
 
@@ -365,7 +365,7 @@ Refer to [Section 7](#7-testing-results) below for a complete list of Tests, Cat
 
 ## 5.1 Test Group Definition
 
-The team's organization of test cases into groups and subgroups mirrors the organization of the test cases numbering pattern, as described in [Section 3.2](#32-test-tools-formats-and-organizational-scheme). The tests are divided into four distinct testing groups, one for each type of testing performed:
+The team's organization of test cases into groups and subgroups mirrors the organization of the test case numbering pattern, as described in [Section 3.2](#32-test-tools-formats-and-organizational-scheme). The tests are divided into four distinct testing groups, one for each type of testing performed:
 
 | Group                 | Objective                                                                                                                                                                                                                                                                                                                  |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -388,7 +388,7 @@ Each of the main groups is further broken into subgroups:
 
 Note: The definition for the tours in the above table were adapted from the Canvas module.
 
-By examining each test case number, the read can clearly determine both the category and subcategory of the test case. For example, test IDM-W-01 is category Input Domain Modeling and subcategory Writer. Test case EXP-C-02 is category Exploratory Tour and subcategory Collector's Tour. The test case identifier schema is defined in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).
+By examining each test case number, the reader can clearly determine both the category and subcategory of the test case. For example, test IDM-W-01 is category Input Domain Modeling and subcategory Writer. Test case EXP-C-02 is category Exploratory Tour and subcategory Collector's Tour. The test case identifier schema is defined in [Section 3.2](#32-test-tools-formats-and-organizational-scheme).
 
 ## 5.2 Test Cases
 
@@ -600,16 +600,16 @@ For the `CsvReader` component, the team selected the `ofCsvRecord(Path file)` me
 
 **List of Input Variables**
 
-| Input Variable              | Type                   | Description                                                                     | Default Value |
-| --------------------------- | ---------------------- | ------------------------------------------------------------------------------- | ------------- |
-| `file`                      | `Path`                 | A `Path` object representing the CSV file to read.                              | —             |
-| `fieldSeparator`            | `char`                 | A character defining the separator between fields.                              | `,`           |
-| `quoteCharacter`            | `char`                 | A character used to enclose fields.                                             | `"`           |
-| `commentStrategy`           | `CommentStrategy` enum | Determines how comment lines are handled.                                       | `NONE`        |
-| `commentCharacter`          | `char`                 | Denotes the beginning of a comment line.                                        | `#`           |
-| `ignoreDifferentFieldCount` | `boolean`              | Controls whether to ignore malformed files with different field counts per row. | `true`        |
-| `skipEmptyLines`            | `boolean`              | Controls whether empty lines are skipped during parsing.                        | `true`        |
-| `detectBomHeader`           | `boolean`              | Controls whether to detect and skip BOM header in CSV file.                     | `false`       |
+| Input Variable              | Description                                                                     | Default Value |
+| --------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| `file`                      | A `Path` object representing the CSV file to read.                              | —             |
+| `fieldSeparator`            | A character defining the separator between fields.                              | `,`           |
+| `quoteCharacter`            | A character used to enclose fields.                                             | `"`           |
+| `commentStrategy`           | Determines how comment lines are handled.                                       | `NONE`        |
+| `commentCharacter`          | Denotes the beginning of a comment line.                                        | `#`           |
+| `ignoreDifferentFieldCount` | Controls whether to ignore malformed files with different field counts per row. | `true`        |
+| `skipEmptyLines`            | Controls whether empty lines are skipped during parsing.                        | `true`        |
+| `detectBomHeader`           | Controls whether to detect and skip BOM header in CSV file.                     | `false`       |
 
 **Characteristics of Input Variables**
 
@@ -896,7 +896,7 @@ writeRecord(values):
     endRecord()
 ```
 
-Based on the pseudo code for the `writeRecord(String... values)` method, I have numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
+Based on the pseudo code for the `writeRecord(String... values)` method, the team numbered the nodes and extracted the corresponding edges in the format required by the [Graph Coverage web application](https://cs.gmu.edu:8443/offutt/coverage/GraphCoverage).
 
 **Node Numbering Scheme**
 
@@ -1355,7 +1355,7 @@ package "Test Environment" {
 
 Tests were implemented in Java using the JUnit 5 testing framework. Input Domain Modeling and Graph-Based Testing were manually derived and implemented through parameterized unit tests. Exploratory testing followed a session-based structure and was documented using a pre-defined charter format. Cucumber was introduced in the final phase for automating acceptance tests based on Given–When–Then user stories.
 
-Test data files were stored in organized subdirectories (e.g., `InputDomainModeling/CsvTestFiles`, `GraphBasedTesting/CsvTestFiles`) and referenced directly from test code. Tests were executed via IDE and command-line using Maven’s Surefire plugin and Gradle’s test task.
+Test data files were stored in organized subdirectories (e.g., `InputDomainModeling/CsvTestFiles`, `GraphBasedTesting/CsvTestFiles`) and referenced directly from test code. Tests were executed via IDE and command-line using Gradle’s test task.
 
 ### 6.4 Equipment Table
 
