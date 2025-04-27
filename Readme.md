@@ -1248,6 +1248,8 @@ Note: All requirements are listed as formal requirements, with the exception of 
 
 ** Requirements: CsvWriter**
 
+| Requirement ID | Description                                                                                          |
+| -------------- | ---------------------------------------------------------------------------------------------------- |
 | REQ-W-01       | The system shall write CSV records using configurable field separators.                              |
 | REQ-W-02       | The system shall apply configurable quote characters when writing CSV fields.                        |
 | REQ-W-03       | The system shall implement configurable quote strategies, including "always" and "never".            |
