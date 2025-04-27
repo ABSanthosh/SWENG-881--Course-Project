@@ -1226,7 +1226,7 @@ The traceability matrix maps the system’s requirements to the test cases desig
 
 Note: All requirements are listed as formal requirements, with the exception of REQ-R-15 and REQ-W-10, which are user stories created during the acceptance tests.
 
-** Requirements: CsvReader**
+**Requirements: CsvReader**
 
 | Requirement ID | Description                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------- |
@@ -1246,7 +1246,7 @@ Note: All requirements are listed as formal requirements, with the exception of 
 | REQ-R-14       | The system shall support the automatic trimming and stripping of space characters                   |
 | REQ-R-15       | As a user,<br>I want to read and parse data with space separators from a String,<br>So that I use the data elsewhere in my program |
 
-** Requirements: CsvWriter**
+**Requirements: CsvWriter**
 
 | Requirement ID | Description                                                                                          |
 | -------------- | ---------------------------------------------------------------------------------------------------- |
