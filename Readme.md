@@ -1261,7 +1261,7 @@ Note: All requirements are listed as formal requirements, with the exception of 
 | REQ-W-09       | The system shall write standard CSV files (comma separated) with no additional configuration changes |
 | REQ-W-10       | As a software user,<br> I want to be able to write structured records to a CSV file using CSVWriter,  <br>So that I can reliably generate well-formatted CSV output files for downstream use.|
 
-Note: The following are two examples of requirements that were acknowledged as valid formal requirements but were *excluded* due to the team's prioritization and time constraints. Further note that other valid requirements could be formulated, but were excluded due to the team's testing limitations:
+Note: The following are two examples of requirements that were acknowledged as valid formal requirements but were *excluded* due to the team's prioritization and time constraints. Further note that other valid requirements exist, but were excluded due to the team's testing limitations:
 
 - The system shall throw exceptions for invalid configurations (e.g., overlapping control characters).
 - The system shall flush output automatically or manually as configured.     
