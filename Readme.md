@@ -1268,9 +1268,20 @@ Note: The following are two examples of requirements that were acknowledged as v
 
 **Traceability Matrix**
 
-<img src="Images/Traceability.png" alt="Traceability Matrix"/>
+The below Traceability Matrix lists the requirements, as detailed above, across the top of the matrix and lists the specific test cases down the left side of the matrix. If a check mark exists at the intersection of a requirement and a test case, this indicates that the test case covered that requirement and that the test passed.  Note that all of the tests passed and that there were no unresolved issues.
 
-The following represents a summary view of the traceability matrix found above.
+The totals along the right side of the matrix indicate how many requirements each test covered.  The totals along the bottom of the matrix indicate how many tests covered each requirement.  
+
+<img src="Images/Traceability.png" alt="Traceability Matrix"/>
+<br><br>
+The below chart was adapted from those demonstrated in Lesson 5.3 of the Canvas Module. This visual demonstrates that the team's project had 25 requirements, covered by 75 tests, with 178 links between the tests and requirements.  This means that, on average, each requirement was covered by approximately 7 tests (178 links divided by 25 requirements) and that, conversely, each test covered an average of ~2.4 requirements (178 links divided by 75 tests).  The team believes that these numbers show an appropriate balance between thoroughness of testing and workload.
+<br><br>
+<img src="Images/TestSpan.png" alt="Test Span" width="800px"/>
+<br><br>
+
+**Summary Matrix**
+
+The following represents a summary view of the traceability matrix found above, with test groups across the top and requirements listed down the left side.
 
 | Requirement                                                         |  IDM   |  GBT   |  EXP   |  ACC   |
 | ------------------------------------------------------------------- | ------ | ------ | ------ | ------ |
