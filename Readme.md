@@ -1282,6 +1282,41 @@ The below chart was adapted from those demonstrated in Lesson 5.3 of the Canvas 
 <img src="Images/TestSpan.png" alt="Test Span" width="600px"/>
 <br>
 
+ **Summary Matrix**
+ 
+ The following represents a summary view of the traceability matrix found above, with test groups across the top and requirements listed down the left side.
+ 
+ | Requirement                                                         |  IDM   |  GBT   |  EXP   |  ACC   |
+ | ------------------------------------------------------------------- | ------ | ------ | ------ | ------ |
+ | REQ-R-01: Read CSV with configurable field separators               | X      |        |        | X      |
+ | REQ-R-02: Handle fields enclosed in quote characters                | X      |        |        |        |
+ | REQ-R-03: Support comment lines with configurable comment character | X      |        |        |        |
+ | REQ-R-04: Skip or retain comments based on strategy                 | X      |        |        |        |
+ | REQ-R-05: Parse inconsistent column counts                          | X      |        |        |        |
+ | REQ-R-06: Skip or retain empty lines                                | X      |        |        |        |
+ | REQ-R-07: Handle BOM headers                                        | X      |        |        |        |
+ | REQ-R-08: Read large CSV files with good performance                | X      |        | X      |        |
+ | REQ-R-09: Read compressed CSV files (gzip)                          |        |        | X      |        |
+ | REQ-R-10: Map CSV records to JavaBeans                              |        |        | X      |        |
+ | REQ-R-11: Conditional line skipping via predicate                   |        | X      |        |        |
+ | REQ-R-12: Handle malformed input with exceptions                    | X      |        |        |        |
+ | REQ-R-13: Read "standard" CSV files w/no config changes             | X      | X      | X      |        |
+ | REQ-R-14: Trimming and stripping of space characters                |        |        | X      |        |
+ | REQ-R-15: User Story - space separators/read from String            |        |        |        | X      |
+ | REQ-W-01: Write CSV with configurable separators                    | X      |        | X      |        |
+ | REQ-W-02: Apply configurable quote characters                       | X      |        |        |        |
+ | REQ-W-03: Implement quote strategies                                | X      | X      | X      |        |
+ | REQ-W-04: Handle null and empty values                              | X      | X      | X      |        |
+ | REQ-W-05: Support different line delimiters                         | X      | X      | X      |        |
+ | REQ-W-06: Escape special characters                                 | X      |        | X      |        |
+ | REQ-W-07: Write comments to output                                  |        |        | X      |        |
+ | REQ-W-08: Write to OutputStream and Writer                          |        | X      |        |        |
+ | REQ-W-09: Write "standard" CSV files w/no config changes            | X      |        | X      | X      |
+ | REQ-W-10: User Story - structured records                           |        |        |        | X      |
+ 
+ Note: IDM, GBT, EXP, and ACC represent the test groups described in [Section 5.1](#51-test-group-definition)
+
+
 # 6. Test Environment
 
 This section outlines the technical environment in which the testing activities were conducted. It includes hardware and software specifications, testing tools, and an overview of the architectural setup used to execute and validate tests for both CsvReader and CsvWriter components.
